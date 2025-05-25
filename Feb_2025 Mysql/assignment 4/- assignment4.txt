@@ -1,0 +1,304 @@
+Show the first three characters of the names of all employees.
+
+SELECT SUBSTRING(ename, 1, 3) AS SHORTNAME
+FROM EMP;
+Or, 
+SELECT LEFT(ENAME, 3) AS SHORTNAME
+FROM emp;
+
+2) Show the first 6 characters of the names of all employees.
+SELECT LEFT(ENAME,6)AS NAME
+FROM EMP;
+
+ 3) Display the names of all employees and the position at which the string 'AR'  occurs in the
+name.
+
+SELECT ENAME, LOCATE('AR', ENAME) AS position
+FROM EMP
+WHERE LOCATE('AR', ENAME) > 0;
+
+
+
+4) Show the comm of the employees rounded to 10.
+SELECT ENAME,COMM, ROUND (IFNULL(COMM,0),-1) AS COMMISSION
+FROM EMP;
+
+
+5) Show the comm of all employees rounding it to the nearest Rs. 1000.
+SELECT ENAME,ROUND(IFNULL(COMM,0),-3) AS COMM
+FROM EMP;
+
+6) Show the names of all employees, and the date on which they completed 20 years of services.
+SELECT ENAME, DATE_ADD(HIREDATE , INTERVAL 20 YEAR) AS COMPLETED_DATE
+FROM EMP;
+
+7) For each employee display the number of days passed since the employee joined the company.
+SELECT ENAME,DATEDIFF(CURDATE(),HIREDATE)AS DAYPASSED
+FROM EMP;
+
+8) For each employee display the number of months passed since the Employee joined the company.
+SELECT ENAME,PERIOD_DIFF(EXTRACT(YEAR_MONTH FROM CURDATE()),EXTRACT(YEAR_MONTH FROM HIREDATE)) AS MONTHPASSED 
+FROM EMP;
+
+9) Display the year in number for the current date
+SELECT YEAR(CURDATE()) AS CURRENTYEAR;
+
+
+10) Display the week number for the current date
+SELECT WEEK(CURDATE())AS WEEKNO;
+
+11) Display the details of all employees, sorted on the names.
+SELECT * 
+FROM EMP
+ORDER BY ENAME;
+
+12) Display the min, max, avg salary , grouping on deptno
+SELECT MIN(SAL),MAX(SAL),AVG(SAL), DEPTNO
+FROM EMP
+GROUP BY DEPTNO
+
+13) Display the min, max, avg salary , grouping on deptno where the minimum salary is greater than 1000
+SELECT MIN(SAL),MAX(SAL),AVG(SAL),DEPTNO
+FROM EMP
+GROUP BY DEPTNO
+HAVING MIN(SAL)>1000;
+
+14) Display the min, max, avg salary , grouping on deptno where the minimum salary is average than 1000
+SELECT MIN(SAL),MAX(SAL),AVG(SAL),DEPTNO
+FROM EMP
+GROUP BY DEPTNO
+HAVING MIN(SAL)>AVG(SAL);
+
+
+_____________________________________________________________________________________________________________________________________
+mysql> use cdac;
+Database changed
+mysql> SELECT LEFT(ENAME, 3) AS SHORTNAME
+    -> FROM emp;
++-----------+
+| SHORTNAME |
++-----------+
+| SMI       |
+| ALL       |
+| WAR       |
+| JON       |
+| MAR       |
+| BLA       |
+| CLA       |
+| SCO       |
+| KIN       |
+| TUR       |
+| ADA       |
+| JAM       |
+| FOR       |
+| MIL       |
++-----------+
+14 rows in set (0.01 sec)
+
+
+
+mysql> SELECT LEFT(ENAME,6)AS NAME
+    -> FROM EMP;
++--------+
+| NAME   |
++--------+
+| SMITH  |
+| ALLEN  |
+| WARD   |
+| JONES  |
+| MARTIN |
+| BLAKE  |
+| CLARK  |
+| SCOTT  |
+| KING   |
+| TURNER |
+| ADAMS  |
+| JAMES  |
+| FORD   |
+| MILLER |
++--------+
+14 rows in set (0.00 sec)
+
+mysql> SELECT ENAME, LOCATE('AR', ENAME) AS position
+    -> FROM EMP
+    -> WHERE LOCATE('AR', ENAME) > 0;
++--------+----------+
+| ENAME  | position |
++--------+----------+
+| WARD   |        2 |
+| MARTIN |        2 |
+| CLARK  |        3 |
++--------+----------+
+3 rows in set (0.01 sec)
+
+
+mysql> SELECT ENAME,COMM, ROUND (IFNULL(COMM,0),-1) AS COMMISSION
+    -> FROM EMP;
++--------+---------+------------+
+| ENAME  | COMM    | COMMISSION |
++--------+---------+------------+
+| SMITH  |    NULL |          0 |
+| ALLEN  |  300.00 |        300 |
+| WARD   |  500.00 |        500 |
+| JONES  |    NULL |          0 |
+| MARTIN | 1400.00 |       1400 |
+| BLAKE  |    NULL |          0 |
+| CLARK  |    NULL |          0 |
+| SCOTT  |    NULL |          0 |
+| KING   |    NULL |          0 |
+| TURNER |    0.00 |          0 |
+| ADAMS  |    NULL |          0 |
+| JAMES  |    NULL |          0 |
+| FORD   |    NULL |          0 |
+| MILLER |    NULL |          0 |
++--------+---------+------------+
+14 rows in set (0.00 sec)
+
+mysql> SELECT ENAME,ROUND(IFNULL(COMM,0),-3) AS COMM
+    -> FROM EMP;
++--------+------+
+| ENAME  | COMM |
++--------+------+
+| SMITH  |    0 |
+| ALLEN  |    0 |
+| WARD   | 1000 |
+| JONES  |    0 |
+| MARTIN | 1000 |
+| BLAKE  |    0 |
+| CLARK  |    0 |
+| SCOTT  |    0 |
+| KING   |    0 |
+| TURNER |    0 |
+| ADAMS  |    0 |
+| JAMES  |    0 |
+| FORD   |    0 |
+| MILLER |    0 |
++--------+------+
+14 rows in set (0.00 sec)
+
+mysql> SELECT ENAME, DATE_ADD(HIREDATE , INTERVAL 20 YEAR) AS COMPLETED_DATE
+    -> FROM EMP;
++--------+----------------+
+| ENAME  | COMPLETED_DATE |
++--------+----------------+
+| SMITH  | 2000-12-17     |
+| ALLEN  | 2001-02-20     |
+| WARD   | 2001-02-22     |
+| JONES  | 2001-04-02     |
+| MARTIN | 2001-09-28     |
+| BLAKE  | 2001-05-01     |
+| CLARK  | 2001-06-09     |
+| SCOTT  | 2002-12-09     |
+| KING   | 2001-11-17     |
+| TURNER | 2001-09-08     |
+| ADAMS  | 2003-01-12     |
+| JAMES  | 2001-12-03     |
+| FORD   | 2001-12-03     |
+| MILLER | 2002-01-23     |
++--------+----------------+
+14 rows in set (0.00 sec)
+
+mysql> SELECT ENAME,DATEDIFF(CURDATE(),HIREDATE)AS DAYPASSED
+    -> FROM EMP;
++--------+-----------+
+| ENAME  | DAYPASSED |
++--------+-----------+
+| SMITH  |     16185 |
+| ALLEN  |     16120 |
+| WARD   |     16118 |
+| JONES  |     16079 |
+| MARTIN |     15900 |
+| BLAKE  |     16050 |
+| CLARK  |     16011 |
+| SCOTT  |     15463 |
+| KING   |     15850 |
+| TURNER |     15920 |
+| ADAMS  |     15429 |
+| JAMES  |     15834 |
+| FORD   |     15834 |
+| MILLER |     15783 |
++--------+-----------+
+14 rows in set (0.00 sec)
+
+
+
+mysql> SELECT ENAME,PERIOD_DIFF(EXTRACT(YEAR_MONTH FROM CURDATE()),EXTRACT(YEAR_MONTH FROM HIREDATE)) AS MONTHPASSED
+    -> FROM EMP;
++--------+-------------+
+| ENAME  | MONTHPASSED |
++--------+-------------+
+| SMITH  |         532 |
+| ALLEN  |         530 |
+| WARD   |         530 |
+| JONES  |         528 |
+| MARTIN |         523 |
+| BLAKE  |         527 |
+| CLARK  |         526 |
+| SCOTT  |         508 |
+| KING   |         521 |
+| TURNER |         523 |
+| ADAMS  |         507 |
+| JAMES  |         520 |
+| FORD   |         520 |
+| MILLER |         519 |
++--------+-------------+
+14 rows in set (0.01 sec)
+
+
+mysql> SELECT YEAR(CURDATE()) AS CURRENTYEAR;
++-------------+
+| CURRENTYEAR |
++-------------+
+|        2025 |
++-------------+
+1 row in set (0.01 sec)
+
+
+mysql> SELECT WEEK(CURDATE())AS WEEKNO;
++--------+
+| WEEKNO |
++--------+
+|     14 |
++--------+
+1 row in set (0.01 sec)
+mysql> SELECT *
+    -> FROM EMP
+    -> ORDER BY ENAME;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100.00 |    NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 |    NULL |     20 |
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 |    NULL |     20 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+14 rows in set (0.00 sec)
+
+
+mysql> SELECT MIN(SAL),MAX(SAL),AVG(SAL),DEPTNO
+    -> FROM EMP
+    -> GROUP BY DEPTNO
+    -> HAVING MIN(SAL)>1000
+    -> ;
++----------+----------+-------------+--------+
+| MIN(SAL) | MAX(SAL) | AVG(SAL)    | DEPTNO |
++----------+----------+-------------+--------+
+|  1300.00 |  5000.00 | 2916.666667 |     10 |
++----------+----------+-------------+--------+
+1 row in set (0.01 sec)
+
+mysql> SELECT MIN(SAL),MAX(SAL),AVG(SAL),DEPTNO
+    -> FROM EMP
+    -> GROUP BY DEPTNO
+    -> HAVING MIN(SAL)>AVG(SAL);
+Empty set (0.00 sec)

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<item key="replaceBarOpen" value="true"/>
+	<list key="replacehistory">
+		<item value="display"/>
+		<item value="rollNumber"/>
+		<item value="Student"/>
+		<item value="age"/>
+		<item value="sPopul"/>
+		<item value="fPopul"/>
+		<item value="CountryName"/>
+		<item value="no"/>
+		<item value="withdrawT"/>
+		<item value="depositT"/>
+		<item value="wdt"/>
+		<item value="dpt"/>
+		<item value="oin"/>
+		<item value="/"/>
+		<item value="usertwo"/>
+	</list>
+	<list key="searchhistory">
+		<item value="toString"/>
+		<item value="age"/>
+		<item value="Person"/>
+		<item value="number"/>
+		<item value="sCode"/>
+		<item value="fCode"/>
+		<item value="country"/>
+		<item value="amt"/>
+		<item value="wdt"/>
+		<item value="dpt"/>
+		<item value="withdrawThread"/>
+		<item value="depositThread"/>
+		<item value="oout"/>
+		<item value="\\"/>
+		<item value="u21"/>
+	</list>
+</section>

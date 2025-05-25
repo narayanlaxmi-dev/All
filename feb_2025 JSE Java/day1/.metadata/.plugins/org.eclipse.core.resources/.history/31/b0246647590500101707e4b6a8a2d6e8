@@ -1,0 +1,14 @@
+package day1_pakage;
+// create a program if number is positive or not
+
+import java.util.Scanner;
+public class ep4_positive {
+	
+	public static void main(String[] args) {
+		Scanner ob = new Scanner(System.in);
+		System.out.println("Enter number to check -ve/+ve :");
+		int a = ob.nextInt();
+		if(a>0)
+			System.out.println("the number is positive"+ a);
+	}
+}

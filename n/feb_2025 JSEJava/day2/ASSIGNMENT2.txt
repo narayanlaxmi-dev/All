@@ -1,0 +1,478 @@
+package ass2;
+
+import java.util.Scanner;
+
+public class arr1 {
+
+	public static void main(String[] args) {
+		// write a prog test array contain specific value return
+		// the index of an array element
+
+		int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 99 };
+		int ch, i, flag = 0;
+		try (Scanner sc = new Scanner(System.in)) {
+			System.out.println("Enter element to find an array :");
+			ch = sc.nextInt();
+			for (i = 0; i < arr.length; i++) {
+				if (arr[i] == ch) {
+					flag = 1;
+					break;
+				}
+			}
+			sc.close();
+		}
+		if (flag == 1)
+			System.out.println("The index find at --->" + i + "\nvalue is --->" + arr[i]);
+		else
+			System.out.println("not found...");
+	}
+
+}
+
+OUTPUT 
+Enter element to find an array :
+2
+The index find at --->1
+value is --->2
+
+------------------------------------------------------------------------------------------------------------------------
+package ass2;
+
+// write a prog test array contain specific value return
+// the index of an array element
+import java.util.Scanner;
+
+public class arr2_dynamic {
+
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("enter array size :");
+		int n = sc.nextInt();
+		int arr[] = new int[n]; // new is keyword allocated dynamic memory
+		int ch, i, flag = 0;
+
+		System.out.println("Enter total array elements " + n + " :");
+		for (i = 0; i < arr.length; i++) {
+			System.out.print("insert index " + i + " :");
+			arr[i] = sc.nextInt();
+		}
+
+		System.out.println("Enter element to find an array :");
+		ch = sc.nextInt();
+		for (i = 0; i < arr.length; i++) {
+			if (arr[i] == ch) {
+				flag = 1;
+				break;
+			}
+		}
+
+		if (flag == 1)
+			System.out.println("The index find at --->" + i + "\nvalue is --->" + arr[i]);
+		else
+			System.out.println("not found...");
+
+	}
+
+}
+
+OUTPUT
+enter array size :
+5
+Enter total array elements 5 :
+insert index 0 :1
+insert index 1 :2
+insert index 2 :3
+insert index 3 :6
+insert index 4 :55
+Enter element to find an array :
+4
+not found...
+------------------------------------------------------------------------------------------------------------------------
+package ass2;
+
+import java.util.Scanner;
+
+public class arr3_insert_ele {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter array size: ");
+		int n = sc.nextInt();
+		int arr[] = new int[n + 1]; // One extra space for insertion
+
+		System.out.println("Enter " + n + " array elements:");
+		for (int i = 0; i < n; i++) { // Fixed loop to avoid index error
+			System.out.print("Insert element at index " + i + ": ");
+			arr[i] = sc.nextInt();
+		}
+
+		System.out.print("Enter INDEX at which to insert an element: ");
+		int idx = sc.nextInt();
+
+		System.out.print("Enter value to insert: ");
+		int value = sc.nextInt();
+
+		// reverse n to value decrement and value add i = i--
+		for (int i = n; i > idx; i--) {
+			arr[i] = arr[i - 1];
+		}
+		arr[idx] = value;
+
+		System.out.println("Array after insertion:");
+		for (int i = 0; i <= n; i++) {
+			System.out.println(arr[i]);
+		}
+		sc.close();
+
+	}
+
+}
+OUTPUT
+Enter array size: 5
+Enter 5 array elements:
+Insert element at index 0: 22
+Insert element at index 1: 11
+Insert element at index 2: 33
+Insert element at index 3: 44
+Insert element at index 4: 55
+Enter INDEX at which to insert an element: 1
+Enter value to insert: 999
+Array after insertion:
+22
+999
+11
+33
+44
+55
+------------------------------------------------------------------------------------------------------------------------
+package ass2;
+
+import java.util.Scanner;
+
+public class arr4_max_min {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter array size: ");
+		int n = sc.nextInt();
+		int arr[] = new int[n];
+
+		System.out.println("Enter " + n + " array elements:");
+		for (int i = 0; i < arr.length; i++) {
+			arr[i] = sc.nextInt();
+		}
+		int i, max = arr[0], min = arr[0];
+		for (i = 0; i < arr.length; i++) {
+			if (arr[i] > max) {
+				max = arr[i];
+			} else if (arr[i] < min) {
+				min = arr[i];
+			}
+		}
+
+		System.out.println("maximum value is : " + max);
+		System.out.println("minimum value is : " + min);
+	}
+}
+OUTPUT 
+Enter array size: 5
+Enter 5 array elements:
+23
+45
+15
+65
+78
+maximum value is : 78
+minimum value is : 15
+
+------------------------------------------------------------------------------------------------------------------------
+package ass2;
+
+import java.util.Scanner;
+
+public class arr5_duplicate {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter array size: ");
+		int n = sc.nextInt();
+		int arr[] = new int[n];
+
+		int i, j;
+		System.out.println("Enter " + n + " array elements:");
+		for (i = 0; i < arr.length; i++) {
+			arr[i] = sc.nextInt();
+		}
+
+		int duplicate = 0; // Reset before counting
+		System.out.println("Duplicate elements:");
+
+		for (i = 0; i < arr.length; i++) {
+			boolean isDuplicate = false;
+
+			for (j = i + 1; j < arr.length; j++) {
+				if (arr[i] == arr[j]) {
+					isDuplicate = true; // Found a duplicate
+				}
+			}
+
+			if (isDuplicate) {
+				System.out.println(arr[i]);
+				duplicate++;
+			}
+		}
+	}
+
+}
+OUTPUT 
+Enter array size: 12
+Enter 12 array elements:
+23
+45
+12
+56
+12
+586
+23
+45
+48
+9
+32
+123
+Duplicate elements:
+23
+45
+12
+------------------------------------------------------------------------------------------------------------------------
+package ass2;
+
+public class arr5table {
+
+	public static void main(String[] args) {
+		//   tables  1 to 5
+		for (int i = 1; i <= 5; i++) {
+			System.out.println("Multiplication Table for " + i);
+			for (int j = 1; j <= 10; j++) {
+				System.out.println(i + " x " + j + " = " + (i * j));
+			}
+			System.out.println(); //  blank line 
+		}
+
+	}
+}
+OUTPUT 
+Multiplication Table for 1
+1 x 1 = 1
+1 x 2 = 2
+1 x 3 = 3
+1 x 4 = 4
+1 x 5 = 5
+1 x 6 = 6
+1 x 7 = 7
+1 x 8 = 8
+1 x 9 = 9
+1 x 10 = 10
+
+Multiplication Table for 2
+2 x 1 = 2
+2 x 2 = 4
+2 x 3 = 6
+2 x 4 = 8
+2 x 5 = 10
+2 x 6 = 12
+2 x 7 = 14
+2 x 8 = 16
+2 x 9 = 18
+2 x 10 = 20
+
+Multiplication Table for 3
+3 x 1 = 3
+3 x 2 = 6
+3 x 3 = 9
+3 x 4 = 12
+3 x 5 = 15
+3 x 6 = 18
+3 x 7 = 21
+3 x 8 = 24
+3 x 9 = 27
+3 x 10 = 30
+
+Multiplication Table for 4
+4 x 1 = 4
+4 x 2 = 8
+4 x 3 = 12
+4 x 4 = 16
+4 x 5 = 20
+4 x 6 = 24
+4 x 7 = 28
+4 x 8 = 32
+4 x 9 = 36
+4 x 10 = 40
+
+Multiplication Table for 5
+5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+5 x 4 = 20
+5 x 5 = 25
+5 x 6 = 30
+5 x 7 = 35
+5 x 8 = 40
+5 x 9 = 45
+5 x 10 = 50
+
+------------------------------------------------------------------------------------------------------------------------
+package ass2;
+
+import java.util.Scanner;
+
+public class arr7sum {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter array size: ");
+		int n = sc.nextInt();
+		int arr[] = new int[n];
+		int i, j;
+		System.out.println("Enter array 1 element " + n + " array elements:");
+		for (i = 0; i < arr.length; i++) {
+			arr[i] = sc.nextInt();
+		}
+		System.out.println("enter number to find pair");
+		int number = sc.nextInt();
+		for (i = 0; i < arr.length; i++) {
+			for (j = i + 1; j < arr.length; j++) {
+				if (number == arr[i] + arr[j]) {
+					System.out.println(number + " := " + arr[i] + " + " + arr[j]);
+				}
+			}
+		}
+	}
+
+}
+OUTPUT 
+Enter array size: 7
+Enter array 1 element 7 array elements:
+1
+2
+3
+4
+5
+7
+8
+enter number to find pair
+9
+9 := 1 + 8
+9 := 2 + 7
+9 := 4 + 5
+
+
+------------------------------------------------------------------------------------------------------------------------
+package ass2;
+
+import java.util.Scanner;
+
+public class arr8specifyele {
+
+	public static void main(String[] args) {
+		// 65 77 specific element search in array
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter ARRAY SIZE :");
+		int n = sc.nextInt();
+		int arr[] = new int[n];
+		boolean has65 = false;
+		boolean has77 = false;
+		System.out.println("enter element of an array :");
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print("insert " + i + " :");
+			arr[i] = sc.nextInt();
+		}
+		int i;
+		for (i = 0; i < arr.length; i++) {
+			if (arr[i] == 65)
+				has65 = true;
+			if (arr[i] == 77)
+				has77 = true;
+		}
+
+		if (has65 && has77)
+			System.out.println("65 and 77 found !!!!");
+		else if (has65)
+			System.out.println("65 found !!!!");
+		else if (has77)
+			System.out.println("77 found !!!!");
+		else
+			System.out.println("NOT found........");
+	}
+
+}
+
+OUTPUT
+Enter ARRAY SIZE :
+9
+enter element of an array :
+insert 0 :65
+insert 1 :77
+insert 2 :56
+insert 3 :123
+insert 4 :4563
+insert 5 :945
+insert 6 :123
+insert 7 :231
+insert 8 :123
+65 and 77 found !!!!
+
+------------------------------------------------------------------------------------------------------------------------
+package ass2;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class arr9max_product {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter ARRAY SIZE :");
+		int n = sc.nextInt();
+		int arr[] = new int[n];
+
+		System.out.println("enter element of an array :");
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print("insert " + i + " :");
+			arr[i] = sc.nextInt();
+		}
+
+		int max = 0, secondmax = 0;
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] > max) {
+				secondmax = max;
+				max = arr[i];
+
+			} else if (arr[i] > secondmax) {
+				secondmax = arr[i];
+			}
+		}
+		System.out.println("max value is" + max);
+		System.out.println("second max value is " + secondmax);
+		System.out.println("multiplication " + (max * secondmax));
+
+		Arrays.sort(arr);
+		System.out.println(arr[arr.length - 1] * arr[arr.length - 2]);
+	}
+
+}
+OUTPUT 
+Enter ARRAY SIZE :
+5
+enter element of an array :
+insert 0 :12
+insert 1 :23
+insert 2 :465
+insert 3 :12
+insert 4 :56
+max value is465
+second max value is 56
+multiplication 26040
+26040
+------------------------------------------------------------------------------------------------------------------------
+

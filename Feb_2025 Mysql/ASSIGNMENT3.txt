@@ -1,0 +1,475 @@
+CREATE DB 
+CREATE DATABASE ECOMMERCE;
+
+1
+CREATE TABLE CUSTOMER2(
+CUSTID INT PRIMARY KEY,
+EMAIL_ADDRESS VARCHAR(75),
+FIRST_NAME VARCHAR(50),
+MIDDLE_NAME VARCHAR(50),
+LAST_NAME VARCHAR(50),
+ADDRESS1 VARCHAR(50),
+ADDRESS2 VARCHAR(50),
+CUSTOMER_PINCODE VARCHAR(10),
+AREA_CODE CHAR(3),
+TELEPHONE CHAR(7)
+);
+
+INSERT INTO CUSTOMER2 VALUES(01,'NARAYAN@G.COM','NAR','MAN','PAT','ADD1','ADD2','001','123','890798');
+
+INSERT INTO CUSTOMER2 VALUES(02,'NARAYAN@G.COM','NAR','MAN','PAT','ADD1','ADD2','001','123','890798'),(03,'NARAYAN@G.COM','NAR','MAN','PAT','ADD1','ADD2','001','123','890798');
+
+
+CREATE TABLE cardinfo(
+card_id int PRIMARY KEY,
+ccnum varchar(16),
+ccexp date,
+name_on_card varchar(100),
+email_address varchar(75)
+);
+
+INSERT INTO CARDINFO VALUES(10,'ABC12','2026-12-12','RUPAY','N@GMAIL.COM');
+
+INSERT INTO CARDINFO VALUES(30,'ABC12','2026-12-12','RUPAY','N@GMAIL.COM'),(20,'ABC12','2026-12-12','RUPAY','N@GMAIL.COM');
+;
+
+CREATE TABLE cardtype(
+card_id int  PRIMARY KEY,
+card_type varchar(20)
+);
+
+INSERT INTO CARDTYPE VALUES(10,'RUPAY'),(20,'USA'),(30,'RUPAY');
+
+CREATE TABLE LOCALE(
+zip varchar(10) PRIMARY KEY,
+city varchar(50),
+state char(2)
+);
+INSERT INTO LOCALE VALUES('ABC123','NASHIK','MH'),('ABB122','HYDRABAD','MH'),('ABD124','SHAHADA','MH');
+
+
+
+
+
+
+mysql> CREATE TABLE CUSTOMER2(
+    -> CUSTID INT PRIMARY KEY,
+    -> EMAIL_ADDRESS VARCHAR(75),
+    -> FIRST_NAME VARCHAR(50),
+    -> MIDDLE_NAME VARCHAR(50),
+    -> LAST_NAME VARCHAR(50),
+    -> ADDRESS1 VARCHAR(50),
+    -> ADDRESS2 VARCHAR(50),
+    -> CUSTOMER_PINCODE VARCHAR(10),
+    -> AREA_CODE CHAR(3),
+    -> TELEPHONE CHAR(7)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO CUSTOMER2 VALUES(01,'NARAYAN@G.COM','NAR','MAN','PAT','ADD1','ADD2','001','123','890798');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO CUSTOMER2 VALUES(02,'NARAYAN@G.COM','NAR','MAN','PAT','ADD1','ADD2','001','123','890798'),(03,'NARAYAN@G.COM','NAR','MAN','PAT','ADD1','ADD2','001','123','890798');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM CUSTOMER3;
+ERROR 1146 (42S02): Table 'cdac.customer3' doesn't exist
+mysql> SELECT * FROM CUSTOMER2;
++--------+---------------+------------+-------------+-----------+----------+----------+------------------+-----------+-----------+
+| CUSTID | EMAIL_ADDRESS | FIRST_NAME | MIDDLE_NAME | LAST_NAME | ADDRESS1 | ADDRESS2 | CUSTOMER_PINCODE | AREA_CODE | TELEPHONE |
++--------+---------------+------------+-------------+-----------+----------+----------+------------------+-----------+-----------+
+|      1 | NARAYAN@G.COM | NAR        | MAN         | PAT       | ADD1     | ADD2     | 001              | 123       | 890798    |
+|      2 | NARAYAN@G.COM | NAR        | MAN         | PAT       | ADD1     | ADD2     | 001              | 123       | 890798    |
+|      3 | NARAYAN@G.COM | NAR        | MAN         | PAT       | ADD1     | ADD2     | 001              | 123       | 890798    |
++--------+---------------+------------+-------------+-----------+----------+----------+------------------+-----------+-----------+
+3 rows in set (0.00 sec)
+
+
+mysql>
+mysql> CREATE TABLE cardinfo(
+    -> card_id int PRIMARY KEY,
+    -> ccnum varchar(16),
+    -> ccexp date,
+    -> name_on_card varchar(100),
+    -> email_address varchar(75)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+
+mysql> INSERT INTO CARDINFO VALUES(10,'ABC12','2026-12-12','RUPAY','N@GMAIL.COM');
+Query OK, 1 row affected (0.01 sec)
+
+mysql>
+mysql> INSERT INTO CARDINFO VALUES(30,'ABC12','2026-12-12','RUPAY','N@GMAIL.COM'),(20,'ABC12','2026-12-12','RUPAY','N@GMAIL.COM');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+
+mysql> SELECT * FROM CARDINFO;
++---------+-------+------------+--------------+---------------+
+| card_id | ccnum | ccexp      | name_on_card | email_address |
++---------+-------+------------+--------------+---------------+
+|      10 | ABC12 | 2026-12-12 | RUPAY        | N@GMAIL.COM   |
+|      20 | ABC12 | 2026-12-12 | RUPAY        | N@GMAIL.COM   |
+|      30 | ABC12 | 2026-12-12 | RUPAY        | N@GMAIL.COM   |
++---------+-------+------------+--------------+---------------+
+3 rows in set (0.00 sec)
+
+
+mysql> CREATE TABLE cardtype(
+    -> card_id int  PRIMARY KEY,
+    -> card_type varchar(20)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> INSERT INTO CARDTYPE VALUES(10,'RUPAY'),(20,'USA'),(30,'RUPAY');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM CARDTYPE;
++---------+-----------+
+| card_id | card_type |
++---------+-----------+
+|      10 | RUPAY     |
+|      20 | USA       |
+|      30 | RUPAY     |
++---------+-----------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql> CREATE TABLE LOCALE(
+    -> zip varchar(10) PRIMARY KEY,
+    -> city varchar(50),
+    -> state char(2)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO LOCALE VALUES('ABC123','NASHIK','MH'),('ABB122','HYDRABAD','MH'),('ABD124','SHAHADA','MH');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM LOCALE;
++--------+----------+-------+
+| zip    | city     | state |
++--------+----------+-------+
+| ABB122 | HYDRABAD | MH    |
+| ABC123 | NASHIK   | MH    |
+| ABD124 | SHAHADA  | MH    |
++--------+----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> DESC LOCALE;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| zip   | varchar(10) | NO   | PRI | NULL    |       |
+| city  | varchar(50) | YES  |     | NULL    |       |
+| state | char(2)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> DESC CARDTYPE;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| card_id   | int         | NO   | PRI | NULL    |       |
+| card_type | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> DESC CARDINFO;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| card_id       | int          | NO   | PRI | NULL    |       |
+| ccnum         | varchar(16)  | YES  |     | NULL    |       |
+| ccexp         | date         | YES  |     | NULL    |       |
+| name_on_card  | varchar(100) | YES  |     | NULL    |       |
+| email_address | varchar(75)  | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+mysql> DESC CUSTOMER2;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| CUSTID           | int         | NO   | PRI | NULL    |       |
+| EMAIL_ADDRESS    | varchar(75) | YES  |     | NULL    |       |
+| FIRST_NAME       | varchar(50) | YES  |     | NULL    |       |
+| MIDDLE_NAME      | varchar(50) | YES  |     | NULL    |       |
+| LAST_NAME        | varchar(50) | YES  |     | NULL    |       |
+| ADDRESS1         | varchar(50) | YES  |     | NULL    |       |
+| ADDRESS2         | varchar(50) | YES  |     | NULL    |       |
+| CUSTOMER_PINCODE | varchar(10) | YES  |     | NULL    |       |
+| AREA_CODE        | char(3)     | YES  |     | NULL    |       |
+| TELEPHONE        | char(7)     | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+
+CREATE TABLE CUSTOMER_MASTER(
+CUST_NO VARCHAR(6) PRIMARY KEY,
+NAME VARCHAR(20) NOT NULL,
+ADDRESS1 VARCHAR(30),
+ADDRESS2 VARCHAR(15),
+CITY VARCHAR(15) NOT NULL CHECK ( CITY IN ('PUNE','MUM','NASHIK')),
+STATE VARCHAR(15)NOT NULL CHECK (STATE LIKE 'MH%'),
+PINCODE NUMERIC(6),
+MOBILE_NO VARCHAR(20) UNIQUE
+);
+
+
+Client No	Name		City	Pin Code	State	Mobile_no
+C00001		Tia Pinto	Pune	400054	Maharashtra	12345678
+C00002		Carol Fernandez	Mum	400056	Maharashtra	54545454
+
+
+Update the 2nd record and the change the Name with “Rita”. And the city as nasik
+Delete the 2nd record
+
+INSERT INTO CUSTOMER_MASTER (CUST_NO,NAME,CITY,PINCODE,STATE,MOBILE_NO) VALUES('C00001','NEYAN NARA','PUNE','40054','MH MAHARASHTRA',123456789);
+INSERT INTO CUSTOMER_MASTER (CUST_NO,NAME,CITY,PINCODE,STATE,MOBILE_NO) VALUES('C00002','NARA NEYAN','NASHIK','40055','MH MAHARASHTRA',342789);
+SELECT * FROM CUSTOMER_MASTER;
+
+mysql> CREATE TABLE CUSTOMER_MASTER(
+    -> CUST_NO VARCHAR(6) PRIMARY KEY,
+    -> NAME VARCHAR(20) NOT NULL,
+    -> ADDRESS1 VARCHAR(30),
+    -> ADDRESS2 VARCHAR(15),
+    -> CITY VARCHAR(15) NOT NULL CHECK ( CITY IN ('PUNE','MUM','NASHIK')),
+    -> STATE VARCHAR(15)NOT NULL CHECK (STATE LIKE 'MH%'),
+    -> PINCODE NUMERIC(6),
+    -> MOBILE_NO VARCHAR(20) UNIQUE
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>
+mysql> INSERT INTO CUSTOMER_MASTER (CUST_NO,NAME,CITY,PINCODE,STATE,MOBILE_NO) VALUES('C00001','NEYAN NARA','PUNE','40054','MH MAHARASHTRA',123456789);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO CUSTOMER_MASTER (CUST_NO,NAME,CITY,PINCODE,STATE,MOBILE_NO) VALUES('C00002','NARA NEYAN','NASHIK','40055','MH MAHARASHTRA',342789);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM CUSTOMER_MASTER;
++---------+------------+----------+----------+--------+----------------+---------+-----------+
+| CUST_NO | NAME       | ADDRESS1 | ADDRESS2 | CITY   | STATE          | PINCODE | MOBILE_NO |
++---------+------------+----------+----------+--------+----------------+---------+-----------+
+| C00001  | NEYAN NARA | NULL     | NULL     | PUNE   | MH MAHARASHTRA |   40054 | 123456789 |
+| C00002  | NARA NEYAN | NULL     | NULL     | NASHIK | MH MAHARASHTRA |   40055 | 342789    |
++---------+------------+----------+----------+--------+----------------+---------+-----------+
+2 rows in set (0.00 sec)
+
+
+
+
+
+SIR GIVE ME SOLUTION
+==============================================================================================================
+
+SELECT DEPTNO, COUNT(*)
+     FROM EMP
+WHERE DEPTNO !=10
+     GROUP BY DEPTNO;
+
+ Write a query to display number of employees getting salary more than 1600 excluding all the managers in each department.
+
+
+SELECT SAL,DEPTNO
+FROM EMP
+WHERE JOB!= 'MANAGER' AND SAL>1600
+GROUP BY DEPTNO;
+
+
+
+
+. Write a query to display number of employees hired into the same department on the same day.
+
+SELECT HIREDATE,DEPTNO , COUNT(*)
+FROM EMP
+GROUP BY DEPTNO,HIREDATE
+HAVING COUNT(*)>1;
+
+Write a query to display maximum salary given in each designation excluding those whose name starts with ‘k’.
+
+SELECT MAX(SAL),JOB,COUNT(*)
+FROM EMP
+WHERE ENAME NOT LIKE 'K%'
+GROUP BY JOB ;
+
+Write a query to display maximum salary,minimum salary,job if job is clerk,analyst.
+
+SELECT MAX(SAL),MIN(SAL)
+FROM EMP 
+WHERE JOB IN ('CLERK','ANALYST');
+
+Write a query to display number of employees in each department.
+SELECT COUNT(*)
+ FROM EMP
+ GROUP BY JOB;
+
+SELECT DEPTNO, ENAME, COUNT(*)
+FROM EMP
+GROUP BY JOB,DEPTNO,ENAME;
+
+
+==============================================================================================================
+
+Write a query to display total salary needed to pay each job in employee table.
+SELECT SUM(SAL)
+FROM EMP 
+GROUP BY JOB;
+
+
+2. Write a query to display the hire date on which at least 2 employees where hired.
+ SELECT HIREDATE,COUNT(*)
+    -> FROM EMP
+    -> GROUP BY HIREDATE
+    -> HAVING COUNT(*)<=2;
+
+ SELECT HIREDATE,COUNT(*)
+     FROM EMP
+     GROUP BY HIREDATE
+     HAVING COUNT(*)<=2;
+
+3. Write a query to display the department number which has more than 2 employees and the total amount required to pay the monthly salaries of all the employees in that department should be more than 9000.
+SELECT DEPTNO,SUM(SAL)
+FROM EMP
+GROUP BY DEPTNO
+HAVING COUNT(SAL)>2 AND SUM(SAL)>900;
+
+4. Write a query to display number of employees working in each department and its average salary by excluding all the employees whose salary is less than their commission.
+SELECT AVG(SAL),DEPTNO,COUNT(*)
+FROM EMP
+WHERE SAL<COMM
+GROUP BY DEPTNO;
+
+
+5. Write a query to display the salaries which has repetitions in the sal column of employee table.
+SELECT SAL
+FROM EMP 
+GROUP BY SAL
+HAVING COUNT(SAL)>1;
+
+6. Write a query to display the employee name only if more than one person in the employees of the company has same name.
+SELECT ENAME,COUNT(*)
+FROM EMP
+GROUP BY ENAME
+HAVING COUNT(*)>1;
+
+7. Write a query to display the department number whose average salary is between 2500 and 3000.
+SELECT DEPTNO
+FROM EMP
+GROUP BY DEPTNO
+HAVING AVG(SAL) BETWEEN 2500 AND 3000;
+
+ 8. Write a query to display the number of employees only if they are working as manager or analyst and their annual sal should end with a zero, in each department.
+
+SELECT DEPTNO, COUNT(*) AS NUM_EMP
+FROM EMP
+WHERE JOB IN ('MANAGER', 'ANALYST')
+AND MOD(SAL, 10) = 0
+GROUP BY DEPTNO;
+
+ 9. Write a query to display no of clerks working in each department.
+SELECT DEPTNO
+FROM EMP
+WHERE JOB !='CLERK'
+GROUP BY DEPTNO;
+
+10. Write a query to display highest salary given to a manager in each department.
+SELECT MAX(SAL),JOB
+FROM EMP
+GROUP BY JOB;
+
+11. Write a query to display no of times the salaries have repeated in the emp table.
+SELECT SAL
+FROM EMP
+GROUP BY SAL
+HAVING COUNT(SAL)>1;
+
+12. Write a query to display deptno and number of employees’ working in each department except for those working in dept10.
+SELECT DEPTNO, COUNT(*) AS NUM_EMP
+FROM EMP
+WHERE DEPTNO !=  10 # deptno not in 10
+GROUP BY DEPTNO;
+
+
+13. Write a query to display number of employees getting commission in each department.
+SELECT COUNT(*) AS NUM_EMP,COMM
+FROM EMP
+WHERE COMM>=0
+GROUP BY COMM;
+
+14. Write a query to display number of employees getting salary more than 1600 excluding all the managers in each department.
+SELECT COUNT(*)AS NUMEMP, JOB
+FROM EMP
+WHERE JOB NOT IN ('MANAGER') AND SAL>1600
+GROUP BY JOB;
+
+OR
+SELECT SAL,DEPTNO
+FROM EMP
+WHERE JOB!= 'MANAGER' AND SAL>1600
+GROUP BY DEPTNO;
+
+
+15. Write a query to display average salary needed to pay all the employees who are having a reporting manager in each job.
+
+SELECT AVG(SAL) AS AVGSAL, JOB
+FROM EMP
+WHERE MGR IS NOT NULL
+GROUP BY JOB;
+
+OR 
+SELECT AVG(E.SAL) AS AVG_SALARY, COUNT(*) AS NUMEMP, E.JOB
+FROM EMP E
+WHERE E.MGR IS NOT NULL
+GROUP BY E.JOB;
+
+
+
+16. Write a query to display number of employees hired into the same department on the same day.
+SELECT HIREDATE, DEPTNO,COUNT(*) as numemp
+FROM EMP
+GROUP BY DEPTNO, HIREDATE
+HAVING COUNT(*)>1;
+
+
+
+17. Write a query to display number of employees getting the same salary, working in the same department.
+SELECT COUNT(*) AS NUMEMP,SAL,DEPTNO
+FROM EMP
+GROUP BY SAL,DEPTNO
+HAVING COUNT(*)>1;
+
+
+18. Write a query to display maximum salary given in each designation excluding those whose name starts with ‘k’.
+
+SELECT MAX(SAL),JOB,COUNT(*)
+FROM EMP
+WHERE ENAME NOT LIKE 'K%'
+GROUP BY JOB ;
+
+OR
+
+SELECT MAX(SAL),JOB,COUNT(*)
+FROM EMP 
+WHERE JOB !='K%'
+GROUP BY JOB;
+
+19. Write a query to display number of employees reporting to 7839. (no need to use group by clause)
+SELECT COUNT(*) AS NUMEMP
+FROM EMP
+WHERE EMPNO='7839';
+
+20. Write a query to display maximum salary,minimum salary, job if job is clerk,analyst.
+SELECT MIN(SAL), MAX(SAL)
+FROM EMP
+WHERE JOB IN ('CLERK','MANAGER');
+
+21. Write a query to display number of employees in each department.
+SELECT COUNT(*)AS NUMEMP,JOB
+FROM EMP
+GROUP BY JOB;

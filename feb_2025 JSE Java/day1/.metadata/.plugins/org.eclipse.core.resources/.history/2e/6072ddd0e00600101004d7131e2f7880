@@ -1,0 +1,39 @@
+package oops1;
+
+import java.util.*;
+
+public class Product {
+	private String p_name;
+	private int rate;
+	private float amount, quantity, dis;
+
+	Product(float quantity) {
+		this.quantity = quantity;
+	}
+
+	Scanner sc = new Scanner(System.in);
+
+	void set_data() {
+//			this.p_name = p_name;
+//			this.rate = rate;
+		System.out.print("Enter product name: ");
+		p_name = sc.next(); // Assigning input value to instance variable
+		System.out.print("Enter rate: ");
+		rate = sc.nextInt(); // Assigning input value to instance variable
+	}
+
+	float calc() {
+		amount = rate * quantity;
+		dis = amount - (amount * 10 / 100); // 0.1 // 10% discount
+		return dis;
+	}
+
+	void get_data() {
+		System.out.println("name " + p_name);
+		System.out.println("rate " + rate);
+		System.out.println("quantity " + quantity);
+		System.out.println("amount is " + amount);
+		System.out.println("discount " + calc());
+
+	}
+}

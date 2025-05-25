@@ -1,0 +1,7 @@
+package dao;
+
+// generic interface to particualr templates
+public interface AppRepository<T> {
+	void save(T t);
+
+}

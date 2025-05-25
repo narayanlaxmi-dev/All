@@ -1,0 +1,568 @@
+emp dept script oracle
+
+ER DIGRAM ENTITY RELATIONAL MODEL
+
+WHAT IS ENTITY = TABLE : RECTANGLE
+WHAT IS attribute = ATTRIBUTE : OVAL
+RELATION DIAMOND 
+
+CARDINALITY
+1 - 1
+1 - M
+M - 1
+M - M
+
+TYPES OF ENTITY  -===================
+STRONG 
+WEAK
+COMPOSITE
+DERIVED 
+
+TYPES OF ATTRIBUTE -===================
+SINGLE VALUED
+MULTI VALUED
+COMPOSITE
+RECURSIVE
+
+
+DE NORMALIZATION
+SPECILIZATION AND GENERALIZATION INVERTED TRIANGLE 
+ACID
+TRASACTION
+TYPE OF CONSTRAINT
+FK PK UK NOT NULL CHECK DEFAULT
+
+
+
+SEE LIST OF CONSTRAINT 
+SELECT TABLE_NAME, CONSTRAINT_TYPE, CONSTRAINT_NAME
+FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+WHERE TABLE_NAME=DEPT1
+
+
+
+CREATE TABLE DEPT1 (
+ 	DEPTNO NUMERIC(2) PRIMARY KEY,
+DNAME varchar(14) NOT NULL,
+  LOC varchar(13) NOT NULL
+);
+
+mysql> desc dept1;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| DEPTNO | decimal(2,0) | NO   | PRI | NULL    |       |
+| DNAME  | varchar(14)  | NO   |     | NULL    |       |
+| LOC    | varchar(13)  | NO   |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+
+INSERT INTO DEPT1 VALUES(10,'CEO','NASHIK'),(10,'CHAIRMAN','SHAHADA'),(10,'CEO',NULL); NOT WORK PK SAME AND NULL VALUE NOT ALLOWED
+INSERT INTO DEPT1 VALUES(10,'CEO','NASHIK'),(20,'CHAIRMAN','SHAHADA'),(30,'CEO','HELLO');
+
+
+
+
+CREATE TABLE EMP1(
+EMPNO NUMERIC(4) PRIMARY KEY,
+ENAME VARCHAR(20) NOT NULL,
+CITY VARCHAR (20) DEFAULT 'NASHIK',
+ CHECK (CITY IN ('NASHIK','PUNE','MUMBAI')),
+PAN CHAR(12) UNIQUE,
+DEPTNO DECIMAL(2,0),
+SAL NUMERIC(10,2) CHECK(SAL BETWEEN 20000 AND 200000),
+FOREIGN KEY(DEPTNO) REFERENCES DEPT1(DEPTNO)
+);
+
+
+1 TYPE INSERT DATA ------------------------------------------------------
+
+INSERT INTO EMP1 VALUES(1,'NARAYAN',default,'A123','10',20000);
+INSERT INTO EMP1 VALUES(2,'NEYAN','NASHIK','B123','20',20001);
+
+2 TYPE INSERT MULTIPLE DATA ------------------------------------------------------
+INSERT INTO EMP1 VALUES(3,'NEVDU', DEFAULT,'C123','20',20001), (4,'LNSHN','MUMBAI','D123','10',20001);
+
+3 TYPE INSERT DATA ------------------------------------------------------
+INSERT INTO EMP1 (ENAME,EMPNO,PAN,SAL) VALUES('NNN',09,'P900',30000),('QN',19,'W900',30000);
+INSERT INTO EMP1 (ENAME,EMPNO,PAN,SAL) VALUES('AN',11,'W200',40000);
+
+
+mysql> SELECT * FROM EMP1;
++-------+---------+--------+------+--------+----------+
+| EMPNO | ENAME   | CITY   | PAN  | DEPTNO | SAL      |
++-------+---------+--------+------+--------+----------+
+|     1 | NARAYAN | NASHIK | A123 |     10 | 20000.00 |
+|     2 | NEYAN   | NASHIK | B123 |     20 | 20001.00 |
++-------+---------+--------+------+--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMP1 VALUES(3,'NEYAN', DEFAULT,'C123','20',20001), (4,'LNSHN','MUMBAI','D123','10',20001);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM EMP1;
++-------+---------+--------+------+--------+----------+
+| EMPNO | ENAME   | CITY   | PAN  | DEPTNO | SAL      |
++-------+---------+--------+------+--------+----------+
+|     1 | NARAYAN | NASHIK | A123 |     10 | 20000.00 |
+|     2 | NEYAN   | NASHIK | B123 |     20 | 20001.00 |
+|     3 | NEYAN   | NASHIK | C123 |     20 | 20001.00 |
+|     4 | LNSHN   | MUMBAI | D123 |     10 | 20001.00 |
++-------+---------+--------+------+--------+----------+
+4 rows in set (0.00 sec)
+
+mysql> DELETE FROM EMP1
+    -> WHERE EMPNO IN( 3,4);
+Query OK, 2 rows affected (0.01 sec)
+
+mysql> SELECT * FROM EMP1;
++-------+---------+--------+------+--------+----------+
+| EMPNO | ENAME   | CITY   | PAN  | DEPTNO | SAL      |
++-------+---------+--------+------+--------+----------+
+|     1 | NARAYAN | NASHIK | A123 |     10 | 20000.00 |
+|     2 | NEYAN   | NASHIK | B123 |     20 | 20001.00 |
++-------+---------+--------+------+--------+----------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMP1 VALUES(3,'NEVDU', DEFAULT,'C123','20',20001), (4,'LNSHN','MUMBAI','D123','10',20001);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> SELECT * FROM EMP1;
++-------+---------+--------+------+--------+----------+
+| EMPNO | ENAME   | CITY   | PAN  | DEPTNO | SAL      |
++-------+---------+--------+------+--------+----------+
+|     1 | NARAYAN | NASHIK | A123 |     10 | 20000.00 |
+|     2 | NEYAN   | NASHIK | B123 |     20 | 20001.00 |
+|     3 | NEVDU   | NASHIK | C123 |     20 | 20001.00 |
+|     4 | LNSHN   | MUMBAI | D123 |     10 | 20001.00 |
++-------+---------+--------+------+--------+----------+
+4 rows in set (0.00 sec)
+
+
+mysql> UPDATE EMP1
+    -> SET ENAME = 'LAXMI'
+    -> WHERE EMPNO = 4;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM EMP1;
++-------+---------+--------+------+--------+----------+
+| EMPNO | ENAME   | CITY   | PAN  | DEPTNO | SAL      |
++-------+---------+--------+------+--------+----------+
+|     1 | NARAYAN | NASHIK | A123 |     10 | 20000.00 |
+|     2 | NEYAN   | NASHIK | B123 |     20 | 20001.00 |
+|     3 | NEVDU   | NASHIK | C123 |     20 | 20001.00 |
+|     4 | LAXMI   | MUMBAI | D123 |     10 | 20001.00 |
++-------+---------+--------+------+--------+----------+
+4 rows in set (0.00 sec)
+
+
+
+
+CREATE TABLE CUSTOMER1(
+CUSTOMERID VARCHAR(4) PRIMARY KEY,
+ADDRESS VARCHAR(20) CHECK(ADDRESS IN('HYDRABAD','BANGLORE','PUNE')),
+MOBILENO CHAR(10) NOT NULL,
+EMAIL VARCHAR(10) CHECK (EMAIL LIKE '%.COM'),
+AADHAR CHAR(12) UNIQUE
+);
+
+
+INSERT INTO CUSTOMER1 VALUES(2001, 'PUNE', 90897867, 'HELLO.COM', 'AS21SA');
+INSERT INTO CUSTOMER1 VALUES(2002, 'PUNE', 90897868, 'HELL.COM', 'AS21BC'),(2003, 'BANGLORE', 90897867, 'HELLO.COM', 'AS21SB');
+
+
+
+
+
+
+=-----------------------------------------------------------------------------------------------------------------------------------------=
+
+DEFAULT 1 AUTOCOMMIT DDL COMMANDS (CREATE DPOP TRUNCAT ALTER)  DML CREATE UPDATE DELETE ALSO ROLLBACK
+SET AUTOCOMMIT=0;
+CREATE TABLE EMP2(
+EMPNO INT,
+ENAME VARCHAR(20),
+SAL INT
+);
+
+INSERT INTO EMP2(EMPNO,ENAME,SAL) VALUES(101, 'NARA',500),(102,'NEYAN',3000);
+
+
+mysql> SELECT * FROM EMP2;
++-------+-------+------+
+| EMPNO | ENAME | SAL  |
++-------+-------+------+
+|   101 | NARA  |  500 |
+|   102 | NEYAN | 3000 |
++-------+-------+------+
+2 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SELECT * FROM EMP2;
+Empty set (0.00 sec)
+
+mysql> INSERT INTO EMP2(EMPNO,ENAME,SAL) VALUES(101, 'NARA',500),(102,'NEYAN',3000);
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM EMP2;
++-------+-------+------+
+| EMPNO | ENAME | SAL  |
++-------+-------+------+
+|   101 | NARA  |  500 |
+|   102 | NEYAN | 3000 |
++-------+-------+------+
+2 rows in set (0.00 sec)
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> INSERT INTO EMP2(EMPNO,ENAME,SAL) VALUES(101, 'NARA',500),(102,'NEYAN',3000);
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM EMP2;
++-------+-------+------+
+| EMPNO | ENAME | SAL  |
++-------+-------+------+
+|   101 | NARA  |  500 |
+|   102 | NEYAN | 3000 |
++-------+-------+------+
+2 rows in set (0.00 sec)
+
+
+mysql> INSERT INTO EMP2(EMPNO,ENAME,SAL) VALUES(101, 'NARA',500),(102,'NEYAN',3000);
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM EMP2;
++-------+-------+------+
+| EMPNO | ENAME | SAL  |
++-------+-------+------+
+|   101 | NARA  |  500 |
+|   102 | NEYAN | 3000 |
+|   101 | NARA  |  500 |
+|   102 | NEYAN | 3000 |
+|   101 | NARA  |  500 |
+|   102 | NEYAN | 3000 |
++-------+-------+------+
+6 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SELECT * FROM EMP2;
++-------+-------+------+
+| EMPNO | ENAME | SAL  |
++-------+-------+------+
+|   101 | NARA  |  500 |
+|   102 | NEYAN | 3000 |
+|   101 | NARA  |  500 |
+|   102 | NEYAN | 3000 |
++-------+-------+------+
+4 rows in set (0.00 sec)
+
+
+---------------------------------------------------oracale -------------------------------------------------
+ORACALE IS NOT AUTOCOMMIT
+ROLLBACK USED SAVEPOINT
+SAVEPOINT	
+savepoint work only oracale use to create bookmark
+
+sqlpl in cmd enter
+run ==sqlpl --run 
+
+connect hr
+password: hr
+	SQL> connect hr
+	Enter password:
+	ERROR:
+	ORA-28002: the password will expire within 7 days
+	Connected.
+
+
+to clear screen 
+cl scr
+se all table 
+select * from tab;
+select * from dept;
+
+employee dept search in oracale for table creation
+https://livesql.oracle.com/ords/livesql/file/content_O5AEB2HE08PYEPTGCFLZU9YCV.html
+
+drop table emp;
+
+create table emp(
+empno int,
+ename varchar2(20),
+sal int
+);
+
+SQL>
+SQL> create table emp(
+  2  empno int,
+  3  ename varchar2(20),
+  4  sal int
+  5  );
+
+Table created.
+
+
+insert into emp values(1,'na',50000) ;
+insert into emp values(2,'na',50000) ;
+savepoint  a;
+insert into emp values(3,'na',50000) ;
+insert into emp values(4,'na',50000) ;
+savepoint b;
+insert into emp values(5,'na',50000) ;
+insert into emp values(6,'na',50000) ;
+rollback to b;
+insert into emp values(7,'na',50000) ;
+insert into emp values(8,'na',50000) ;
+rollback to a;
+insert into emp values(9,'na',50000) ;
+commit;
+#------------------------------------------------------------# rollback; undo to all every thing
+select * from emp;
+======= answer =========
+
+SQL> insert into emp values(1,'na',50000) ;
+
+1 row created.
+
+SQL> insert into emp values(2,'na',50000) ;
+
+1 row created.
+
+SQL> savepoint  a;
+
+Savepoint created.
+
+SQL> insert into emp values(3,'na',50000) ;
+
+1 row created.
+
+SQL> insert into emp values(4,'na',50000) ;
+
+1 row created.
+
+SQL> savepoint b;
+
+Savepoint created.
+
+SQL> insert into emp values(5,'na',50000) ;
+
+1 row created.
+
+SQL> insert into emp values(6,'na',50000) ;
+
+1 row created.
+
+SQL> rollback to b;
+
+Rollback complete.
+
+SQL> insert into emp values(7,'na',50000) ;
+
+1 row created.
+
+SQL> insert into emp values(8,'na',50000) ;
+
+1 row created.
+
+SQL> rollback to a;
+
+Rollback complete.
+
+SQL> insert into emp values(9,'na',50000) ;
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from emp;
+
+     EMPNO ENAME                       SAL
+---------- -------------------- ----------
+         1 na                        50000
+         2 na                        50000
+         9 na                        50000
+
+SQL>
+SQL>exit; or ctrl z close ctrl c for newline/loop outside
+
+
+
+
+
+---------------------------------
+=========================using multiple constrain 
+CREATE TABLE EMP2(
+EMPNO VARCHAR(4) PRIMARY KEY CHECK (EMPNO LIKE 'e%'),
+ENAME VARCHAR(20) NOT NULL,
+SAL INT NOT NULL CHECK (SAL > 40000)
+);
+
+INSERT INTO EMP2(ENAME,EMPNO,SAL) VALUES ('NARA','e01',500000);
+INSERT INTO EMP2(ENAME,EMPNO,SAL) VALUES ('NEYAN','e02',500004);
+INSERT INTO EMP2(ENAME,EMPNO,SAL) VALUES ('NEYAN','e02',500004);
+
+
+CREATE TABLE EMPLEAVE(
+EMPNO INT NOT NULL,
+SDATE DATE NOT NULL,
+EDATE DATE NOT NULL ,
+PRIMARY KEY (EMPNO, SDATE),
+CHECK (SDATE<=EDATE)
+);
+
+INSERT INTO EMPLEAVE VALUES(121, '2025-1-11','2025-1-1');
+INSERT INTO EMPLEAVE VALUES(121, '2025-1-1','2025-1-1');
+INSERT INTO EMPLEAVE VALUES(101, '2025-1-1','2025-1-1'),(101, '2025-2-1','2025-3-1'),(102, '2025-4-1','2025-6-1');
+
+
+=---------------------------==-=-=-=-=-=-=-=-=-=-=--=======================================================
+mysql> use cdac;
+Database changed
+mysql> CREATE TABLE EMP2(
+    -> EMPNO VARCHAR(4) PRIMARY KEY CHECK (EMPNO LIKE 'e%'),
+    -> ENAME VARCHAR(20) NOT NULL,
+    -> SAL INT NOT NULL CHECK (SAL > 40000)
+    -> );
+ERROR 1050 (42S01): Table 'emp2' already exists
+mysql> DROP TABLE EMP2;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE EMP2(
+    -> EMPNO VARCHAR(4) PRIMARY KEY CHECK (EMPNO LIKE 'e%'),
+    -> ENAME VARCHAR(20) NOT NULL,
+    -> SAL INT NOT NULL CHECK (SAL > 40000)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO EMP2(ENAME,EMPNO,SAL) VALUES ('NARA',E01,500000);
+ERROR 1054 (42S22): Unknown column 'E01' in 'field list'
+mysql> INSERT INTO EMP2(ENAME,EMPNO,SAL) VALUES ('NARA',e01,500000);
+ERROR 1054 (42S22): Unknown column 'e01' in 'field list'
+mysql>
+mysql>
+mysql> INSERT INTO EMP2(ENAME,EMPNO,SAL) VALUES ('NARA','e01',500000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO EMP2(ENAME,EMPNO,SAL) VALUES ('NEYAN','e02',500004);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM EMP2;
++-------+-------+--------+
+| EMPNO | ENAME | SAL    |
++-------+-------+--------+
+| e01   | NARA  | 500000 |
+| e02   | NEYAN | 500004 |
++-------+-------+--------+
+2 rows in set (0.00 sec)
+
+mysql>
+mysql> CREATE TABLE EMPLEAVE(
+    -> EMPNO INT NOT NULL,
+    -> SDATE DATE NOT NULL,
+    -> EDATE DATE NOT NULL );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DROP TABLE EMPLEAVE;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>
+mysql> CREATE TABLE EMPLEAVE(
+    -> EMPNO INT NOT NULL,
+    -> SDATE DATE NOT NULL,
+    -> EDATE DATE NOT NULL
+    -> PRIMARY KEY (EMPNO, SDATE)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(EMPNO, SDATE)
+)' at line 5
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> CREATE TABLE EMPLEAVE(
+    -> EMPNO INT NOT NULL,
+    -> SDATE DATE NOT NULL,
+    -> EDATE DATE NOT NULL ,
+    -> PRIMARY KEY (EMPNO, SDATE)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql>
+mysql> DESC EMPLEAVE;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| EMPNO | int  | NO   | PRI | NULL    |       |
+| SDATE | date | NO   | PRI | NULL    |       |
+| EDATE | date | NO   |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMPLEAVE VALUES(101, '2025-1-1','2025-1-1'),(101, '2025-2-1','2025-1-1'),(102, '2025-4-1','2025-1-1');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> DROP TALBE EMPLEAVE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TALBE EMPLEAVE' at line 1
+mysql> DROP TABLE EMPLEAVE;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql>
+mysql> CREATE TABLE EMPLEAVE(
+    -> EMPNO INT NOT NULL,
+    -> SDATE DATE NOT NULL,
+    -> EDATE DATE NOT NULL ,
+    -> PRIMARY KEY (EMPNO, SDATE),
+    -> CHECK (SDATE<=EDATE)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO EMPLEAVE VALUES(121, '2025-1-11','2025-1-1');
+ERROR 3819 (HY000): Check constraint 'empleave_chk_1' is violated.
+mysql> INSERT INTO EMPLEAVE VALUES(121, '2025-1-1','2025-1-1');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO EMPLEAVE VALUES(101, '2025-1-1','2025-1-1'),(101, '2025-2-1','2025-1-1'),(102, '2025-4-1','2025-1-1');
+ERROR 3819 (HY000): Check constraint 'empleave_chk_1' is violated.
+mysql> INSERT INTO EMPLEAVE VALUES(101, '2025-1-1','2025-1-1'),(101, '2025-2-1','2025-3-1'),(102, '2025-4-1','2025-6-1');^C
+mysql> INSERT INTO EMPLEAVE VALUES(101, '2025-1-1','2025-1-1'),(101, '2025-2-1','2025-3-1'),(102, '2025-4-1','2025-6-1');
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM EMPLEAVE;
++-------+------------+------------+
+| EMPNO | SDATE      | EDATE      |
++-------+------------+------------+
+|   101 | 2025-01-01 | 2025-01-01 |
+|   101 | 2025-02-01 | 2025-03-01 |
+|   102 | 2025-04-01 | 2025-06-01 |
+|   121 | 2025-01-01 | 2025-01-01 |
++-------+------------+------------+
+4 rows in set (0.00 sec)
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------
+built in function
+string
+numeric
+date
+
+

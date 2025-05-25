@@ -1,0 +1,11 @@
+private int a, b;
+
+	point_super() {
+		a = 500;
+		b = 600;
+
+	}
+
+	void show() {
+		System.out.println("A= " + a + "\tB= " + b);
+	}

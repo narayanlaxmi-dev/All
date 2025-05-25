@@ -1,0 +1,50 @@
+package day1;
+
+public class Student extends Person {
+	
+		private String course;
+		private float percentage;
+
+		public Student() {
+			course = "unknown";
+			percentage = 0;
+		}
+
+		public Student(String course, float percentage) {
+			super();
+			this.course = course;
+			this.percentage = percentage;
+		}
+
+		public String getCourse() {
+			return course;
+		}
+
+		public void setCourse(String course) {
+			this.course = course;
+		}
+
+		public float getPercentage() {
+			return percentage;
+		}
+
+		public void setPercentage(float percentage) {
+			this.percentage = percentage;
+		}
+
+		
+		public static  float toLearn() {
+			return percentage;
+			
+		}
+		
+		@Override
+		public String toString() {
+			return "Student [course=" + course + ", percentage=" + percentage + "]";
+		}
+
+		
+
+	
+
+}

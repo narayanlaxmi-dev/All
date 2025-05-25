@@ -1,0 +1,10 @@
+
+ Rollno 	 name
+
+ 01 		 narayan
+ 02 		 ne
+ 03	
+
+ Enter String...........
+narayan 
+patil

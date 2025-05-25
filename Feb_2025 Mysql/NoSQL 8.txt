@@ -1,0 +1,502 @@
+MONGO DB 
+case sensitive 
+
+create mannualy folder in 
+
+C:\data\db 
+C:\Program Files\MongoDB\Server\4.2
+C:\Program Files\MongoDB\Server\4.2\data
+
+
+C:\Program Files\MongoDB\Server\4.2\bin
+enter cmd
+
+1 START SERVER
+ MONGOD ENTER 
+
+2 CLIENT
+MONGO     ENTER
+> SIGN COME
+
+USING CLIENT CLI COMMAND LINE INTERFACE
+TO CLEAR SCREEN 
+
+to show all database
+show dbs
+
+open db AND to create db
+use cdac;
+
+to drop database
+db.dropDatabase()
+
+
+
+==============================================================
+> show dbs
+admin           0.000GB
+cdac            0.000GB
+config          0.000GB
+jp              0.000GB
+lnt             0.000GB
+local           0.000GB
+ofs             0.000GB
+productdetails  0.000GB
+project1        0.000GB
+sample          0.000GB
+televisions     0.000GB
+test            0.000GB
+userdeatils     0.000GB
+userdetails     0.000GB
+> use cdac;
+switched to db cdac
+> db.dropDatabase()
+{ "dropped" : "cdac", "ok" : 1 }
+>
+=========================================================================
+
+see all collections = tables;
+show collections
+
+show current db 
+db
+
+to exit 
+exit
+
+to see help 
+help 
+
+
+to insert document
+db.friends.insert(
+{name:'narayan',
+rollno:101,
+emailed:'narayan@gmail.com'
+})
+
+> db.friends.insert(
+... {name:'narayan',
+... rollno:101,
+... emailed:'narayan@gmail.com'
+... })
+WriteResult({ "nInserted" : 1 })
+-----------------------------
+
+db.friends.insertMany([
+  { name: 'nena', rollno: 100, emailed: 'nena@gmail.com' },
+  { name: 'neyan', rollno: 102, emailed: 'neyan@gmail.com' }
+])
+.
+
+
+db.friends.insertMany([
+  { name: 'shiva', rollno: 105, emailed: 'shiva@gmail.com',gender:'m',god:'mahadevDestroyer' },
+  { name: 'hanumana', rollno: 108, emailed: 'hanumana@gmail.com', god:'RamPriee' }
+])
+
+db.friends.find()
+db.friends.find().pretty()
+
+
+db.emp.insertMany([
+  { name: 'nara', rollno: 1, sal:5000},
+  { name: 'nevda', rollno:2, sal:4500 },
+  { name: 'neyan', rollno:3, sal:3500 }
+])
+
+db.dept.insertMany([
+  { dname: 'hr',loc:'kailash'},
+  { dname: 'manager', loc:'nashik' },
+  { dname: 'sales',  loc:'shahada' },
+  { dname: 'accounting',  loc:'songadh' }
+])
+
+
+db.friends.find()
+db.emp.find()
+db.dept.find()
+
+to delete table or collection 
+db.friends.drop()  // delete all 
+db.dept.drop()
+
+db.emp.remove({}) // record deleted  collection present
+
+
+> db.emp.find()
+{ "_id" : ObjectId("682469e020cab224556f4249"), "name" : "nara", "rollno" : 1, "sal" : 5000 }
+{ "_id" : ObjectId("682469e020cab224556f424a"), "name" : "nevda", "rollno" : 2, "sal" : 4500 }
+{ "_id" : ObjectId("682469e020cab224556f424b"), "name" : "neyan", "rollno" : 3, "sal" : 3500 }
+> db.dept.find()
+{ "_id" : ObjectId("68246a5320cab224556f424c"), "dname" : "hr", "loc" : "kailash" }
+{ "_id" : ObjectId("68246a5320cab224556f424d"), "dname" : "manager", "loc" : "nashik" }
+{ "_id" : ObjectId("68246a5320cab224556f424e"), "dname" : "sales", "loc" : "shahada" }
+{ "_id" : ObjectId("68246a5320cab224556f424f"), "dname" : "accounting", "loc" : "songadh" }
+>
+
+db.createCollection("name")	Create a new collection 
+
+
+
+| Command                                | Description                  |
+| -------------------------------------- | ---------------------------- |
+| `db.collection.find()`                 | Find all documents           |
+| `db.collection.find({ field: value })` | Find documents with a filter |
+| `db.collection.findOne({})`            | Find a single document       |
+
+
+
+| Command                                                      | Description                     |
+| ------------------------------------------------------------ | ------------------------------- |
+| `db.collection.updateOne({ filter }, { $set: { update } })`  | Update one document             |
+| `db.collection.updateMany({ filter }, { $set: { update } })` | Update multiple documents       |
+| `db.collection.replaceOne({ filter }, { newDoc })`           | Replace one document completely |
+
+
+| Command                                | Description               |
+| -------------------------------------- | ------------------------- |
+| `db.collection.deleteOne({ filter })`  | Delete one document       |
+| `db.collection.deleteMany({ filter })` | Delete multiple documents |
+
+
+| Command                                   | Description                           |
+| ----------------------------------------- | ------------------------------------- |
+| `db.collection.countDocuments({})`        | Count documents                       |
+| `db.collection.distinct("field")`         | Get unique values for a field         |
+| `db.collection.find().sort({ field: 1 })` | Sort results (`1` = ASC, `-1` = DESC) |
+| `db.collection.find().limit(5)`           | Limit number of documents returned    |
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+db.persons.insert ( {
+	name: {first: 'Harish', last: 'Chandra'},
+	gender: 'M',
+	yearOfBirth: 1962,
+	livesIn: 'Mumbai',
+	countriesVisited: ['India', 'Singapore', 'Thailand', 'United Kingdom', 'Spain', 'Denmark', 'United States of America'],
+	languages: [
+		{name: 'Hindi', proficiency: 'Fluent'},
+		{name: 'English', proficiency: 'Fluent'},
+		{name: 'Sanskrit', proficiency: 'Intermediate'} ]
+} )
+
+db.persons.insert ( {
+	name: {first: 'Zoa', last: 'Hendrik'},
+	gender: 'F',
+	yearOfBirth: 1988,
+	livesIn: 'Barcelona',
+	countriesVisited: ['Spain', 'Denmark', 'France'],
+	languages: [
+		{name: 'Spanish', proficiency: 'Fluent'},
+		{name: 'Catalan', proficiency: 'Fluent'},
+		{name: 'English', proficiency: 'Intermediate'} ],
+	married: 'No'
+} )
+
+db.persons.insert ( {
+	name: {first: 'Narayan', last: 'Sundaram'},
+	gender: 'M',
+	yearOfBirth: 1960,
+	livesIn: 'Jaipur',
+	counriesVisited: ['India', 'United States of America', 'Netherlands', 'China'],
+	languages: [
+		{name: 'Tamil', proficiency: 'Fluent'},
+		{name: 'English', proficiency: 'Fluent'},
+		{name: 'Hindi', proficiency: 'Intermediate'},
+		{name: 'Chinese', proficiency: 'Intermediate'} ],
+	married: 'Yes'
+} )
+
+db.persons.insert ( {
+	name: {first: 'Shailesh', last: 'Sharma'},
+	gender: 'M',
+	yearOfBirth: 1962,
+	livesIn: 'Singapore',
+	countriesVisited: ['India', 'Singapore', 'China', 'Taiwan', 'United States of America', 'Sri Lanka', 'Mayalsia', 'Australia'],
+	languages: [
+		{name: 'Hindi', proficiency: 'Fluent'},
+		{name: 'English', proficiency: 'Fluent'} ]
+} ) 
+
+db.persons.insert ( {
+	name: {first: 'Mark', last: 'Smith'},
+	gender: 'M',
+	livesIn: 'Chicago',
+	countriesVisited: ['United States of America', 'Canada', 'France', 'Spain', 'India', 'Australia'],
+	languages: [ {name: 'English', proficiency: 'Fluent'} ]
+} )
+
+db.persons.insert ( {
+	name: {first: 'Rita', last: 'Chauhan'},
+	gender: 'F',
+	yearOfBirth: 1989,
+	livesIn: 'Mumbai',
+	countriesVisited: ['India'],
+	languages: [
+		{name: 'Hindi', proficiency: 'Fluent'},
+		{name: 'English', proficiency: 'Fluent'} ],
+	married: 'No'
+} )
+
+db.persons.insert ( {
+	name: {first: 'Liza', last: 'Bordelon'},
+	gender: 'F',
+	yearOfBirth: 1971,
+	livesIn: 'Minneapolis',
+	countriesVisited: ['United States of America', 'Canada'],
+	languages: [
+		{name: 'English', proficiency: 'Fluent'},
+		{name: 'French', proficiency: 'Fluent'},
+		{name: 'German', proficiency: 'Intermediate'},
+		{name: 'Greek', proficiency: 'Intermediate'},
+		{name: 'Latin', proficiency: 'Intermediate'},
+		{name: 'Sanskrit', proficiency: 'Beginner'} ]
+} )
+
+db.persons.insert ( {
+	name: {first: 'Jenny', last: 'Jones'},
+	gender: 'F',
+	yearOfBirth: 1985,
+	livesIn: 'Oxford',
+	countriesVisited: ['United Kingdom'],
+	languages: [ {name: 'English', proficiency: 'Fluent'} ],
+	married: 'No'
+} )
+
+db.persons.insert ( {
+	name: {first: 'Sapna', last: 'Chetri'},
+	gender: 'F',
+	yearOfBirth: 1989,
+	livesIn: 'Siliguri',
+	countriesVisited: ['India'],
+	languages: [
+		{name: 'Nepali', proficiency: 'Fluent'},
+		{name: 'Hindi', proficiency: 'Fluent'},
+		{name: 'English', proficiency: 'Intermediate'} ],
+	married: 'No'
+} )
+
+db.persons.insert ( {
+	name: {first: 'Jenny', middle: 'H', last: 'Jones'},
+	gender: 'F',
+	yearOfBirth: 1988,
+	livesIn: 'London',
+	countriesVisited: ['United Kingdom'],
+	languages: [ {name: 'English', proficiency: 'Fluent'} ],
+	married: 'Yes'
+} )
+
+db.persons.insert ( {
+	name: {first: 'Lakhpa', last: 'Sherpa'},
+	gender: 'M',
+	yearOfBirth: 1989,
+	lievsIn: 'Gangtok',
+	countriesVisited: ['India'],
+	languages: [
+		{name: 'Nepali', proficiency: 'Fluent'},
+		{name: 'English', proficiency: 'Fluent'},
+		{name: 'Hindi', proficiency: 'Intermediate'} ],
+	married: 'No'
+} )
+
+db.persons.insert ( {
+	name: {first: 'Anita', last: 'Gogia'},
+	gender: 'F',
+	yearOfBirth: 1965,
+	livesIn: 'New Delhi',
+	countriesVisited: ['India', 'United Kingdom', 'Canada', 'United States of America'],
+	languages: [
+		{name: 'Hindi', proficiency: 'Fluent'},
+		{name: 'Punjabi', proficiency: 'Fluent'},
+		{name: 'English', proficiency: 'Fluent'} ],
+	married: 'Yes'
+} )
+
+db.persons.insert ( {
+	name: {first: 'Neeharika', last: 'Chauhan'},
+	gender: 'F',
+	yearOfBirth: 1988,
+	livesIn: 'Jaipur',
+	countriesVisited: ['India'],
+	languages: [
+		{name: 'Hindi', proficiency: 'Fluent'},
+		{name: 'English', proficiency: 'Intermediate'} ],
+	married: 'No'
+} )
+
+db.persons.insert ( {
+	name: {first: 'Nancy', last: 'Karin'},
+	gender: 'F',
+	yearOfBirth: 1992,
+	livesIn: 'Montreal',
+	countriesVisited: ['Canada', 'United States of America'],
+	languages: [
+		{name: 'English', proficiency: 'Fluent'},
+		{name: 'French', proficiency: 'Fluent'},
+		{name: 'German', proficiency: 'Intermediate'},
+		{name: 'Greek', proficiency: 'Intermediate'},
+		{name: 'Latin', proficiency: 'Intermediate'},
+		{name: 'Sanskrit', proficiency: 'Beginner'} ]
+} )
+
+db.persons.count() // 
+------------------------------------------------------------------------------------------------------------------------------------------------
+> show collections
+dept
+emp
+friends
+persons
+> db.friends.drop()
+true
+> show collections
+dept
+emp
+persons
+>
+
+to format 
+db.persons.find().pretty()
+db.persons.findOne()
+
+In MongoDB, [] (square brackets) represents an array.
+In MongoDB, {} (curly braces) represents a document. 
+In MongoDB, () (parentheses) However, parentheses are used in function calls and queries.
+
+find all femail
+db.persons.find({ gender:'F'}).pretty()
+
+db.persons.find({ gender:'M'}).pretty()
+
+db.persons.remove({ livesIn:'Montreal'})
+
+db.persons.count({ gender:'M'}) or 
+db.persons.find({ gender:'M'}).count()
+db.persons.count({ gender:'F'})
+db.persons.count({ livesIn:'Montreal'})
+db.persons.count({ married:'Yes'})
+db.persons.count({ married:'No'})
+db.persons.find({ gender:'M'}).pretty()
+db.persons.find({},{name:1, gender:1}) // only 2 column print for documents
+
+to remove object 
+db.persons.find({},{name:1, gender:1,_id:0})
+
+db.persons.find({},{livesIn:1,name:1,_id:0})
+db.persons.find({},{name:1, countriesVisited:1 ,_id:0}) // or 
+db.persons.find({},{name:1, countriesVisited:1 ,_id:0}).count()
+db.persons.find({},{name:1, languages:1,married:1,_id:0})
+
+db.persons.find({},{livesIn:'New Delhi' ,_id:0})
+db.persons.find({},{livesIn:'New Delhi' ,_id:0},{name:1,_id:0})
+
+
+to change primary key or index 
+db.dept.createIndex({'name':1}) // 		-----1
+> db.dept.createIndex({'name':1})
+{
+        "createdCollectionAutomatically" : false,
+        "numIndexesBefore" : 1,
+        "numIndexesAfter" : 2,
+        "ok" : 1
+}
+
+db.dept.createIndex({
+'name':1
+},{
+unique:true,
+expireAfterSeconds:3600
+}) //						-----2
+
+
+------PREDICATES
+$in
+$all
+$or
+$ne // not equalto
+$eq // equalto
+$ls // < less thgat
+$gt // >
+$le
+$ge
+| Operator | Meaning                  |
+| -------- | ------------------------ |
+| `$lt`    | Less than                |
+| `$lte`   | Less than or equal to    |
+| `$gt`    | Greater than             |
+| `$gte`   | Greater than or equal to |
+
+
+db.persons.find({livesIn: {$in: ['New Delhi','Gangtok','London']}})
+db.persons.find({livesIn: {$in: ['New Delhi', 'Gangtok', 'London']}}).pretty()
+
+
+db.persons.find({livesIn: {$in: ['New Delhi','Gangtok','London']}},{name:1, _id:0})
+db.persons.find({livesIn: {$in: ['Jaipur','Mumbai']}},{name:1, _id:0})
+
+
+db.persons.find({yearOfBirth: {$lt: 1980}},{name:1, _id:0})
+db.persons.find({yearOfBirth: {$gt: 1980}},{name:1, _id:0})
+
+
+--------------update $set 
+db.persons.update({name:{first:'Nancy',last:'Karin'}}, {$set:{married:'No'}})
+> db.persons.update({name:{first:'Nancy',last:'Karin'}}, {$set:{married:'No'}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+>
+
+db.persons.find({name:{first:'Nancy',last:'Karin'}}).pretty() // or 
+db.persons.find({ "name.first": "Nancy", "name.last": "Karin" }).pretty()
+
+> db.persons.find({married:'No'}).pretty()
+
+
+
+
+
+mysql> select round(1234.6789,1);
++--------------------+
+| round(1234.6789,1) |
++--------------------+
+|             1234.7 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> select round(1234.56789,1);
++---------------------+
+| round(1234.56789,1) |
++---------------------+
+|              1234.6 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> select round(1234.456789,1);
++----------------------+
+| round(1234.456789,1) |
++----------------------+
+|               1234.5 |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> select round(1234.3456789,1);
++-----------------------+
+| round(1234.3456789,1) |
++-----------------------+
+|                1234.3 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select round(1234.3456789,-1);
++------------------------+
+| round(1234.3456789,-1) |
++------------------------+
+|                   1230 |
++------------------------+
+1 row in set (0.01 sec)
+
+mysql> select round(1234.3456789,-2);
++------------------------+
+| round(1234.3456789,-2) |
++------------------------+
+|                   1200 |
++------------------------+
+1 row in set (0.00 sec)

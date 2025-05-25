@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crypto Price Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+    }
+    #controls {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    #searchInput {
+      padding: 8px;
+      width: 250px;
+    }
+    #refreshBtn {
+      padding: 8px 16px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    th {
+      background-color: #333;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Cryptocurrency Price Tracker (INR)</h1>
+
+  <div id="controls">
+    <input type="text" id="searchInput" placeholder="Search by name...">
+    <button id="refreshBtn">Refresh Prices</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Symbol</th>
+        <th>Price (INR)</th>
+      </tr>
+    </thead>
+    <tbody id="cryptoTable">
+      <!-- Data goes here -->
+    </tbody>
+  </table>
+
+  <script>
+    const API_URL = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=inr";
+    const tableBody = document.getElementById("cryptoTable");
+    const searchInput = document.getElementById("searchInput");
+    const refreshBtn = document.getElementById("refreshBtn");
+
+    async function fetchCryptoData() {
+      try {
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        displayData(data);
+      } catch (error) {
+        console.error("Error fetching crypto data:", error);
+        tableBody.innerHTML = "<tr><td colspan='3'>Error loading data</td></tr>";
+      }
+    }
+
+    function displayData(data) {
+      const searchText = searchInput.value.toLowerCase();
+      const filtered = data.filter(coin =>
+        coin.name.toLowerCase().includes(searchText)
+      );
+
+      if (filtered.length === 0) {
+        tableBody.innerHTML = "<tr><td colspan='3'>No results found</td></tr>";
+        return;
+      }
+
+      tableBody.innerHTML = filtered.map(coin => `
+        <tr>
+          <td>${coin.name}</td>
+          <td>${coin.symbol.toUpperCase()}</td>
+          <td>₹${coin.current_price.toLocaleString('en-IN')}</td>
+        </tr>
+      `).join("");
+    }
+
+    // Event Listeners
+    refreshBtn.addEventListener("click", fetchCryptoData);
+    searchInput.addEventListener("input", fetchCryptoData);
+
+    // Initial load
+    fetchCryptoData();
+  </script>
+
+</body>
+</html>

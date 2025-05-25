@@ -1,0 +1,5 @@
+----- Inventory Snapshot -----
+Products [productId=null, productName=null, price=0.0, quantityAvailable=0]
+Customers [customerId=null, customerName=null, customerContactno=null]
+------------------------------
+

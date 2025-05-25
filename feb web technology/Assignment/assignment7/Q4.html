@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trivia Quiz App</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    #quiz-container {
+      max-width: 700px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    .question-block {
+      margin-bottom: 20px;
+    }
+    .options label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    select, button {
+      margin-top: 10px;
+      padding: 8px;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Trivia Quiz</h1>
+  <div id="quiz-container">
+    <div id="settings">
+      <label>
+        Category:
+        <select id="category">
+          <option value="">Any</option>
+          <option value="9">General Knowledge</option>
+          <option value="21">Sports</option>
+          <option value="23">History</option>
+          <option value="17">Science & Nature</option>
+        </select>
+      </label>
+      <br>
+      <label>
+        Difficulty:
+        <select id="difficulty">
+          <option value="">Any</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+      </label>
+      <br>
+      <button id="startBtn">Start Quiz</button>
+    </div>
+
+    <form id="quizForm" style="display:none;">
+      <div id="questions"></div>
+      <button type="submit">Submit Answers</button>
+    </form>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    let correctAnswers = [];
+
+    function decodeHTMLEntities(text) {
+      const txt = document.createElement("textarea");
+      txt.innerHTML = text;
+      return txt.value;
+    }
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    $("#startBtn").click(function () {
+      const category = $("#category").val();
+      const difficulty = $("#difficulty").val();
+      let apiURL = `https://opentdb.com/api.php?amount=5&type=multiple`;
+
+      if (category) apiURL += `&category=${category}`;
+      if (difficulty) apiURL += `&difficulty=${difficulty}`;
+
+      $.getJSON(apiURL, function (data) {
+        const questions = data.results;
+        correctAnswers = [];
+        $("#questions").empty();
+        $("#result").text("");
+
+        questions.forEach((q, index) => {
+          const decodedQuestion = decodeHTMLEntities(q.question);
+          const correct = decodeHTMLEntities(q.correct_answer);
+          const incorrect = q.incorrect_answers.map(decodeHTMLEntities);
+          const options = shuffle([correct, ...incorrect]);
+
+          correctAnswers.push(correct);
+
+          const optionsHTML = options.map(opt =>
+            `<label>
+              <input type="radio" name="q${index}" value="${opt}">
+              ${opt}
+            </label>`
+          ).join("");
+
+          $("#questions").append(`
+            <div class="question-block">
+              <p><strong>Q${index + 1}: ${decodedQuestion}</strong></p>
+              <div class="options">${optionsHTML}</div>
+            </div>
+          `);
+        });
+
+        $("#quizForm").show();
+      });
+    });
+
+    $("#quizForm").submit(function (e) {
+      e.preventDefault();
+      let score = 0;
+
+      correctAnswers.forEach((answer, index) => {
+        const selected = $(`input[name="q${index}"]:checked`).val();
+        if (selected === answer) score++;
+      });
+
+      $("#result").text(`You scored ${score} out of ${correctAnswers.length}`);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+List of Movie Available:
+1 KGF
+2 speed
+3 salar
+4 ONEPIECE
+List of Movie Available:
+1 KGF
+2 speed
+3 salar
+4 ONEPIECE
+Adding new movies:
+	5 gladitor
+	6 bakiList of Movie Available:
+1 KGF
+2 speed
+3 salar
+4 ONEPIECE
+Adding new movies:
+	5 gladitor
+	6 baki

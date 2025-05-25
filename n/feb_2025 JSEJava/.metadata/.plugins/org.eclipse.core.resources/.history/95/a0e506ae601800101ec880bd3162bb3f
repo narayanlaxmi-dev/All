@@ -1,0 +1,8 @@
+package exception;
+
+public class ResourceAlreadyPresentExcepttion extends RuntimeException {
+	
+	public ResourceAlreadyPresentExcepttion(String msg) {
+		super(msg);
+	}
+}

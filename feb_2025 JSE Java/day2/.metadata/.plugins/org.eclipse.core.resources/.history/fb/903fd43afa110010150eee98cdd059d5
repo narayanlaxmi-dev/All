@@ -1,0 +1,51 @@
+package assignment8;
+
+import java.lang.reflect.Method;
+import java.util.Iterator;
+
+class Person {
+	private String name;
+	private int age;
+
+	public Person() {
+		name = "unKnown";
+		age = 0;
+	}
+
+	public Person(int age) {
+		this.age = age;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "Person ->name=" + name + ", age=" + age + "....";
+	}
+
+	
+}
+
+public class Reflection {
+	public static void main(String[] args) {
+		Class personClass1 = Integer.class;
+		System.out.println(personClass1.getClass().getName());
+		System.out.println(personClass1.getName());
+		System.out.println(personClass1.getModifiers());
+		System.out.println(personClass1.getDeclaredFields());
+		
+		System.out.println(personClass1.getDeclaredMethods());
+		Method[] met = personClass1.getDeclaredMethods();
+		for(Method m : met) {
+			String aa = m.getName();
+			System.out.println("Metohds are :-" + aa);
+//			System.out.println(m);
+		}
+	}
+}

@@ -1,0 +1,62 @@
+package services;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import dao.RestaurentDao;
+import dao.UserDao;
+import entity.FoodItem;
+import entity.Restaurant;
+import exception.LoginException;
+import exception.ResourceAlreadyPresentExcepttion;
+
+public class RestaurentServices {
+
+	private RestaurentDao restdaoInstances;
+	private UserDao userDaoInstance;
+
+	public RestaurentServices() {
+		restdaoInstances = RestaurentDao.getRestaurentDaoInstance();
+		userDaoInstance = userDaoInstance.getUserDaoInstance();
+	}
+
+	public void createdRestaurent(String name, List<FoodItem> items, List<String> pincode) {
+		Optional<Restaurant> foundrest = restdaoInstances.findAll().stream()
+				.filter(rest -> rest.getName().equalsIgnoreCase(name)).findFirst();
+		if (foundrest.isPresent()) {
+			throw new ResourceAlreadyPresentExcepttion(name + " is already exixt");
+		} else {
+			Restaurant newRest = new Restaurant(name, pincode, items);
+			restdaoInstances.save(newRest);
+		}
+	}
+
+	public List<Restaurant> getAllRestrents() {
+		return restdaoInstances.findAll();
+	}
+
+	public Restaurant getRestrentsById(String string) {
+		return restdaoInstances.findById(string);
+	}
+
+	public Restaurant getFindByName(String restName) {
+		return restdaoInstances.findbyName(restName);
+	}
+
+	public List<Restaurant> userSpecificRestaurent() {
+		if (userDaoInstance.getLoggedinUser() == null) {
+			throw new LoginException(" User dont login. Firest login ot se user specific restarudent");
+		} else {
+			List<Restaurant> availableRest = getAllRestrents().stream().filter(
+					rest -> rest.getServicablePinCode().contains(userDaoInstance.getLoggedinUser().getPinCode()))
+					.collect(Collectors.toList());
+		}
+		return null;
+	}
+
+	public void rateRestaurent(String name, int start, String comment) {
+		// call method
+		Restaurant foundRest = getFindByName(name);
+	}
+}

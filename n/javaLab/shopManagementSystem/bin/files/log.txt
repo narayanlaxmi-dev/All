@@ -1,0 +1,5 @@
+----- Shop Snapshot -----
+null	nullnull	null0	nullProducts [productId=null, productName=null, price=0.0, quantityAvailable=0]
+Customers [customerId=null, customerName=null, customerContactno=null]
+------------------------------
+

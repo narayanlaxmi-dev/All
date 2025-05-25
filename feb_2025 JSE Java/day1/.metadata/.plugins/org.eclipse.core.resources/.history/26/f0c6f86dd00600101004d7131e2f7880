@@ -1,0 +1,10 @@
+package oops1;
+
+public class Test {
+	
+	private
+	int a; // 0
+	float b; // 0.0
+	String s; // null
+	boolean ans;// false
+}

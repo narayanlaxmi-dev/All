@@ -1,0 +1,53 @@
+package entity;
+
+import java.util.HashMap;
+
+public class Shop {
+
+	private HashMap<String, Products> products = new HashMap();
+	private HashMap<String, Customers> customer = new HashMap();
+	private Transaction transManager = new Transaction();
+
+	public Shop() {
+
+	}
+
+	public void addProduct(Products p) {
+		products.put(p.getProductId(), p);
+	}
+
+	public void removeProduct(Products p) {
+		products.remove(p);
+	}
+
+	public void displayAllproduct() {
+		for (Products pro : products.values()) {
+			System.out.println(pro);
+		}
+	}
+
+	public void addCustomer(Products p) {
+
+	}
+
+	public void removeCustomer(Products p) {
+
+	}
+
+	public void displayAllCustomer(Products p) {
+
+	}
+
+	public void recordSale(Products p) {
+
+	}
+
+	public void recordReturn(Products p) {
+
+	}
+
+	public void displayTransaction(Products p) {
+
+	}
+
+}

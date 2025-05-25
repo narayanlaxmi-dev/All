@@ -1,0 +1,68 @@
+package assignment8.medicalStore;
+
+import java.util.Scanner;
+
+import assignment8.bank.ICICI;
+import assignment8.bank.SBI;
+
+public class HospitalManagementSystemMAIN {
+
+	public static void main(String[] args) {
+		Employee  e = new Employee("narayan", "DOCTOR");
+		Patient p = new Patient("vikas", 01, 100, false);
+		Hospital[] hospital = new Hospital[2];
+		hospital[0]=new GovtHospital();
+		hospital[1]=new PrivateHospital();
+		Scanner sc=new Scanner(System.in);
+		int choice;
+		do {
+			System.out.println("Menu Option\r\n"
+					+ "1. View Employee Details\r\n"
+					+ "2. View Paitent Details\r\n"
+					+ "3. Pay Bill\r\n"
+					+ "4. Show Hospital Details\r\n"
+					+ "5. Provide loan\r\n"
+					+ "6. Exit\r\n"
+					+ "");
+			choice=sc.nextInt();
+			switch(choice) {
+			case 1:
+				e.showEmployeeDetails();
+				break;
+			case 2:
+				p.showPaitentDetails();			
+				p.checkBillingStatus();
+				
+				break;
+			case 3:
+				p.payBill();
+				break;
+			case 4:
+				
+				break;
+			case 5:
+				BankService[] services=new BankService[2];
+				services[0]=new SBI();
+				services[1]=new ICICI();
+				for(BankService s:services) {
+					s.loanService();
+				}
+				break;
+			case 6:
+				System.out.println("Thank you for using application...");
+				break;
+			default:
+				 System.out.println("Enter valid choice");
+				 break;
+				
+				
+				 
+			}
+		}
+		while(choice!=6);
+
+	}
+		
+	
+
+}

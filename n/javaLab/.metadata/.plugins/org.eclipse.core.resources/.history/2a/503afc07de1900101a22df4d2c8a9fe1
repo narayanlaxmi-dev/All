@@ -1,0 +1,76 @@
+package entity;
+
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.Scanner;
+
+public class ShopMain {
+
+	public static void main(String[] args) {
+
+		System.out.println("Welcome to cust");
+		Scanner sc = new Scanner(System.in);
+		Customers cust = new Customers();
+
+		Products prod = new Products(sc.next(), sc.nextDouble());
+		boolean exit = true;
+
+		while (exit) {
+			System.out.println("+++++ Menu +++++" + "\n1. Add product" + "\n2. Add custmoer" + "\n3. All product."
+					+ "\n4. All customer" + "\n5. Search product" + "\n7. Remove product" + "\n8. all transaction"
+					+ "\n9. create Log." + "\n0. Exit.");
+			int ch = sc.nextInt();
+			switch (ch) {
+			case 1:
+				try {
+					System.out.println("------- Add Prodcut --------" + "\nEnter product name, price");
+					cust.addProducts(prod);
+				} catch (Exception e) {
+					System.err.println(e.getMessage());
+				}
+
+				break;
+
+			case 2:
+				System.out.println("------- Add Customer --------" + "\nEnter name: name, Quantity");
+				cust.addCustomer(cust);
+				break;
+
+			case 3:
+				System.out.println("------- All Customer --------");
+				cust.displayAllCustomer();
+				break;
+
+			case 4:
+				System.out.println("------- All Product --------");
+				cust.displayAllProducts();
+				break;
+			
+			case 5:
+				System.out.println("------- Thank You Visit Again --------");
+				Transaction.display();
+				break;
+
+			case 10:
+				try (FileOutputStream fos = new FileOutputStream("TransactionLog.txt");
+						ObjectOutputStream out = new ObjectOutputStream(fos)) {
+					for (TransactionRecord rec : Transaction.records) {
+
+						out.writeObject(rec.toString());
+
+					}
+
+				} catch (Exception e) {
+
+				}
+				break;
+
+			default:
+				System.out.println("invalid choice!! Try again-----");
+
+			}
+		}
+
+	}
+
+}

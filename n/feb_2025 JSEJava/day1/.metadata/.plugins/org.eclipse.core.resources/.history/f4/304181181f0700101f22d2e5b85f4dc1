@@ -1,0 +1,16 @@
+package day3_1practice;
+/*
+ design prog take account balance and withdrawl amount input 
+ check sufficient withdrawl
+ check if 100 * return amount
+ check if no 100 * multiple the amount multiple 
+  */
+public class ATMwithdrawal {
+
+	public static void main(String[] args) {
+		System.out.println("--- ATM withdrawl system ---");
+		
+
+	}
+
+}

@@ -1,0 +1,11 @@
+INDEX VERSION 1.134+C:\Users\cdac\Documents\feb_2025 oops Java\day2\.metadata\.plugins\org.eclipse.jdt.core
+1597009435.index
+1374200854.index
+433660574.index
+4182205871.index
+2049862761.index
+3069192109.index
+2593607829.index
+3366944562.index
+410141141.index
+1865797976.index

@@ -1,0 +1,72 @@
+#include<iostream>
+/*
+array of size n
+*/
+using namespace std;
+int main()
+{
+	int a[100],n,index;
+	
+	cout<<"Enter size:";
+	cin>>n;
+	cout<<"Enter "<<n<<" elements\n";
+	for(index=0;index<n;index++)
+	{
+	   cin>>a[index];
+	}
+	
+	cout<<"\nEntered "<<n<<" elements are\n";
+	for(index=0;index<n;index++)
+	{
+	   cout<<a[index]<<"\n";
+	}
+	return 0;
+}
+
+
+------------------------------------------------------------
+
+#include<iostream>
+/*
+array of size nXm 2d array
+*/
+using namespace std;
+int main()
+{
+	int m[10][10],   rows,columns,r,c;
+	//  rows columns
+	
+	cout<<"Enter number of rows and columns:\n";
+	cin>>rows>>columns;
+	for(r=0;r<rows;r++)
+	 {
+	 	for(c=0;c<columns;c++)
+	 	{
+	 		cout<<"\nEnter data at ["<<r<<","<<c<<"]-->";
+	 		cin>>m[r][c];
+		 }
+    }
+    cout<<"\nEntered elements are\n";
+	for(r=0;r<rows;r++)
+	 {
+	 	for(c=0;c<columns;c++)
+	 	{
+	 		cout<<m[r][c]<<"\t";
+		 }
+		 cout<<"\n";
+    }
+    
+	cout<<"\nTranspose are\n";
+    for(c=0;c<columns;c++)
+	 {
+	   for(r=0;r<rows;r++) 
+	 	{
+	 		cout<<m[r][c]<<"\t";
+		 }
+		 cout<<"\n";
+    }
+	
+	return 0;
+}
+
+

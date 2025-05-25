@@ -1,0 +1,60 @@
+
+C:\Users\CDAC\Documents\feb 2025 all\portfolio\bookStoreApp-master>git remote add origin https://github.com/narayanlaxmi-dev/N-bookStore.git
+error: remote origin already exists.
+
+C:\Users\CDAC\Documents\feb 2025 all\portfolio\bookStoreApp-master>git remote -v
+origin  https://github.com/narayanlaxmi-dev/bookstore.git (fetch)
+origin  https://github.com/narayanlaxmi-dev/bookstore.git (push)
+
+>git remote set-url origin https://github.com/narayanlaxmi-dev/N-bookStore.git
+
+>git remote remove origin
+
+>git remote add origin https://github.com/narayanlaxmi-dev/N-bookStore.git
+
+remove Control Panel\User Accounts\Credential Manager GitHub other login use
+cmd open 
+
+
+>git config --global user.name "narayanlaxmi-dev"
+>git config --global user.email "lordshiryuga@gmail.com"
+
+git init
+
+git status
+
+git add .
+
+git status
+
+git commit -m "initial data"
+
+git branch -M main
+
+only 1 time added 
+git remote add origin https://github.com/NarayaN-HW/Web-Technologies.git
+
+git push -u origin main
+
+if error To https://github.com/NarayaN-HW/Web-Technologies.git
+ ! [rejected]        main -> main (fetch first)
+git branch -M main	
+git pull --rebase --autostash origin main
+
+
+
+
+
+---------------
+echo "# Web-Technologies" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/NarayaN-HW/Web-Technologies.git
+git push -u origin main
+
+
+git remote add origin https://github.com/NarayaN-HW/Web-Technologies.git
+git branch -M main
+git push -u origin main

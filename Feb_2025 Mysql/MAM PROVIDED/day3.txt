@@ -1,0 +1,460 @@
+--E R diagram 
+Entity Relationship diagram 
+
+what is entity?
+it is a thing in a real life
+eg : student , emp, college, 
+
+draw : rectangle
+attribute : oval
+relationship : diamond
+
+--types of attributes
+1.Composite attribute  
+	eg : name  --> fname , lname , mname
+	eg : address --> street, city, pincode, landmark
+	eg : dob --> yr, month , date
+
+2. Single-valued attribute :  will have only 1 value
+	eg : empid , adharno, rollNo, pan, gender 
+
+3. Multi valued attributes :
+	eg :  emailid, qualification, phone numbers
+
+4. derived attribute
+	eg age < -------- DOB
+	eg : expr <------- hiredate
+
+==============================
+--types of relationship
+1. Unary relationship	: 1 entity
+2. Binary relationship :  2 entities
+3. Ternary relationship : 3 entities 
+
+--1 one to one
+Employee			Profile
+(1,1)				(1,1)
+
+--2 one to many
+Dept					Employee
+(1,1)				(1,*)
+  |____________________|
+
+--3
+Employee			Project
+(*,*)					(*,*)
+
+e001		---> p001, p002, p003
+p001 		---> e001, e002, e003
+
+--Entity types
+Strong entity
+	it is an entity which does not depend upon any other entity for existence
+
+Weak entity
+	it is an entity which does depend upon any other entity for existence
+	eg : Employee   ---  Dependent
+	eg : Employee   ---  Loan (id, emi, inst_date, duration)
+	eg : Employee	--- Certification_Exam (subject , marks , date )
+
+Recursive entity
+	which repeats itself 
+	eg : clock , cycle 
+
+Composite entity
+	one entity consist of other entities 
+
+specialization : attr of child entity
+Generalization  : attr of parent entity
+==========
+eg 				Account
+				  |  mv : accNo, accHoldername, bal, interestRate
+		-----------------------------------------------------
+		|								|
+	SavingAccout						CurrentAccount
+	isSalaried --Boolean				creditAmout 
+
+
+				Emp
+				 | mv : empno, name , address, mobile
+		-----------------------------------------
+		|						|
+	ConfiredEmp					TempEmp
+	sal, hra, da, pf					travelAllow, duration		
+
+============================
+Denormalization 
+	opposite of normalization 
+	we combine 2 tables into 1 table
+        data will be repeated 
+==============
+ACID
+A  automicity
+    It is either performed entirely or not performed at all.
+	eg : atm card
+bal 30000			-5000		--> 25000
+	eg : board exam : pass / fail 
+
+C  consistency
+   if you update one table the changes are reflected in all the other dependent tables
+ eg :
+dept		emp
+14		14
+		14
+		14
+eg : board exam --> 80% --> lost certificate ---reapply --same marksheet
+eg : payment 5000/-  the changes will be reflected in 
+	1. message
+	2. email
+	3. bankstatement
+	
+eg : change the mobile number in bank ---> the messages of the payment will be reflected
+ 	on new mobile
+eg : Zomato : message, email, Zomato app details are visible 
+==============
+I   isolation
+The execution of a transaction should not be interfered with by any other transactions executing concurrently.
+
+icici  --> 9/4/25  	10.00am
+tanaya 					bhakti
+30000					50000
+-5000					-2000
+new bal 25000			new bal : 48000
+pin : 1234				pin : 5678
+
+---> the values are not interchanged
+
+eg : online shopping
+eg : can not copy in board exam 
+eg : voting --> 2 people are voting at a time
+
+================
+D  durability
+a committed transaction must persist (permanent) in the database.
+eg 
+insert / update / delete -----> dept
+commit;
+exit;
+--------> open the new session -------> we can see the changes applied
+eg: ms word --> changes --save -- close file --> open the file --changes applied
+eg : bank --> changed the password
+eg : bank --> changed the mobile no
+========================
+what is transaction?
+   collection of dml (insert, update, delete) and dql(select) statement 
+
+insert...
+update..
+insert...
+update..
+select
+commit; -------------> 1st transaction
+select
+insert...
+update..
+insert...
+rollback; -------------> 2nd transaction
+select 
+select
+insert...
+update..
+rollback ;-------------> 3rd transaction
+===============
+types of constraints
+1 primary key
+2 unique key
+3 foreign key / reference key
+4 not null
+5 check
+==========
+default 
+
+===
+create table dept1(
+deptno numeric(2) primary key,
+dname varchar(14) not null,
+loc   varchar(13) not null);
+
+--1
+insert into dept1 values(10, 'acct', 'nashik');
+insert into dept1 values(20, 'mkt', 'nashik');
+insert into dept1 values(30, 'sales', null);  --> err
+insert into dept1 values(40, null, null); --> err
+
+--------------------
+dept1					emp1
+deptno: pk 10, 20----		empno  pk
+dname	    |				city
+loc	            |				sal
+		    |----------->		deptno  fk ---> 10, 20
+						ename 
+
+
+create table emp1(
+empno numeric(4) primary key,
+ename varchar(20) not null,
+city varchar(20)  default 'nashik'
+check (city in ('nashik','pune','mum')),
+pan char(10) unique,
+deptno numeric(2) ,
+sal numeric(10,2)  check(sal  between  20000 and 200000),
+foreign key (deptno) references dept1(deptno));
+
+insert into emp1 (ename, empno, pan, sal) values ('priti', 3, 'p003', 40000 );
+select * from emp1;
+
+
+
+--check : predicates: in , between , like, >, < >= <= !=, =
+
+--1
+sal numeric(10,2)  check(sal > 20000),
+city varchar(20)  check (city like 'b%')),
+---
+select * from dept1;
+insert into emp1 values (1, 'rohit', 'pune', 'p001', 10, 22000);
+insert into emp1 values (2, 'prachi' , default, 'p002', 20, 28000);
+====================
+--rules for foreign key 
+1  it should be given pk for dept1 table
+2  the datatype and the size of both the columns should be the same
+
+=============
+--2nd type of insert 
+
+--
+create table customer1(
+custid varchar(4) primary key,
+address varchar(20) check (address in ('hydrabad', 'banglore', 'pune')),
+mobile char(10) not null,
+email varchar(10) check (email like '%.com'),
+adhar char(12) unique);
+
+insert into customer1 values('c001', 'pune', '23492', 'p@eil.com', 'a001');
+
+--to see the constraints on table
+
+SELECT TABLE_NAME, CONSTRAINT_TYPE, CONSTRAINT_NAME
+FROM information_schema.table_constraints
+WHERE table_name='customer1';
+====================================
+--TCL
+1 commit
+	the changes will be permanently saved on the server
+	will reflect the changes to the other sessions
+
+2 rollback 
+       to undo the transaction
+       will rollback till the last commit or ddl (create, drop, truncate, alter )  command
+       all the ddl  (create, drop, truncate, alter )  commands are auto commit
+3 savepoint
+    it is used to create bookmark
+    works with oracle, not with mysql
+
+   
+=========
+set autocommit=0;
+create table emp2(
+empno int,
+ename varchar(20),
+sal int);
+insert into emp2 values(1  , 'prachi', 50000);
+insert into emp2 values(2  , 'abhi', 50000);
+update...
+delete..
+select * from emp2;
+rollback;
+select * from emp2;
+==================
+--old 
+insert into emp2 values(1  , 'prachi', 50000);
+insert into emp2 values(2  , 'abhi', 50000);
+select * from emp2;
+
+--new
+select * from emp2;
+no rows will be present
+
+--old 
+
+
+
+
+commit
+
+--new 
+select * from emp2;
+we can see the rows 
+
+
+
+=========
+ savepoint
+    it is used to create bookmark
+    works with oracle, not with mysql
+
+--oracle
+run --sqlplus--run sql commands
+connect hr
+pass : hr
+
+--to clear screen
+cl scr
+
+--to see all tables
+select * from tab;
+
+select * from emp;
+select * from dept;
+
+drop table emp1;
+create table emp1(
+empno int,
+ename varchar2(20),
+sal int);
+
+insert into emp1 values(1, 'pr', 50000);
+insert into emp1 values(2, 'pr', 50000);
+savepoint a;
+insert into emp1 values(3, 'pr', 50000);
+insert into emp1 values(4, 'pr', 50000);
+savepoint b;
+insert into emp1 values(5, 'pr', 50000);
+insert into emp1 values(6, 'pr', 50000);
+rollback to b;
+insert into emp1 values(7, 'pr', 50000);
+insert into emp1 values(8, 'pr', 50000);
+rollback to a;
+insert into emp1 values(9, 'pr', 50000);
+commit;
+select * from emp1;
+1 ,2, 9   
+
+==
+e001
+e002
+e003
+
+--using multiple constraint on col
+drop table emp2;
+create table emp2(
+empno varchar(4) primary key 
+check(empno like 'e%'),
+ename varchar(20) not null,
+sal int not null 
+check (sal > 40000));
+insert into emp2 values('e001', 'pr', 45000);
+
+--composite key
+create table empleave(
+empno int,
+stdate date,
+enddate date,
+primary key(empno , stdate),
+check(stdate <= enddate));
+
+insert into empleave values(1, '2025-5-10', '2025-5-11');
+
+empleave
+pk : empno + stdate
+empno		stdate		enddate
+1			2025-1-1		2025-1-1
+2			2025-1-1		2025-1-1
+1			2025-4-22		2025-4-25
+1			2025-5-10		2025-5-5
+
+pk : empno+ stdate
+----------------------------------
+built in functions
+1 String functions
+2 Numeric functions
+3 Date functions
+
+--String functions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=======================
+1. revision : 30 min
+2. DSA  : 1 hr
+3. apptitude : 1hr 
+4. pattern maching (1 pr) : 30 min
+5 comm : 30 min
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

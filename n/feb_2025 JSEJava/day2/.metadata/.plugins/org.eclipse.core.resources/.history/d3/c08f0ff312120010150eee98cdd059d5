@@ -1,0 +1,13 @@
+package assignment8.bank;
+
+public class SBI extends Bank implements BankService{
+	@Override
+	public void loanService() {
+		System.out.println("SBI services home loan with 8.0% intrest");
+	}
+	@Override
+	public float get_intrestRate(){
+		return 0;
+	}
+	
+}

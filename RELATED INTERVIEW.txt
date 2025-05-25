@@ -1,0 +1,246 @@
+Preparing for **C-DAC placement interviews** (or any IT/software job interviews) requires a **strategic approach** across technical, aptitude, and soft skills areas. Here's a step-by-step guide tailored for **C-DAC students**:
+
+---
+
+## 🎯 1. **Core Technical Preparation**
+
+### ✅ Focus on These Key Subjects:
+
+* **Programming:** C, C++, Java (or Python)
+* **Data Structures & Algorithms (DSA):** Arrays, Strings, Linked Lists, Trees, Sorting, Searching, Recursion, etc.
+* **OOP Concepts:** Inheritance, Polymorphism, Encapsulation, Abstraction
+* **DBMS:** SQL queries, Joins, Normalization, Transactions
+* **Operating Systems:** Process, Threads, Deadlocks, Memory management
+* **Computer Networks:** OSI model, TCP/IP, IP addressing, HTTP, DNS
+
+### 🔧 Practice Platforms:
+
+* **LeetCode, HackerRank, GeeksforGeeks** – for DSA and coding rounds
+* Solve at least **30–50 coding problems** in C, C++, or Java
+
+---
+
+## 🧠 2. **Aptitude and Logical Reasoning**
+
+Many companies have an **aptitude round** before interviews.
+
+### 📘 Topics to Cover:
+
+* Arithmetic (Percentages, Profit & Loss, Time-Speed-Distance, etc.)
+* Logical Reasoning (Puzzles, Series, Syllogisms)
+* Verbal Ability (Reading comprehension, Grammar, Vocabulary)
+
+### 🎯 Practice Resources:
+
+* **RS Aggarwal** or **IndiaBix**
+* **PrepInsta, AMCAT, CoCubes** type practice sets
+
+---
+
+## 🗣️ 3. **Communication & Soft Skills**
+
+### 👔 HR Interview Questions:
+
+* Tell me about yourself
+* Why should we hire you?
+* Strengths and weaknesses
+* Where do you see yourself in 5 years?
+* Why do you want to join IT?
+
+➡️ Practice answers **clearly, confidently, and concisely.**
+
+---
+
+## 📝 4. **Resume Preparation**
+
+* One page, clean, professional layout
+* Highlight:
+
+  * Technical skills
+  * Projects (from C-DAC especially)
+  * Internships or any work experience
+  * Certifications (if any)
+* Avoid fluff, be ready to **explain everything** you write
+
+---
+
+## 💼 5. **Project Readiness**
+
+### Be prepared to discuss:
+
+* Your **C-DAC mini and major projects**
+* The technology stack used
+* Challenges faced and how you solved them
+* Your role in the team
+
+---
+
+## 🔄 6. **Mock Interviews & Revision**
+
+* Practice **mock interviews** with friends or online platforms
+* Revise important formulas, codes, and concepts
+* Create a 1-minute **“elevator pitch”** about yourself
+
+---
+
+## 🧰 7. **Use C-DAC Resources Wisely**
+
+* Attend placement prep lectures seriously
+* Ask for mock tests/interview sessions at your center
+* Connect with **C-DAC seniors on LinkedIn** for tips and referrals
+
+---
+
+Would you like a **daily preparation schedule** or a list of **common technical questions asked in C-DAC interviews**?
+-============================================================================================================================================-
+
+🧠 1. Programming (C/C++/Java)
+C/C++:
+What is the difference between malloc() and calloc()?
+
+What is a dangling pointer?
+
+Explain const, static, extern, and volatile keywords.
+
+What is the difference between struct and union?
+
+How does pointer arithmetic work?
+
+Difference between pass by value and pass by reference
+
+What is a segmentation fault?
+
+Java:
+What is JVM, JRE, and JDK?
+
+What are access specifiers in Java?
+
+What is the difference between == and .equals()?
+
+Explain overloading vs overriding.
+
+Difference between ArrayList and LinkedList
+
+What is garbage collection and how does it work?
+
+What is multithreading in Java?
+
+📊 2. Data Structures and Algorithms
+Implement a linked list, stack, queue from scratch
+
+Reverse a string or linked list
+
+Find the nth Fibonacci number (recursion and DP)
+
+Binary search implementation
+
+Check for palindrome string/number
+
+Sort an array using bubble/merge/quick sort
+
+Find duplicates in an array
+
+Implement a queue using two stacks
+
+Balanced parentheses problem
+
+Detect a loop in a linked list (Floyd's algorithm)
+
+🧱 3. Object-Oriented Programming (OOP)
+What are the four pillars of OOP?
+
+Difference between abstraction and encapsulation
+
+What is inheritance? Types of inheritance
+
+What is polymorphism? Compile-time vs run-time
+
+Virtual functions and pure virtual functions in C++
+
+Interface vs abstract class (Java)
+
+Constructor vs destructor
+
+What is the diamond problem?
+
+💾 4. Database Management System (DBMS)
+What is a primary key vs foreign key?
+
+What is normalization? Explain 1NF, 2NF, 3NF
+
+What are joins? Types of joins with examples
+
+Difference between DELETE, TRUNCATE, and DROP
+
+What is indexing in databases?
+
+ACID properties in DBMS
+
+SQL query to find 2nd highest salary
+
+What is a subquery? Correlated vs non-correlated
+
+🖥️ 5. Operating System (OS)
+Difference between process and thread
+
+What is a deadlock? How to prevent it?
+
+What is context switching?
+
+Difference between multitasking and multithreading
+
+What is paging and segmentation?
+
+What are system calls?
+
+Explain FCFS, SJF, Round Robin scheduling
+
+What is virtual memory?
+
+🌐 6. Computer Networks
+What is OSI Model? Explain all 7 layers
+
+TCP vs UDP
+
+What is IP address and subnet mask?
+
+Difference between HTTP and HTTPS
+
+What is DNS and how does it work?
+
+What is MAC address?
+
+What is ARP protocol?
+
+What is a firewall?
+
+⚙️ 7. Software Engineering & SDLC
+What are the phases of SDLC?
+
+Agile vs Waterfall model
+
+What is version control? (e.g., Git basics)
+
+Difference between functional and non-functional requirements
+
+What is black-box vs white-box testing?
+
+🔍 8. Web Technologies (if applicable)
+Difference between HTML and HTML5
+
+What are cookies and sessions?
+
+What is AJAX?
+
+How does client-server architecture work?
+
+Explain CSS selectors and specificity
+
+Difference between GET and POST methods
+
+💡 Bonus Tips:
+Be ready to write code on paper or whiteboard, not just explain.
+
+Always dry-run your code and check for edge cases.
+
+If you don’t know an answer, explain how you’d approach finding the solution.

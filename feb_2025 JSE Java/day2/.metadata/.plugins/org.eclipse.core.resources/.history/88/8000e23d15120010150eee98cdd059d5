@@ -1,0 +1,30 @@
+package assignment8.medicalStore;
+
+public class Patient {
+	private String patientName;
+	private int patientid;
+	private double patientBillAmount;
+	private boolean isPaid;
+
+	public Patient(String patientName, int patientid, double patientBillAmount, boolean isPaid) {
+		super();
+		this.patientName = patientName;
+		this.patientid = patientid;
+		this.patientBillAmount = patientBillAmount;
+		this.isPaid = isPaid;
+	}
+
+	public void payBill() {
+
+	}
+
+	public void checkBillingStatus() {
+		// throw new unpaidbillexception user define error
+	}
+
+	public void showPaitentDetails() {
+		System.out.println("patient Name: " + patientName);
+		System.out.println("patient ID: " + patientid);
+		System.out.println("patient BillAmount: " + patientBillAmount);
+	}
+}

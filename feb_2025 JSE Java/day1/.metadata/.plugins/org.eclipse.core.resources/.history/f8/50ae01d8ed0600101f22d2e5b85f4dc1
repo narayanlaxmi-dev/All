@@ -1,0 +1,37 @@
+package day3_1practice;
+
+import java.util.Scanner;
+
+public class Student {
+    private int rollno;
+    private String name;
+    private float marks;
+
+    // Method to set student data
+    public void set_data() {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Enter student roll number: ");
+        rollno = sc.nextInt();  // Read roll number
+
+        sc.nextLine();  // Consume the newline character left by nextInt()
+
+        System.out.print("Enter student name: ");
+        name = sc.nextLine();  // Read student name
+
+        System.out.print("Enter student marks: ");
+        marks = sc.nextFloat();  // Read student marks
+    }
+
+    // Method to return the marks (for total calculation)
+    public float compare() {
+        return marks;
+    }
+
+    // Method to print student data
+    public void get_data() {
+        System.out.println("Student name: " + name);
+        System.out.println("Student roll number: " + rollno);
+        System.out.println("Student marks: " + marks);
+    }
+}

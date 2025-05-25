@@ -1,0 +1,56 @@
+package day3_1practice;
+
+import java.util.*;
+
+public class OnlineFoodOrder {
+
+	public static void main(String[] args) {
+		int qt, ch;
+		static int totalbill = 0;
+		Scanner sc = new Scanner(System.in);
+
+		do {
+			System.out.println("1 - pizza");
+			System.out.println("2 - Burger");
+			System.out.println("3 - Pasta");
+			System.out.println("4 - Coffee");
+			System.out.println("5 - Generate Bill & exit");
+			System.out.println("Enter choice :");
+			ch = sc.nextInt();
+			switch (ch) {
+			case 1:
+				System.out.println("Pizza");
+				int pizza = 250;
+				qt = sc.nextInt();
+				totalbill += qt * pizza;
+				break;
+			case 2:
+				System.out.println("Burger");
+				int burger = 120;
+				qt = sc.nextInt();
+				totalbill += qt * burger;
+				break;
+			case 3:
+				System.out.println("Pasta");
+				int pasta = 180;
+				qt = sc.nextInt();
+				totalbill += qt * pasta;
+				break;
+			case 4:
+				System.out.println("Coffee");
+				int coffee = 90;
+				qt = sc.nextInt();
+				totalbill += qt * coffee;
+				break;
+			case 5:
+				System.out.println("Generating bill and exiting...");
+
+				break;
+			default:
+				System.out.println("INVALID PARAMETER!!!");
+			}
+
+		} while (ch == 5);
+
+	}
+}

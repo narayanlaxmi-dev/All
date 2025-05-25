@@ -1,0 +1,100 @@
+/* General Styles */
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;800&display=swap");
+
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px;
+}
+
+header img {
+  width: 100%;
+  max-width: 200px;
+  display: block;
+  margin: auto;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+nav li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+nav a:hover {
+  color: #0073e6;
+}
+
+/* Flexbox Layout */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.col-3 {
+  flex: 1 1 25%;
+  min-width: 250px;
+}
+
+.col-9 {
+  flex: 1 1 70%;
+  min-width: 700px;
+}
+
+.brand h2 {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.brand ul {
+  list-style: none;
+  padding: 0;
+  border: 1px solid purple;
+}
+
+.brand li {
+  padding: 7px;
+}
+
+/* Centered Text */
+.text-center {
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .col-3,
+  .col-9 {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+}
+figure {
+  margin: 0;
+}
+footer {
+  background-color: gray;
+  color: white;
+  padding: 40px;
+  text-align: center;
+}

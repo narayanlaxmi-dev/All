@@ -1,0 +1,17 @@
+create table student(
+rollno int primary key,
+name varchar(20),
+city varchar(20)
+);
+
+mysql> desc student;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| rollno | int         | NO   | PRI | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| city   | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+INSERT INTO STUDENT VALUES(01,"NARA","NASHIK"),(02,"YANA","SHAHADA"),(03,"SHIVA","KAILAS");

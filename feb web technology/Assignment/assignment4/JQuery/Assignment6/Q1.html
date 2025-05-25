@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Number Validation</title>
+  <style>
+    #error{
+      color: red;
+         }
+  </style>
+</head>
+<body>
+
+  <label for="txt">Enter a number:</label>
+  <input type="text" id="txt">
+  <button onclick="validateInput()">Submit</button>
+
+  <p id="error"></p>
+
+  <script>
+    function validateInput() {
+      const input = document.getElementById('txt').value;
+      const errorParagraph = document.getElementById('error');
+
+   
+      if (isNaN(input) || input.trim() === "") {
+        errorParagraph.textContent = "Only number is required.";
+      } else {
+        errorParagraph.textContent = ""; 
+        alert("Valid number: " + input);
+      }
+    }
+  </script>
+</body>
+</html>

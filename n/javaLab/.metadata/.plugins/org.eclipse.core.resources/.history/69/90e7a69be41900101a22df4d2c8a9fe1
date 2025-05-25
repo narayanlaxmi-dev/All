@@ -1,0 +1,61 @@
+package entity;
+
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.Scanner;
+
+public class ShopMain {
+
+	public static void main(String[] args) {
+
+		System.out.println("Welcome in Shop");
+		Scanner sc = new Scanner(System.in);
+		Customers cust = new Customers();
+
+		Products prod;
+		boolean exit = true;
+
+		while (exit) {
+			System.out.println("+++++ Menu +++++" + "1 : add Product" + "2 : remove product" + "3 : display product"
+					+ "4 : add customer" + "5 : remove customer" + "6 : display customer" + "7 : record sales"
+					+ "8 : recordReturn" + "9 : display record" + "\n0. Exit.");
+			int ch = sc.nextInt();
+			switch (ch) {
+			case 0:
+				System.out.println("thanks to using me");
+				exit = false;
+				break;
+
+			case 1:
+				System.out.println("--- Add customer --- ");
+				break;
+
+			case 1:
+				System.out.println("--- Add customer --- ");
+				break;
+
+			case 1:
+				System.out.println("--- Add customer --- ");
+				break;
+
+			case 1:
+				System.out.println("--- Add customer --- ");
+				break;
+
+			case 1:
+				System.out.println("--- Add customer --- ");
+				break;
+
+			case 1:
+				System.out.println("--- Add customer --- ");
+				break;
+
+			case 1:
+				System.out.println("--- Add customer --- ");
+				break;
+			}
+
+		}
+
+	}
+}

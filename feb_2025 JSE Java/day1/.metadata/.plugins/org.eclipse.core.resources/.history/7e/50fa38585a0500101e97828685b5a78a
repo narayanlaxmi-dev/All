@@ -1,0 +1,10 @@
+package day1_pakage;
+
+public class ep5oddeven {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

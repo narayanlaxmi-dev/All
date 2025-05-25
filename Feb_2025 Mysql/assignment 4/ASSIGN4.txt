@@ -1,0 +1,58 @@
+use commerce;
+
+1. in a customer  table , update one of the record of your choice and change the address1 as boston 
+
+ update  customer  set address1='biston' where  first_name='raj';
+
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+select * from customer where first_name='raj';
++--------+-------------------+------------+-----------+----------+----------+--------------+-----------+------------------+
+| custid | email_address     | first_name | last_name | address1 | address2 | customer_zip | area_code | telephone_number |
++--------+-------------------+------------+-----------+----------+----------+--------------+-----------+------------------+
+|      2 | raj5665@gmail.com | raj        | jadhav    | biston   | dhule    | ch2          | 444       | 1234576          |
++--------+-------------------+------------+-----------+----------+----------+--------------+-----------+------------------+
+==============================================
+
+2. in a customer  table , update one of the record of your choice and change the customer_zip as 100 300
+
+update  customer  set customer_zip=100300 where  first_name='raj';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+ select * from customer where first_name='raj';
++--------+-------------------+------------+-----------+----------+----------+--------------+-----------+------------------+
+| custid | email_address     | first_name | last_name | address1 | address2 | customer_zip | area_code | telephone_number |
++--------+-------------------+------------+-----------+----------+----------+--------------+-----------+------------------+
+|      2 | raj5665@gmail.com | raj        | jadhav    | biston   | dhule    | 100300       | 444       | 1234576          |
++--------+-------------------+------------+-----------+----------+----------+--------------+-----------+------------------+
+
+==============================================
+
+3. delete the first record, give the proper condition in cardinfo 
+
+ delete from cardinfo where card_id=1;
+Query OK, 1 row affected (0.01 sec)
+
+ select * from cardinfo;
++---------+-------+------------+--------------+--------------------------+
+| card_id | ccnum | ccexp      | name_on_card | email_address            |
++---------+-------+------------+--------------+--------------------------+
+|       2 | C102  | 2026-12-02 | pancard123   | sunnyvarpe5665@gmail.com |
+|       3 | C103  | 2026-12-03 | idcard123    | rajvarpe5665@gmail.com   |
++---------+-------+------------+--------------+--------------------------+
+2 rows in set (0.00 sec)
+
+
+4. truncate the table cardinfo 
+mysql> truncate cardinfo;
+Query OK, 0 rows affected (0.02 sec)
+5. see the structure of cardinfo 
+
+mysql> select * from cardinfo;
+Empty set (0.00 sec)
+
+6. drop the table cardtype .
+ drop table cardinfo;
+Empty set (0.00 sec)

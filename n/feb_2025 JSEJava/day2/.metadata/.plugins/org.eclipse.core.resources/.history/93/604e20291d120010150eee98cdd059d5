@@ -1,0 +1,12 @@
+package assignment8.medicalStore;
+
+public abstract class Hospital {
+	protected static String healthGuidelines = "Follow COVID-19 Safty Rule";
+
+// non abstract method
+	public void showGuidelines() {
+		System.out.println("This Hospital follow under Goverment Guidelines: ");
+	}
+
+	public abstract void showHospitalPolicy();
+}

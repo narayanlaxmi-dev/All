@@ -1,0 +1,19 @@
+
+ Name:Narayan
+ Contact: 95111
+
+Product number 1
+Product rate   12
+
+Product number 2
+Product rate   13
+
+Product number 3
+Product rate   14
+
+Product number 4
+Product rate   15
+
+Product number 5
+Product rate   16
+

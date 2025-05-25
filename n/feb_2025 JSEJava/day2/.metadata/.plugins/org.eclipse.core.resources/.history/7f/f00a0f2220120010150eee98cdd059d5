@@ -1,0 +1,20 @@
+package assignment8;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
+
+public class DateAPI {
+
+	public static void main(String[] args) {
+		 LocalDate startDate = LocalDate.of(2025, 4, 1);
+	        LocalDate endDate = LocalDate.of(2025, 4, 5);
+
+	        // Calculate difference in days
+	        long daysBetween = ChronoUnit.DAYS.between(startDate, endDate);
+
+	        System.out.println("Days between: " + daysBetween);
+	}
+
+}

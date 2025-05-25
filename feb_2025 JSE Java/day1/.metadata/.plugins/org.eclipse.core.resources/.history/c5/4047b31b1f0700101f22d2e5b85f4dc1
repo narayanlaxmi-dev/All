@@ -1,0 +1,37 @@
+package day3_1practice;
+
+import java.util.*;
+
+/*
+ design prog take account balance and withdrawl amount input 
+ check sufficient withdrawl
+ check if 100 * return amount
+ check if no 100 * multiple the amount multiple 
+  */
+public class ATMwithdrawal {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("--- ATM withdrawl system ---");
+		System.out.print("Enter account balance: ");
+		double balance = sc.nextDouble();
+
+		System.out.print("Enter withdrawal amount: ");
+		double withdrawAmount = sc.nextDouble();
+
+		if (withdrawAmount > balance) {
+			System.out.println(" Insufficient funds!");
+		} else if (withdrawAmount % 100 != 0) {
+			System.out.println(" Withdrawal amount must be a multiple of 100!");
+		} else {
+			// Successful withdrawal
+			balance -= withdrawAmount;
+			System.out.println(" Withdrawal successful! Remaining balance: " + balance);
+		}
+
+		scanner.close();
+
+	}
+
+}

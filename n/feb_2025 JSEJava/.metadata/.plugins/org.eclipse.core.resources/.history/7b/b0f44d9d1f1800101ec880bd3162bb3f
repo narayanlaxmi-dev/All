@@ -1,0 +1,31 @@
+package entity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Transaction {
+
+	private static List<TransactionRecord> records;
+	static {
+		records = new ArrayList<TransactionRecord>();
+	}
+	public Transaction() {
+		
+	}
+
+	public static void recordBorrowTransaction(String memberId, String bookId) {
+//		records.add(new TransactionRecord(memberId, bookId, "Borrowed"); // or
+
+		TransactionRecord borrowrecord = new TransactionRecord(memberId, bookId, "Borrowed");
+		records.add(borrowrecord);
+	}
+
+	public static void recordreturnTransaction(String memberId, String bookId) {
+		TransactionRecord returnrecord = new TransactionRecord(memberId, bookId, "return");
+		records.add(returnrecord);
+	}
+
+	public static  void displayTransaction() {
+		records.stream().forEach(rec -> System.out.println(rec + " \n________________"));
+	}
+}

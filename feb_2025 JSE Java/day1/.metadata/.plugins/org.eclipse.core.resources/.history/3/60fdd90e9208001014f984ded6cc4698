@@ -1,0 +1,36 @@
+package day3_1practice;
+
+import java.util.Scanner;
+
+public class ElectricityBill {
+
+	public static void main(String[] args) {
+		int unit = 0, totalbill = 0, ch;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter Unit :");
+		unit = sc.nextInt();
+		 int range = (unit <= 100) ? 0 : (unit <= 300) ? 1 : (unit <= 500) ? 2 : 3;
+
+//		System.out.println("Enter choice :");
+//		ch = sc.nextInt();
+		switch (range) {
+		case 0:
+			totalbill = unit * 5;
+			break;
+
+		case 1:
+		case 2:
+			totalbill = (100 * 5) + (unit - 100) * 8;
+			break;
+
+		case 3:
+		case 4:
+			totalbill = (100 * 5) + (200 * 8) + (unit - 300) * 10;
+			break;
+		default:
+			totalbill = (100 * 5) + (200 * 8) + (300 * 10) + (unit - 500) * 12;
+
+		}
+		System.out.println("Total Bill: " + totalbill);
+	}
+}

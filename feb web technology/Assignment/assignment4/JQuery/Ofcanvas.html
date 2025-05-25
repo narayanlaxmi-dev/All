@@ -1,0 +1,27 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<div ></div>
+<button>hello everyone</button>
+    <script>
+        $(document).ready(function(){
+            $('button').click(function(){
+
+                $('div').animate({
+
+                    'right':'0'
+                },600);
+            });
+              
+        });
+        </script>
+        <style>
+            div{
+                width: 200px;
+                height: 100%;
+                background-color: black;
+                position: fixed;
+                right:-200px;
+                top: 0;
+            }
+           
+        </style>

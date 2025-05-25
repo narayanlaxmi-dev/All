@@ -1,0 +1,109 @@
+package oops1;
+import java.util.*;
+public class main_demo {
+
+	public static void main(String[] args) {
+
+//		create an object for test class
+//		Test ob = new Test();
+
+		/*
+		 * run only test class is public System.out.println("a = " + ob.a + "\n" +
+		 * "b = " + ob.b); System.out.println("Str = " + ob.s);
+		 * System.out.println("ans = " + ob.ans);
+		 */
+
+		// ob.show(); // run with private member variable
+
+		/*
+		 * Employee em1 = new Employee(); Employee em2 = new Employee();
+		 * em1.set_data("narayan", 01, 500000); em2.set_data("neyan", 02, 2000000);
+		 * 
+		 * if(em1.compare() > em2.compare()) em1.get_data(); else em2.get_data();
+		 * 
+		 * 
+		 */
+
+//		Test t1 = new Test();
+//		t1.show();
+//		Test t2 = new Test(10,20.24f);
+//		t2.show();
+//		Test t3 = new Test("nevduu", true);
+//		t3.show();
+//		Test t4 = new Test(10,20.54f,"nervdu",false);
+//		t4.show();
+
+		/*
+		 * Product po1 = new Product(10); Product po2 = new Product(20);
+		 * System.out.println("entr name and rate ");
+		 * 
+		 * po1.set_data("nar", 12); po2.set_data("yan", 5); po1.calc(); po1.get_data();
+		 * po2.get_data();
+		 */
+//		Point p1 = new Point();
+//		p1.get();
+//		double ans1 = p1.get(5d);
+//		System.out.println("cube double " + ans1);
+//
+//		float ans2 = p1.get(2f);
+//		System.out.println("mult float " + ans2);
+//
+//		int ans3 = p1.get(6);
+//		System.out.println("add int " + ans3);
+
+		
+		
+	/*
+		
+		int i,salary,e_id, total = 0;
+		String name ;
+		
+		Employee emp1[] = new Employee[5];
+		System.out.println("Enter employee information");
+		 for (i = 0; i < 2; i++) {  
+	            emp1[i] = new Employee(); 
+
+	            System.out.println("Enter employee id ");
+	            e_id = sc.nextInt();
+
+	            System.out.println("Enter name: ");
+	            name = sc.next();
+
+	            System.out.println("Enter salary");
+	            salary = sc.nextInt();
+
+	            emp1[i].set_data(name, e_id, salary);
+	            total += emp1[i].compare();  
+	        }
+		
+		System.out.println("print Employee information");
+		for (i = 0; i < emp1.length; i++) {
+			emp1[i].get_data();
+
+		}
+	*/
+		
+		int i;
+		float total =0, percentage;
+		Students st1[] = new Students[5];
+		System.out.println("Enter Students information");
+		 for (i = 0; i < 2; i++) {  
+			 
+				
+	            st1[i] = new Students();  
+	            total = total + st1[i].compare();
+	            
+	        }
+		 
+		 percentage = total / (2);  
+	     System.out.println("Total Marks " + total);
+	     System.out.println("Percentage " + percentage  );
+		 System.out.println("print Employee information");
+			for (i = 0; i < st1.length; i++) {
+				st1[i].get_data();
+
+			}
+		
+	}
+
+}

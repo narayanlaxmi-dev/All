@@ -1,0 +1,31 @@
+package oops1;
+
+public class Product {
+	private String p_name;
+	private int rate;
+	private float amount, quantity, dis ;
+	
+	Product(float quantity){
+		this.quantity = quantity;
+	}
+	
+	void set_data(String p_name, int rate) {
+		this.p_name = p_name; 
+		this.rate = rate;
+	}
+	
+	float calc() {
+		amount = rate * quantity;
+		dis = amount * 10/100;
+		return dis ;
+	}
+	
+	void get_data() {
+		System.out.println("name " + p_name);
+		System.out.println("rate " + rate);
+		System.out.println("quantity " + quantity);
+		System.out.println("amount is "+ amount);
+		System.out.println("discount " + calc());
+		
+	}
+}

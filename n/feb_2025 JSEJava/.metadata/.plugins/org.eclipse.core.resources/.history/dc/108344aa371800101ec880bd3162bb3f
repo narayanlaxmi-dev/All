@@ -1,0 +1,18 @@
+package services;
+
+import dao.UserDao;
+
+public class UserServices {
+
+	// composition Has A
+	private UserDao userdaoInstances;
+
+	public UserServices() {
+		userdaoInstances = UserDao.getUserDaoInstance();
+	}
+
+	public void reggisteredUser(String name, String phoneNumber, String pinCode) {
+		// userservice depent on suerdao to store object
+
+	}
+}

@@ -1,0 +1,15 @@
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<button>Fetch Data</button>
+<script>
+  document.querySelector("button").onclick = function () {
+    var result = axios.get("https://restcountries.com/v3.1/all");
+    console.log(result);
+    result
+      .then((result) => {
+        console.log(result.data);
+      })
+      .catch((error) => {
+        console.log(error); //console.log(error.message);
+      });
+  };
+</script>

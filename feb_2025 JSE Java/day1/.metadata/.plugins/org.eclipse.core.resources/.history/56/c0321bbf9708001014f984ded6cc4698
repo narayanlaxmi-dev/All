@@ -1,0 +1,27 @@
+package day3_1practice;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class numGuessing {
+	public static void main(String[] args) {
+		Random r = new Random();
+		int targetno = r.nextInt(100);
+		int ch;
+		do {
+			System.out.println("---Quiz Game ---");
+			System.out.println("Enter choice :");
+			Scanner sc = new Scanner(System.in);
+			ch = sc.nextInt();
+			
+			if (ch > targetno)
+				System.out.println("Too High");
+			else if (ch < targetno)
+				System.out.println("Too Low");
+			else
+				System.out.println("congrulations Winner !!! ");
+
+		} while (ch != targetno);
+	}
+
+}

@@ -1,0 +1,34 @@
+package day3_1practice;
+
+import java.util.*;
+
+public class Employeebonus {
+
+	public static void main(String[] args) {
+		int salary, year;
+		String name;
+		float bonus, finalsal, amt;
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter employee name:");
+		name = sc.nextLine();
+		System.out.println("Enter salary :");
+		salary = sc.nextInt();
+		System.out.println("Enter year of Experience :");
+		year = sc.nextInt();
+
+		if (year < 1)
+			System.out.println(" no bonus :-" + salary);
+		else if (year < 5) {
+			amt = salary * 0.05f;
+			finalsal = salary * amt;
+			System.out.println("5% bonus :-" + amt);
+		} else if (year > 5) {
+			amt = salary * 0.1f;
+			finalsal = salary * amt;
+			System.out.println("10% bonus :-" + amt);
+		}
+
+	}
+
+}

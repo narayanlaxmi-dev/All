@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Textbox Validation</title>
+    <style>
+      #txt.error {
+        border: 2px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" id="txt" placeholder="Enter something" />
+    <button onclick="checkInput()">Submit</button>
+
+    <script>
+      function checkInput() {
+        const txt = document.getElementById("txt");
+        const value = txt.value.trim();
+
+        if (value === "") {
+          txt.classList.add("error");
+        } else {
+          txt.classList.remove("error");
+          alert("Value entered: " + value);
+        }
+      }
+    </script>
+  </body>
+</html>

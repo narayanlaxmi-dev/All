@@ -1,0 +1,32 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<h1>welcome</h1>
+<p>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur, quos aperiam. A dolore eaque voluptatibus odit necessitatibus consectetur. Fuga nemo nobis quam enim vero optio facere eius. Reprehenderit, inventore quod!
+</p>
+<h1>to met</h1>
+<p>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur, quos aperiam. A dolore eaque voluptatibus odit necessitatibus consectetur. Fuga nemo nobis quam enim vero optio facere eius. Reprehenderit, inventore quod!
+</p>
+<h1>nashik</h1>
+<p>
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur, quos aperiam. A dolore eaque voluptatibus odit necessitatibus consectetur. Fuga nemo nobis quam enim vero optio facere eius. Reprehenderit, inventore quod!
+</p>
+    <script>
+        $(document).ready(function(){
+          $('p').hide();
+          $('p').first().show();
+         $('h1').click(function(){
+
+            $('p').slideUp();
+            $(this).next().slideDown();
+         })          
+        });
+        </script>
+        <style>
+            h1,p{
+                border: solid;
+                margin: 0;
+                padding: 15px;
+            }
+        </style>

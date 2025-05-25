@@ -1,0 +1,48 @@
+package com.dsa.mam;
+
+import java.util.Scanner;
+
+class searchBubble {
+	void binarySearch(int a[], int size) {
+		int i, j, temp;
+		for (i = size - 1; i > 0; i--) {
+			for (j = 0; j < i; j++) {
+
+				if (a[j] > a[j + 1]) {
+					temp = a[j];
+					a[j] = a[j + 1];
+					a[j + 1] = temp;
+				}
+
+			}
+		}
+	}
+
+	void print(int arr[]) {
+		for (int i = 0; i < arr.length; i++)
+			System.out.print(arr[i]+", ");
+	}
+		
+}
+
+	public class Sort1BubbleSort {
+		public static void main(String[] args) {
+			Scanner sc = new Scanner(System.in);
+			System.out.println("---Array linear search Program---\n Enter number for array size: "); // element always
+																										// sorted
+			int size = sc.nextInt();
+			int arr[] = new int[size];
+
+			System.out.println("Enter elements for size: " + size);
+			for (int i = 0; i < size; i++)
+				arr[i] = sc.nextInt();
+
+			
+//			-----------------------------------------------------------------------------------------------------------
+			searchBubble obj = new searchBubble();
+			obj.binarySearch(arr, size);
+			obj.print(arr);
+			sc.close();
+		}
+
+	}

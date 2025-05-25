@@ -1,0 +1,559 @@
+Stored Procedures
+---------------------------------------------------------------------------------
+10. Procedure to Get Employee Details by Employee Number
+DELIMITER //
+CREATE PROCEDURE EMP_PRO1(IN PEMPNO INT)
+BEGIN
+
+	SELECT * FROM EMP WHERE EMPNO= PEMPNO;
+END//
+DELIMITER ;
+
+CALL EMP_PRO1();
+
+
+mysql> DELIMITER //
+mysql> CREATE PROCEDURE EMP_PRO1(IN PEMPNO INT)
+    -> BEGIN
+    -> --       DECLARE EMPNO INT;
+    ->  SELECT * FROM EMP WHERE EMPNO= PEMPNO;
+    -> END//
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DELIMITER ;
+
+mysql> select * from emp;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 | 1300.00 |    NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1500.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 |    NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100.00 |    NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
+|  2222 | nita   | manager   | NULL | 2024-10-03 | 1500.00 |    NULL |   NULL |
++-------+--------+-----------+------+------------+---------+---------+--------+
+15 rows in set (0.02 sec)
+
+
+mysql> CALL EMP_PRO1(7499);
++-------+-------+----------+------+------------+---------+--------+--------+
+| empno | ename | job      | mgr  | hiredate   | sal     | comm   | deptno |
++-------+-------+----------+------+------------+---------+--------+--------+
+|  7499 | ALLEN | SALESMAN | 7698 | 1981-02-20 | 1500.00 | 300.00 |     30 |
++-------+-------+----------+------+------------+---------+--------+--------+
+1 row in set (0.00 sec)
+
+
+
+11. Procedure to Get Employee Details by Department Number
+DELIMITER $$
+CREATE PROCEDURE DEPT_PRO1(IN PDEPTNO INT)
+BEGIN
+  
+    SELECT * FROM DEPT WHERE DEPTNO = PDEPTNO ;
+
+   
+END$$
+DELIMITER ;
+
+CALL DEPT_PRO1();
+
+
+mysql> DELIMITER $$
+mysql> CREATE PROCEDURE DEPT_PRO1(IN PDEPTNO INT)
+    -> BEGIN
+    ->
+    ->     SELECT * FROM DEPT WHERE DEPTNO = PDEPTNO ;
+    ->
+    ->
+    -> END$$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> DELIMITER ;
+
+mysql> CALL DEPT_PRO1(10);
++--------+------------+----------+
+| deptno | dname      | loc      |
++--------+------------+----------+
+|     10 | ACCOUNTING | NEW YORK |
++--------+------------+----------+
+1 row in set (0.00 sec)
+
+
+12. Procedure to Get Manager Details
+DELIMITER $$
+
+CREATE PROCEDURE EMP_PRO2()
+BEGIN
+    SELECT * FROM EMP WHERE JOB = 'MANAGER';
+END$$
+
+DELIMITER ;
+
+CALL EMP_PRO2();
+
+
+13. Procedure to Get Employee Count by Department
+ DELIMITER $$
+ CREATE PROCEDURE DEPT_COUNT()
+ BEGIN
+     SELECT DEPTNO, COUNT(*) AS EMP_COUNT
+     FROM EMP
+     GROUP BY DEPTNO;
+ END$$
+DELIMITER ;
+
+CALL DEPT_COUNT();
+
+mysql> DELIMITER $$
+mysql>
+mysql> CREATE PROCEDURE DEPT_COUNT()
+    -> BEGIN
+    ->     SELECT DEPTNO, COUNT(*) AS EMP_COUNT
+    ->     FROM EMP
+    ->     GROUP BY DEPTNO;
+    -> END$$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql>
+mysql> CALL DEPT_COUNT();
++--------+-----------+
+| DEPTNO | EMP_COUNT |
++--------+-----------+
+|     20 |         5 |
+|     30 |         6 |
+|     10 |         3 |
+|   NULL |         1 |
++--------+-----------+
+4 rows in set (0.00 sec)
+
+14. Procedure to Update Employee Salary
+
+SET AUTOCOMMIT=0;
+DELIMITER $$
+
+CREATE PROCEDURE DEPT_UPDATE(IN PEMPNO INT)
+BEGIN
+    UPDATE EMP SET SAL = SAL + 55 WHERE EMPNO = PEMPNO;
+
+    SELECT * FROM EMP;
+END$$
+
+DELIMITER ;
+
+CALL DEPT_UPDATE(7499);
+
+ROLLBACK;
+
+
+15. Procedure to Update Manager Salary by 10%
+DELIMITER $$
+
+CREATE PROCEDURE UPDATE_MNG_SAL()
+BEGIN
+       UPDATE EMP SET SAL = SAL * 1.10 WHERE JOB = 'MANAGER';
+	  SELECT * FROM EMP WHERE JOB = 'MANAGER';
+END$$
+
+DELIMITER ;
+CALL UPDATE_MNG_SAL();
+
+mysql> DELIMITER $$
+mysql>
+mysql> CREATE PROCEDURE UPDATE_MNG_SAL()
+    -> BEGIN
+    ->        UPDATE EMP SET SAL = SAL * 1.10 WHERE JOB = 'MANAGER';
+    ->    SELECT * FROM EMP WHERE JOB = 'MANAGER';
+    -> END$$
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql>
+mysql>
+mysql> CALL UPDATE_MNG_SAL();
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | sal     | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7566 | JONES | MANAGER | 7839 | 1981-04-02 | 3272.50 | NULL |     20 |
+|  7698 | BLAKE | MANAGER | 7839 | 1981-05-01 | 3135.00 | NULL |     30 |
+|  7782 | CLARK | MANAGER | 7839 | 1981-06-09 | 3381.95 | NULL |     10 |
+|  2222 | nita  | manager | NULL | 2024-10-03 | 1650.00 | NULL |   NULL |
++-------+-------+---------+------+------------+---------+------+--------+
+4 rows in set (0.00 sec)
+
+
+16. Procedure to Get Total Salary by Employee Name
+
+DELIMITER $$
+
+CREATE PROCEDURE TOTAL_SALEMP(IN PNAME VARCHAR(20))
+BEGIN
+    SELECT ENAME, SAL,IFNULL(COMM, 0) AS COMM ,(SAL + IFNULL(COMM, 0)) AS TOTSAL FROM EMP WHERE ENAME = PNAME;
+END$$
+
+DELIMITER ;
+
+CALL TOTAL_SALEMP('SMITH');
+
+mysql> DELIMITER $$
+mysql>
+mysql> CREATE PROCEDURE TOTAL_SALEMP(IN PNAME VARCHAR(20))
+    -> BEGIN
+    ->     SELECT ENAME, SAL,IFNULL(COMM, 0) AS COMM ,(SAL + IFNULL(COMM, 0)) AS TOTSAL FROM EMP WHERE ENAME = PNAME;
+    -> END$$
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>
+mysql> DELIMITER ;
+mysql>
+mysql> CALL TOTAL_SALEMP('SMITH');
++-------+---------+------+---------+
+| ENAME | SAL     | COMM | TOTSAL  |
++-------+---------+------+---------+
+| SMITH | 1300.00 | 0.00 | 1300.00 |
++-------+---------+------+---------+
+1 row in set (0.00 sec)
+
+Query OK, 0 rows affected (0.00 sec)
+
+
+
+
+17. Procedure to Get Salary, Hire Date, and Dept No by Employee Name
+DELIMITER $$
+
+CREATE PROCEDURE EMP_DATE1(IN PNAME VARCHAR(20))
+BEGIN
+    SELECT SAL,HIREDATE,DEPTNO FROM EMP WHERE ENAME = PNAME;
+END$$
+
+DELIMITER ;
+CALL EMP_DATE1('SMITH');
+
+
+18. Procedure to Update Employee Salary by Employee Name
+DELIMITER $$
+
+CREATE PROCEDURE UYPDATE_EMP_SAL1(IN PNAME VARCHAR(20), IN NSAL DECIMAL(10,2))
+BEGIN
+    UPDATE EMP SET SAL = NSAL WHERE ENAME = PNAME;
+END$$
+
+DELIMITER ;
+
+DELIMITER ;
+CALL UYPDATE_EMP_SAL1('SMITH',50000);
+
+
+19. Procedure to Display Name 10 Times
+DELIMITER $$
+CREATE PROCEDURE DISPLAY10tIME(IN PNAME VARCHAR(50))
+BEGIN
+    DECLARE I INT DEFAULT 1;
+    WHILE I <= 10 DO
+        SELECT PNAME AS NAME;
+        SET I = I + 1;
+    END WHILE;
+END$$
+
+DELIMITER ;
+CALL DISPLAY10tIME('SMITH');
+
+20. Procedure to Display First 10 Odd Numbers
+DELIMITER $$
+
+CREATE PROCEDURE DISPLAYODD()
+BEGIN
+    DECLARE I INT DEFAULT 1;
+    WHILE I <= 19 DO
+        SELECT I AS ODD_NUMBER;
+        SET I = I + 2;
+    END WHILE;
+END$$
+
+DELIMITER ;
+CALL DISPLAYODD();
+
+21. Procedure to Display Multiples of 5
+DELIMITER $$
+
+CREATE PROCEDURE DisplayMultiplesOf5()
+BEGIN
+    DECLARE I INT DEFAULT 5;
+    WHILE I <= 50 DO
+        SELECT I AS MULTIPLE_OF_5;
+        SET I = I + 5;
+    END WHILE;
+END$$
+
+DELIMITER ;
+
+
+22. Procedure to Display Even Numbers between 20 and 40
+DELIMITER $$
+
+CREATE PROCEDURE DISPLAYEVEN()
+BEGIN
+    DECLARE I INT DEFAULT 20;
+    WHILE I <= 40 DO
+        SELECT I AS EVEN_NUMBER;
+        SET I = I + 2;
+    END WHILE;
+END$$
+
+DELIMITER ;
+CALL DISPLAYEVEN();
+
+23. Procedure to Assign Commission to Salespersons Without It
+DELIMITER $$
+
+CREATE PROCEDURE ASSIGNCOMM()
+BEGIN
+    UPDATE EMP SET COMM = 500 WHERE JOB = 'SALESMAN' AND COMM IS NULL;
+END$$
+
+DELIMITER ;
+CALL ASSIGNCOMM();
+
+
+24. Procedure to Get Employee Details by Employee Number
+DELIMITER $$
+
+CREATE PROCEDURE EMP_BY_NO(IN EMPNO INT)
+BEGIN
+    SELECT * FROM EMP WHERE EMPNO = EMPNO;
+END$$
+
+DELIMITER ;
+CALL EMP_BY_NO(7499);
+
+
+25. Procedure to Update Commission by Employee Number
+DELIMITER $$
+
+CREATE PROCEDURE UPDATECOMM(IN EMPNO INT, IN NCOMM DECIMAL(10,2))
+BEGIN
+    UPDATE EMP SET COMM = NCOMM WHERE EMPNO = EMPNO;
+END$$
+
+DELIMITER ;
+CALL UPDATECOMM();
+
+
+26. Procedure to Display EmDELIMITER $$
+
+CREATE PROCEDURE DISPLAYhERERCY()
+BEGIN
+    SELECT 
+        E1.EMPNO AS EMP_ID, 
+        E1.ENAME AS EMPLOYEE, 
+        E2.ENAME AS MANAGER
+    FROM EMP E1 LEFT JOIN EMP E2 ON E1.MGR = E2.EMPNO;
+END$$
+
+DELIMITER ;
+CALL DISPLAYhERERCY;
+
+
+27. Procedure to Get Salary, Hire Date, and Dept No by Employee Name
+DELIMITER $$
+
+CREATE PROCEDURE GetEmpInfoByName(IN PNAME VARCHAR(20))
+BEGIN
+    SELECT ENAME, SAL, HIREDATE, DEPTNO
+    FROM EMP
+    WHERE ENAME = PNAME;
+END$$
+
+DELIMITER ;
+
+
+28. Procedure to Display a Countdown Using REPEAT UNTIL:
+DELIMITER $$
+
+CREATE PROCEDURE Countdown(IN start_number INT)
+BEGIN
+    DECLARE num INT;
+    SET num = start_number;
+
+    REPEAT
+        SELECT num AS COUNTDOWN;
+        SET num = num - 1;
+    UNTIL num < 1
+    END REPEAT;
+END$$
+
+DELIMITER ;
+
+
+
+29. Procedure to Check if a Number is Even or Odd Using IF THEN Statement:
+DELIMITER $$
+
+CREATE PROCEDURE CheckEvenOdd(IN number INT)
+BEGIN
+    IF MOD(number, 2) = 0 THEN
+        SELECT 'Even' AS Result;
+    ELSE
+        SELECT 'Odd' AS Result;
+    END IF;
+END$$
+
+DELIMITER ;
+
+
+30. Procedure to Calculate the Factorial of a Number Using LOOP and LEAVE:
+DELIMITER $$
+
+CREATE PROCEDURE CalculateFactorial(IN n INT)
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    DECLARE fact BIGINT DEFAULT 1;
+
+    factorial_loop: LOOP
+        IF i > n THEN
+            LEAVE factorial_loop;
+        END IF;
+
+        SET fact = fact * i;
+        SET i = i + 1;
+    END LOOP;
+
+    SELECT fact AS Factorial;
+END$$
+
+DELIMITER ;
+
+
+31. Procedure to Sum First N Odd Numbers Using WHILE Loop:
+
+DELIMITER $$
+
+CREATE PROCEDURE SumOddNumbers(IN n INT)
+BEGIN
+    DECLARE i INT DEFAULT 1;
+    DECLARE count INT DEFAULT 0;
+    DECLARE sum INT DEFAULT 0;
+
+    WHILE count < n DO
+        SET sum = sum + i;
+        SET i = i + 2;
+        SET count = count + 1;
+    END WHILE;
+
+    SELECT sum AS SumOfOddNumbers;
+END$$
+
+DELIMITER ;
+
+
+
+32. Procedure to Print Multiples of 3 Up to a Specified Limit Using REPEAT and IF THEN:
+
+DELIMITER $$
+
+CREATE PROCEDURE PrintMultiplesOfThree(IN limit INT)
+BEGIN
+    DECLARE i INT DEFAULT 1;
+
+    REPEAT
+        IF MOD(i, 3) = 0 THEN
+            SELECT i AS MultipleOf3;
+        END IF;
+        SET i = i + 1;
+    UNTIL i > limit
+    END REPEAT;
+END$$
+
+DELIMITER ;
+
+
+33. Procedure to Print Fibonacci Sequence Up to a Specified Limit Using LOOP:
+
+DELIMITER $$
+
+CREATE PROCEDURE PrintFibonacci(IN limit INT)
+BEGIN
+    DECLARE a INT DEFAULT 0;
+    DECLARE b INT DEFAULT 1;
+    DECLARE temp INT;
+
+    fibonacci_loop: LOOP
+        IF a > limit THEN
+            LEAVE fibonacci_loop;
+        END IF;
+
+        SELECT a AS FibonacciNumber;
+        SET temp = a + b;
+        SET a = b;
+        SET b = temp;
+    END LOOP;
+END$$
+
+DELIMITER ;
+
+34. Procedure to Print Numbers from 1 to N with WHILE Loop and IF THEN to Check for Divisibility by 5:
+
+DELIMITER $$
+
+CREATE PROCEDURE PrintDivisibleByFive(IN n INT)
+BEGIN
+    DECLARE i INT DEFAULT 1;
+
+    WHILE i <= n DO
+        IF MOD(i, 5) = 0 THEN
+            SELECT i AS DivisibleBy5;
+        END IF;
+        SET i = i + 1;
+    END WHILE;
+END$$
+
+DELIMITER ;
+
+
+35. Procedure to Print Powers of 2 Up to a Specified Limit Using REPEAT Loop and LEAVE:
+
+DELIMITER $$
+
+CREATE PROCEDURE PrintPowersOfTwo(IN limit INT)
+BEGIN
+    DECLARE val INT DEFAULT 2;
+
+    REPEAT
+        SELECT val AS PowerOf2;
+        SET val = val * 2;
+        IF val > limit THEN
+            LEAVE;
+        END IF;
+    UNTIL FALSE
+    END REPEAT;
+END$$
+
+DELIMITER ;
+
+
+36.Create a stored procedure GetDepartmentsByAverageSalary that takes a minimum salary as input and returns departments with an average salary equal to or above this amount."
+DELIMITER $$
+
+CREATE PROCEDURE GetDepartmentsByAverageSalary(IN min_avg_salary DECIMAL(10,2))
+BEGIN
+    SELECT DEPTNO, AVG(SAL) AS AvgSalary
+    FROM EMP
+    GROUP BY DEPTNO
+    HAVING AVG(SAL) >= min_avg_salary;
+END$$
+
+DELIMITER ;

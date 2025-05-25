@@ -1,0 +1,22 @@
+package oops1;
+
+public class Employee {
+	private int salary, e_id;
+	private String name;
+
+	public void set_data(String name, int e_id, int salary) {
+		this.name = name; // same name as formal parameter and member variable so use this.
+		this.e_id = e_id;
+		this.salary = salary;
+	}
+	
+	int compare() {
+		return (salary);
+	}
+	
+	void get_data() {
+		System.out.println("The Employee name is :" + name);
+		System.out.println("The Employee ID is :" + e_id);
+		System.out.println("The Employee salary is :" + salary);
+	}
+}

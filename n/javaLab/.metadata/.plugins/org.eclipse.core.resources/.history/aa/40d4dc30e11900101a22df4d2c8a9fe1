@@ -1,0 +1,21 @@
+package entity;
+
+import java.util.HashMap;
+
+public class Shop {
+
+	private HashMap<String, Products> products = new HashMap();
+	private HashMap<String, Customers> customer = new HashMap();
+	private Transaction transManager = new Transaction();
+	
+	public Shop() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Shop(HashMap<String, Products> products, HashMap<String, Customers> customer, Transaction transManager) {
+		this.products = products;
+		this.customer = customer;
+		this.transManager = transManager;
+	}
+	
+}

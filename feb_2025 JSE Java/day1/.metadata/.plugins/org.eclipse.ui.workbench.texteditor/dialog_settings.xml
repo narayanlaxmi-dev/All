@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<item key="replaceBarOpen" value="true"/>
+	<list key="replacehistory">
+		<item value="withdrawamt"/>
+		<item value="marks"/>
+		<item value="rollno"/>
+		<item value="principal_sal"/>
+	</list>
+	<list key="searchhistory">
+		<item value="withdrawAmount"/>
+		<item value="salary"/>
+		<item value="e_id"/>
+		<item value="principlesal"/>
+	</list>
+</section>

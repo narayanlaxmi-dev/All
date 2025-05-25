@@ -1,0 +1,16 @@
+<script>
+  var brands = ["ONE PIECE", "DEMONSLAYER", "IPPO"]; // normal approch to create array
+  var catogery = new Array("A", "B", "C"); // constructor approct ot create array
+  console.log(brands, catogery);
+
+  document.write(`
+  <h2>Brands</h2>
+  <li>${brands[0]}</li>
+  <li>${brands[1]}</li>
+  <li>${brands[2]}</li>
+  `);
+
+  for (let value of brands) {
+    document.write(`<li>${value}</li>;`);
+  }
+</script>

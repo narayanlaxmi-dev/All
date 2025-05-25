@@ -1,0 +1,225 @@
+CREATE TABLE emp1 (
+  EMPNO INT PRIMARY KEY,
+  ENAME VARCHAR2(20),
+  SAL NUMBER(10,2)
+);
+
+INSERT INTO emp1 (EMPNO, ENAME, SAL) VALUES (1, 'Nevdu', 30000.00);
+INSERT INTO emp1 (EMPNO, ENAME, SAL) VALUES (2, 'Narayan', 35000.00);
+INSERT INTO emp1 (EMPNO, ENAME, SAL) VALUES (3, 'Bhakti', 32000.00);
+INSERT INTO emp1 (EMPNO, ENAME, SAL) VALUES (4, 'Neyan', 34000.00);
+INSERT INTO emp1 (EMPNO, ENAME, SAL) VALUES (5, 'Arjun', 31000.00);
+
+TO NOT DELETE RECORD WE USE TRIGGER ------------ AUTOMATICALLY  EXECUTED IF DML 
+
+
+CREATE OR REPLACE TRIGGER TR_EMP1_DEL
+BEFORE DELETE ON EMP1
+BEGIN 
+RAISE_APPLICATION_ERROR(-20251,'YOU CANNOT DELETE THE ROW...');
+END;
+/
+
+CREATE OR REPLACE TRIGGER TR_EMP1_DEL
+BEFORE DELETE OR UPDATE OR INSERT ON emp1
+FOR EACH ROW -- ====================================================== WITHOUT THIS LINE STATMENT TRIGGER ELSE IT FOR EACH ROW TRIGGER
+BEGIN
+  RAISE_APPLICATION_ERROR(-20251, 'YOU CANNOT DELETE, UPDATE, OR INSERT INTO EMP1 TABLE...');
+END;
+/
+
+DELETE FROM EMP1 EHERE 
+
+CREATE TABLE SALHISTORY(
+ENAME VARCHAR2(20),
+OLDSAL INT,
+NEWSAL INT
+);
+
+DROP TRIGGER TR_EMP1_DEL;
+
+IF I UODATE EMP1 THEN EMP1 OLD DATA STORE SALHISTORY
+
+CREATE TRIGGER TR_UPDATEDSAL
+AFTER UPDATE OF SAL ON EMP1
+FOR EACH ROW
+ BEGIN 
+ INSERT INTO SALHISTORY VALUES(:NEW.ENAME, :OLD.SAL , :NEW.SAL);
+ END;
+/
+
+
+
+
+SQL> SET LINESIZE 150;
+SQL> SELECT * FROM EMP;
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7839 KING       PRESIDENT            17-NOV-81       5000                    10
+      7698 BLAKE      MANAGER         7839 01-MAY-81       2850                    30
+      7782 CLARK      MANAGER         7839 09-JUN-81       2450                    10
+      7566 JONES      MANAGER         7839 02-APR-81       2975                    20
+      7788 SCOTT      ANALYST         7566 19-APR-87       3000                    20
+      7902 FORD       ANALYST         7566 03-DEC-81       3000                    20
+      7369 SMITH      CLERK           7902 17-DEC-80        800                    20
+      7499 ALLEN      SALESMAN        7698 20-FEB-81       1600        300         30
+      7521 WARD       SALESMAN        7698 22-FEB-81       1250        500         30
+      7654 MARTIN     SALESMAN        7698 28-SEP-81       1250       1400         30
+      7844 TURNER     SALESMAN        7698 08-SEP-81       1500          0         30
+
+     EMPNO ENAME      JOB              MGR HIREDATE         SAL       COMM     DEPTNO
+---------- ---------- --------- ---------- --------- ---------- ---------- ----------
+      7876 ADAMS      CLERK           7788 23-MAY-87       1100                    20
+      7900 JAMES      CLERK           7698 03-DEC-81        950                    30
+      7934 MILLER     CLERK           7782 23-JAN-82       1300                    10
+
+14 rows selected.
+
+UPDATE EMP1 SET SAL=SAL+55;
+
+SQL> UPDATE EMP1 SET SAL=SAL+55;
+
+5 rows updated.
+
+SQL> SELECT * FROM EMP1;
+
+     EMPNO ENAME                       SAL
+---------- -------------------- ----------
+         1 Nevdu                     30055
+         2 Narayan                   35055
+         3 Bhakti                    32055
+         4 Neyan                     34055
+         5 Arjun                     31055
+
+SQL> SELECT * FROM SALHISTORY;
+
+ENAME                    OLDSAL     NEWSAL
+-------------------- ---------- ----------
+Nevdu                     30000      30055
+Narayan                   35000      35055
+Bhakti                    32000      32055
+Neyan                     34000      34055
+Arjun                     31000      31055
+
+
+CREATE TABLE DELETE_RECORD_STORED(
+EMPNO INT,
+ENAME VARCHAR2(20),
+OLDSAL INT
+);
+
+
+CREATE TRIGGER UPDATEDSAL
+BEFORE DELETE ON EMP1
+FOR EACH ROW
+ BEGIN 
+ INSERT INTO DELETE_RECORD_STORED VALUES(:OLD.EMPNO ,:OLD.ENAME, :OLD.SAL);
+ END;
+/
+
+SQL> CREATE TRIGGER UPDATEDSAL
+  2  BEFORE DELETE ON EMP1
+  3  FOR EACH ROW
+  4   BEGIN
+  5   INSERT INTO DELETE_RECORD_STORED VALUES(:OLD.EMPNO ,:OLD.ENAME, :OLD.SAL);
+  6   END;
+  7  /
+
+Trigger created.
+
+SQL>
+SQL> SELECT * FROM EMP1;
+
+     EMPNO ENAME                       SAL
+---------- -------------------- ----------
+         1 Nevdu                     30055
+         2 Narayan                   35055
+         3 Bhakti                    32055
+         4 Neyan                     34055
+         5 Arjun                     31055
+
+SQL> DELETE FROM EMP1 WHERE EMPNO=5;
+
+1 row deleted.
+
+SQL> SELECT * FROM EMP1;
+
+     EMPNO ENAME                       SAL
+---------- -------------------- ----------
+         1 Nevdu                     30055
+         2 Narayan                   35055
+         3 Bhakti                    32055
+         4 Neyan                     34055
+
+SQL> SELECT * FROM DELETE_RECORD_STORE;
+SELECT * FROM DELETE_RECORD_STORE
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> SELECT * FROM DELETE_RECORD_STORED;
+
+     EMPNO ENAME                    OLDSAL
+---------- -------------------- ----------
+         5 Arjun                     31055
+----------------------------------------------------------------------------------
+
+
+CREATE TABLE LOG_HISTORY(
+USERNAME VARCHAR2(20),
+OPDATE DATE,
+OPERATION  CHAR(1),
+TABLENAME VARCHAR2(20)
+);
+
+
+CREATE OR REPLACE TRIGGER  LOGTRIGGER
+BEFORE INSERT OR UPDATE OR DELETE ON EMP1
+FOR EACH ROW
+ BEGIN 
+ IF INSERTING THEN
+ INSERT INTO LOG_HISTORY VALUES('HR',SYSDATE,'I','EMP1');
+ ELSIF UPDATING THEN
+ INSERT INTO LOG_HISTORY VALUES('HR',SYSDATE,'U','EMP1');
+ ELSIF DELETING THEN
+ INSERT INTO LOG_HISTORY VALUES('HR',SYSDATE,'D','EMP1');
+ END IF;
+ END;
+/
+INSERT INTO EMP1 VALUES(5,'BHAKTIII',70);
+UPDATE EMP1 SET SAL=SAL+55 WHERE ENAME ='BHAKTIII';
+DELETE FROM EMP1 WHERE ENAME = 'BHAKTIII';
+
+=-=-=-=-=-=-=-
+SQL> SELECT * FROM LOG_HISTORY;
+
+USERNAME             OPDATE    O TABLENAME
+-------------------- --------- - --------------------
+HR                   14-MAY-25 I EMP1
+HR                   14-MAY-25 U EMP1
+HR                   14-MAY-25 D EMP1
+
+SQL> SELECT * FROM EMP1;
+
+     EMPNO ENAME                       SAL
+---------- -------------------- ----------
+         1 Nevdu                     30055
+         2 Narayan                   35055
+         3 Bhakti                    32055
+         4 Neyan                     34055
+
+SQL> SELECT * FROM DELETE_RECORD_STORE;
+SELECT * FROM DELETE_RECORD_STORE
+              *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> SELECT * FROM DELETE_RECORD_STORED;
+
+     EMPNO ENAME                    OLDSAL
+---------- -------------------- ----------
+         5 Arjun                     31055
+         5 BHAKTIII                    125

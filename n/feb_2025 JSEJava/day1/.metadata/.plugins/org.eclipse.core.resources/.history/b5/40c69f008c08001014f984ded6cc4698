@@ -1,0 +1,23 @@
+package day3_1practice;
+
+import java.util.*;
+
+public class OnlineFoodOrder {
+
+	public static void main(String[] args) {
+		int totalbill, contatity, ch;
+		Scanner sc = new Scanner(System.in);
+
+		do {
+			System.out.println("1 - pizza");
+			System.out.println("2 - Burger");
+			System.out.println("3 - Pasta");
+			System.out.println("4 - Coffee");
+			System.out.println("5 - Generate Bill & exit");
+			System.out.println("Enter choice :");
+			ch = sc.nextInt();
+			
+		} while (true);
+
+	}
+}

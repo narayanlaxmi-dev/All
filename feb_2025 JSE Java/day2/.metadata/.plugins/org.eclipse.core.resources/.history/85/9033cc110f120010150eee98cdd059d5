@@ -1,0 +1,11 @@
+package assignment8;
+
+public class Bank {
+	protected static float minIntrestRate = 4.0f;
+
+	// non abstract method
+	public void displayDetails() {
+		System.out.println("this bank follows RBI Guidelines:");
+
+	}
+}

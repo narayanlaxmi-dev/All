@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+   <input onkeyup="changeCase(this.value)" />
+<p id="para1"></p>
+<p id="para2"></p>
+
+<script>
+function changeCase(val) {
+  document.getElementById("para1").innerText = val.toUpperCase();
+  document.getElementById("para2").innerText = val.toLowerCase();
+}
+</script>
+    
+</body>
+</html>

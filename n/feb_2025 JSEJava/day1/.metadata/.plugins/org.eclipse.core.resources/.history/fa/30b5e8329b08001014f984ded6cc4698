@@ -1,0 +1,27 @@
+package day3_1practice;
+
+import java.util.Scanner;
+
+public class PascalPattern {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("enter length of triangle for pascal :");
+		int n = sc.nextInt();
+		int i, j;
+		for (i = 0; i < n; i++) {
+
+			for (j = 0; j < n - i; j++) { // white space
+				System.out.print(" ");
+			}
+			int num = 1;
+			for (j = 0; j <= i; j++) { // white space
+
+				System.out.print(num + " ");
+				num = num * (i - j) / (j + 1);
+			}
+			System.out.println();
+		}
+
+	}
+
+}

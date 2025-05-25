@@ -1,0 +1,10 @@
+namespace YourNamespace.Entities
+{
+    public enum Category
+    {
+        CPP,
+        BIOLOGY,
+        MYTHOLOGY,
+        PHYSOLOGY
+    }
+}

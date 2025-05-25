@@ -1,0 +1,5 @@
+package assignment8.medicalStore;
+
+public class UnpaidBillException {
+
+}

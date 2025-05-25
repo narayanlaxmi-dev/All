@@ -1,0 +1,45 @@
+package day1;
+
+import java.util.Scanner;
+
+public class PersonMain {
+
+	public static void main(String[] args) {
+		// 1 container person store both child class array person store both class data
+		// generalization common of super class and sub class (up casting)
+		// thanks to inheritance we sotre object of sub class in super class
+		System.out.println("Person");
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter number of participents: ");
+		int n = sc.nextInt();
+		Person[] persons = new Person[n];
+
+		// register participents
+		// get all participents
+		// get details for specific participents
+
+		boolean exit = true;
+		do {
+			System.out.println("+++++++++ MENU ++++++++" + "1 Register Participents \n" + "2 Get all Participents\n"
+					+ "3 Participents Details\n" + "0 Exit \n" + "choose :");
+
+			int ch = sc.nextInt();
+			if (ch == 0) {
+				System.out.println("Thankyou to using this system");
+				exit = false;
+			}
+			if (ch == 1) {
+				System.out.println("___________register participents___________");
+
+			}
+			if (ch == 2) {
+				System.out.println("___________get all participents___________");
+			}
+			if (ch == 3) {
+				System.out.println("___________get details for specific participents___________");
+			}
+		} while (exit);
+	}
+
+}

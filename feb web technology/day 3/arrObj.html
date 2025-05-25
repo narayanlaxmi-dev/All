@@ -1,0 +1,71 @@
+<script>
+  var product = [
+    {
+      name: "ONE PEICE",
+      price: 1000,
+      discount: 20,
+      path: "https://cdn.pixabay.com/photo/2024/07/01/19/14/ai-generated-8865944_640.jpg",
+      size: ["s", "m", "l", "xl"],
+    },
+    {
+      name: "Demon",
+      price: 1000,
+      discount: 40,
+      path: "https://cdn.pixabay.com/photo/2022/07/25/16/14/shiva-7344119_640.jpg",
+      size: ["s", "m", "l", "xl"],
+    },
+    {
+      name: "Ippo",
+      price: 1000,
+      discount: 50,
+      path: "https://cdn.pixabay.com/photo/2022/08/07/16/42/meditation-7370955_640.jpg",
+      size: ["s", "m", "l", "xl"],
+    },
+  ];
+  console.log(product);
+
+  for (let value of product) {
+    console.log(value);
+    // document.write(JSON.stringify(value)); // or
+    document.write(`
+  <div class='card'>
+    <img src='${value.path}'/>
+    <h2>Price ${value.price}</h2>
+    <p>OnePiece ${value.name}</p>
+    <p>Size ${value.size.join(" | ")}</p>
+    <button>Add To Card</button>
+    </div>
+  `);
+  }
+  console.log(JSON.stringify(product)); // or
+</script>
+
+<style>
+  .card {
+    border: 1px solid #333;
+    width: 300px;
+    text-align: center;
+    /* float: left; */
+    margin: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  div {
+    border: solid;
+    width: 300px;
+    text-align: center;
+    float: left;
+  }
+  img {
+    width: 100%;
+    height: 200px; /* Fixed height */
+    object-fit: cover; /* Ensures uniform size without distortion */
+    display: block;
+  }
+  img:hover {
+    width: 200%;
+    height: 300px; /* Fixed height */
+    display: block;
+  }
+</style>

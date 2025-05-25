@@ -1,0 +1,76 @@
+
+
+SRC Commands
+
+1.display the name of employee whos name end with 'R'
+ select job, job like '_______' as sevenCharJob from emp;
+
+2.display name of employee whose name  contains A at second place
+select ename, ename like '_A%' as sevenCharJob from emp;
+
+3.display name of employee whose name contains 'I' at second last place
+ select ename, ename like '%T_' as sevenCharJob from emp;
+
+4.Display the name of employee whose name start with 'A';
+select ename, ename like 'A%' as sevenCharJob from emp;
+ 
+
+5.Display name of employee whoose name contains 'A' anywhere in the name
+ select ename  from emp where ename like '%A%';
+
+6.Display the name of employee whose name ends with  IN
+ select * from emp where ename like '%IN';
+
+7.Display the name of employee whose name ends with LEN
+ select * from emp where ename like '%LEN';
+
+8.List the name of employees whose name has 4 characters.
+ select * from emp where ename like '____';
+
+9.List the name of employees whose job has 7 characters
+ select * from emp where ename like '_______';
+
+10.List the employees whose job is having last 3 characters as 'MAN'.
+ select * from emp where ename like '%MAN;
+
+11.List employees whose job is having first 3 characters as 'MAN'.
+   select * from emp where ename like 'MAN%';
+
+12.Display all the names whose name is having exactly one 'L'.
+  select ename
+    from emp
+     where length(ename) - LENGTH(REPLACE(LOWER(ename), 'l', '')) = 1; 
+
+13.Display department names which contain letter 'O' in it.
+   select ename from emp where like '%o%';
+
+14.Display the output as shown below for all records in emp table,
+SELECT LENGTH('HELLLLL') - LENGTH(REPLACE(UPPER('HELLLLL'), 'L', '')) AS count_of_Ls;
+
+15.Calculate number of L's in the string 'HELLLLL'.
+   SELECT *
+FROM emp
+WHERE job LIKE '%MAN%';
+
+16.Display all the employees whose job contains the string 'MAN'.
+ SELECT *
+FROM emp
+WHERE job LIKE 'MAN%';
+
+17.Display all the employees whose job starts with the string 'MAN'.
+   SELECT *
+FROM emp
+WHERE job LIKE '%MAN';
+
+18.Display all the employees whose job ends with the string 'MAN'.
+   SELECT *
+FROM emp
+WHERE job LIKE '%MAN';
+
+19.Display the result from emp table as shown:
+select * from emp;
+
+20.Display the first 3 characters of ename in lowercase and the rest in uppercase.
+SELECT 
+  CONCAT(LOWER(SUBSTRING(ename, 1, 3)), UPPER(SUBSTRING(ename, 4))) AS formatted_name
+FROM emp;

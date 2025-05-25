@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="add.js"></script>
+    <style>
+      /* Custom light green button */
+      .btn-lightgreen {
+        background-color: #90ee90; /* Light Green */
+        border-color: #90ee90;
+        color: white;
+      }
+
+      .btn-lightgreen:hover {
+        background-color: #76e076; /* Slightly darker green */
+        border-color: #76e076;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="text-center">
+      <h1>Add Record</h1>
+      <input type="text" placeholder="Name" id="x1" />
+      <br /><br />
+      <input type="text" placeholder="Age" id="x2" />
+      <br /><br />
+      <input type="text" placeholder="Place" id="x3" />
+      <br /><br />
+      <button type="submit" class="btn btn-lightgreen">ADD User</button>
+    </div>
+
+    <div class="container mt-5 text-center">
+      <button class="btn btn-lightgreen">
+        <a href="show.html" class="text-decoration-none">Show Users</a>
+      </button>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+https://www.geeksforgeeks.org/dsa-tutorial-learn-data-structures-and-algorithms/
+
+https://www.geeksforgeeks.org/numbers-aptitude-questions-and-answers/
+
+https://www.geeksforgeeks.org/aptitude-for-placements/
+
+https://www.geeksforgeeks.org/category/interview-experiences/
+
+https://cdacpgdacpuneactspanchawatipashan.blogspot.com/2018/02/ccee-ccpp-placement-exam-cdac.html
+Most of the students prefer Java for the project but i would suggest go for dotnet as companies visiting as well as CDAC R&D require dotnet people too, so it will be an advantage for you too stand out from the crowd. Additionally you can think of implementing a REST service in DOTNET(WCF) or JAVA(SPRING) and consume using a REST client in Angular on the front. This will be a deadly combination. Also don't go overboard and try to use a technology if it isn't at all required. For example, your web application requires simple CRUD operations then don't go overboard and show your skills in services and angular just because it is flashy. Major point you should now is that why are you using a specific technology for your project. Is it really required ??
+
+You will get at max 15-20 days for your project after the CCEE exams. Like 15-30 January in our case. 90% of the projects will be on similar lines ie - A web application to manage something say blah blah management system, with 3 types of user viz admin, customers, vendors, login - logout functionalities, CRUD ops etc.  Do something that differentiates your project from the rest. Implement some extra features like -- Localization, Hashing of passwords, AJAX, Single Page App, Upload-Download, BLOB handling, Use of APIs, Social Login etc. This will surely give you a boost in the interviews and an edge over others.
+
+Some tips for the Interviews:
+Your explanation matters more than your knowledge during the interviews. Most interviewers listen to the same explanations again and again as most of the students have studied the same thing. Explain in such a way with examples to stand out and impress the interviewer.
+Don't fool around in an interview. If you don't know or remember something, just say as it is but if you try to fool around, rejection is sure.
+One thing which will be asked in 99% of the interviews is your project. Be ready to write a code or two from your project. Sometimes your graduation project can also be asked. "Tell me about your project", "role in project", "why this technology", "how you solved this common problem" etc are some of the questions that will be asked.
+Next common question is the cliche -"tell me about yourself". If it's being asked in a technical round, keep it short and simple. Don't provide some extra detail accept academics, hometown, hobbies etc.
+Your luck matters more than you think during the placements. for example - you are giving an interview at the end of the process, by that time the interviewer might already have finalized the students already. If it's your day, everything will fall in place for you to be selected. Signs will be there too. Just watch out. There will be days when you will be down and out. Just get up and move on. There is always a better opportunity waiting for you.
+One thing i've noticed is that Interviewers don't ask very difficult questions. Just keep your basics correct and explain beautifully.

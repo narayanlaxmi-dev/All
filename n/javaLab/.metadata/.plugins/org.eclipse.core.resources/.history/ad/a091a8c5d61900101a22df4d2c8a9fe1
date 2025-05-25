@@ -1,0 +1,19 @@
+package entity;
+
+public class Customers {
+	private String customerId;
+	private String customerName;
+	private int quantity;
+	
+	private static int Cid;
+	static {
+		Cid = 200;
+	}
+
+	public Customers() {
+
+	}
+
+	
+
+}

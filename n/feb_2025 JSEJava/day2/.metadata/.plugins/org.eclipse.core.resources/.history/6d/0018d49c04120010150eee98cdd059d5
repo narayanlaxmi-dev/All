@@ -1,0 +1,15 @@
+package assignment8;
+
+// enum declare both inside class or outside class
+public class EnumdaysWeekMain {
+	enum Month {
+		JAN, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOV, DEC
+	}
+
+	public static void main(String[] args) {
+		String month = "JAN";
+		Month third = Month.valueOf(month);
+		System.out.println(third);
+	}
+
+}

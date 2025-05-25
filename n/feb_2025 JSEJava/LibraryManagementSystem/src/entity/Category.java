@@ -1,0 +1,6 @@
+package entity;
+
+public enum Category {
+	// SET OF CONSTANTS FINAL ARE CAPITAL
+	CPP,BIOLOGY,MYTHOLOGY,PHYSOLOGY
+}

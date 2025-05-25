@@ -1,0 +1,64 @@
+package assignment8;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.Iterator;
+
+class Person {
+	private String name;
+	private int age;
+
+	public Person() {
+		name = "unKnown";
+		age = 0;
+	}
+
+	public Person(int age) {
+		this.age = age;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "Person ->name=" + name + ", age=" + age + "....";
+	}
+
+}
+
+public class Reflection {
+	public static void main(String[] args) {
+		Class personClass1 = Person.class;
+		System.out.println(personClass1.getClass().getName());
+		System.out.println(personClass1.getName());
+		System.out.println(personClass1.getModifiers());
+
+		// fields printing
+		System.out.println("Fields: ");
+		Field[] fields = personClass1.getDeclaredFields();
+		for (Field f : fields) {
+			System.out.println("Field: " + f.getName());
+		}
+
+//		System.out.println(personClass1.getDeclaredMethods());
+		System.out.println("Methods: ");
+		Method[] met = personClass1.getDeclaredMethods();
+		for (Method m : met) {
+			System.out.println("Metohds are :-" + m.getName());
+		}
+
+		// Constructor printing
+		System.out.println("Fields: ");
+		Constructor[] cons = personClass1.getDeclaredConstructors();
+		for (Constructor c : cons) {
+			System.out.println("Field: " + c.getName());
+		}
+	}
+}

@@ -1,0 +1,14 @@
+package day1_pakage;
+
+public class example1 {
+
+	public static void main(String[] args) {
+		System.out.println("HEllo world ");
+		
+		// ctrl shift f to auto format
+		// syso ctrl space shortcut
+		System.out.println("this is first java prog in pg dac");
+		// f11 then enter to run script
+	}
+
+}

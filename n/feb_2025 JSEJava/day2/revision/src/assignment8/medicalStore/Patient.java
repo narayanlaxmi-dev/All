@@ -1,0 +1,43 @@
+package assignment8.medicalStore;
+
+public class Patient {
+	private String patientName;
+	private int patientid;
+	private double patientBillAmount;
+	private boolean isPaid;
+
+	public Patient(String patientName, int patientid, double patientBillAmount, boolean isPaid) {
+		super();
+		this.patientName = patientName;
+		this.patientid = patientid;
+		this.patientBillAmount = patientBillAmount;
+		this.isPaid = isPaid;
+	}
+
+	public void payBill() {
+		if (!isPaid) {
+			isPaid = true;
+			patientBillAmount = 0; // assuming nothing istode paid
+			System.out.println("Bill paid for.. -> " + patientName);
+		} else {
+			System.out.println("Bill is already paid for: " + patientName);
+		}
+	}
+
+	public void checkBillingStatus() {
+		try {
+			if (isPaid)
+				System.out.println("Bill is already paid for: " + patientName);
+			else
+				throw new UnpaidBillException("Bhai Bill baki he paid kero");
+		} catch (Exception e) {
+			e.getMessage();
+		}
+	}
+
+	public void showPaitentDetails() {
+		System.out.println("patient Name: " + patientName);
+		System.out.println("patient ID: " + patientid);
+		System.out.println("patient BillAmount: " + patientBillAmount);
+	}
+}

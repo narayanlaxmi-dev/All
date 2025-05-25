@@ -1,0 +1,23 @@
+package day1_pakage;
+
+import java.util.Scanner;
+
+public class ep7largest {
+
+	public static void main(String[] args) {
+		Scanner ob = new Scanner(System.in);
+		System.out.println("Enter three number to check which is largest :");
+		int a = ob.nextInt();
+		int b = ob.nextInt();
+		int c = ob.nextInt();
+
+		if (a > b && a > c) {
+			System.out.println(a + " largest");
+		} else if (b > a && b > c) {
+			System.out.println(b + " largest");
+		} else if (c > a && c > b) {
+			System.out.println(c + " largest");
+		}
+	}
+
+}

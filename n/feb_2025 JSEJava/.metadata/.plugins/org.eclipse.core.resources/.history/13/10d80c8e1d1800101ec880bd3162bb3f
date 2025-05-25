@@ -1,0 +1,75 @@
+package entity;
+
+import java.time.LocalDate;
+
+public class TransactionRecord {
+	private String id;
+	private String memberId;
+	private String bookId;
+	private String type;
+	private LocalDate date;
+	private static int rid;
+	static {
+		rid = 500;
+	}
+
+	public TransactionRecord() {
+
+	}
+
+	public TransactionRecord(String memberId, String bookId, String type) {
+		this.id = "T" + ++rid; // id start with T 500 + 1
+		this.date = LocalDate.now(); // today date
+
+		this.memberId = memberId;
+		this.bookId = bookId;
+		this.type = type;
+
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
+	public String getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(String bookId) {
+		this.bookId = bookId;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public LocalDate getDate() {
+		return date;
+	}
+
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return " ID: " + id +
+				"\n Member ID: " + memberId + 
+				"\n Book ID: " + bookId + 
+				"\n Transaction type: " + type+
+				"\n Date" + date;
+	}
+
+}

@@ -1,0 +1,56 @@
+package day3_1practice;
+
+import java.util.Scanner;
+
+public class demoMain {
+
+	public static void main(String[] args) {
+		int i, x = 0;
+		float max = 0;
+		float total = 0, percentage;
+		Scanner sc = new Scanner(System.in);
+
+		Student st1[] = new Student[5];
+		System.out.println("---Enter Students information---");
+
+		for (i = 0; i < 2; i++) {
+			st1[i] = new Student();
+			st1[i].set_data();
+			total = total + st1[i].compare();
+			if (max < st1[i].compare()) {
+				max = st1[i].compare();
+				x = i;
+			}
+
+		}
+		percentage = total / 5;
+		System.out.println("The max marks " + max);
+		System.out.println("Total Marks: " + total);
+		System.out.println("Percentage: " + percentage);
+
+		System.out.println("---Print Student information---");
+
+		System.out.println("Rollnumber \t name \t marks");
+		for (i = 0; i < 5; i++) {
+			st1[i].get_data();
+		}
+
+		// compare salary
+//		for (i = 0; i < 5; i++) {
+//			for (int j = i + 1; j < 5; j++) {
+//				if (st1[i].compare() > st1[j].compare()) {
+//					System.out.println("std " + (i + 1) + " has higher marks than Student " + (j + 1));
+//					st1[i].get_data();
+//				} else if (st1[i].compare() < st1[j].compare()) {
+//					System.out.println("std " + (j + 1) + " has higher marks than Student " + (i + 1));
+//					st1[j].get_data();
+//				} else {
+//					System.out.println("std " + (i + 1) + " and Student " + (j + 1) + " have the same marks.");
+//					st1[i].get_data();
+//					st1[j].get_data();
+//				}
+//			}
+//		}
+		sc.close();
+	}
+}

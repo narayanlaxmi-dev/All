@@ -1,0 +1,93 @@
+package entity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Customers {
+	private String customerId;
+	private String customerName;
+	private String customerContactno;
+
+	private static int Cid;
+	static {
+		Cid = 200;
+	}
+
+	public Customers() {
+
+	}
+
+	
+	public Customers(String customerName, String customerContactno) {
+		this.customerId = "c" + ++Cid;
+		this.customerName = customerName;
+		this.customerContactno = customerContactno;
+	}
+
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public List<Products> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Products> products) {
+		this.products = products;
+	}
+
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public static int getCid() {
+		return Cid;
+	}
+
+	// add products
+	public void addProducts(Products p) {
+		products.add(p);
+	}
+
+	// remove products
+	public void removeProducts(Products p) {
+		products.remove(p);
+	}
+
+	// display all products
+	public void displayAllProducts() {
+		for (Products p : products) {
+			System.out.println(p);
+		}
+	}
+
+//	___________________________________________________
+
+	public void addCustomer(Customers c) {
+		customers.add(c);
+	}
+
+	// remove products
+	public void removeCustmer(Customers c) {
+		customers.remove(c);
+	}
+
+	// display all products
+	public void displayAllCustomer() {
+		for (Customers c : customers) {
+			System.out.println(c);
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Customers [customerId=" + customerId + ", customerName=" + customerName + ", products=" + products
+				+ "]";
+	}
+
+}

@@ -1,0 +1,30 @@
+package oops1;
+
+public class Point {
+
+	private int a;
+	private float b;
+	private double c;
+
+	public Point(int a, float b, double c) {
+		this.a = a;
+		this.b = b;
+		this.c = c;
+	}
+
+	void get() {
+		System.out.println("message displayed");
+	}
+
+	int get(int a) {
+		return (a + a);
+	}
+
+	float get(float b) {
+		return (b * b);
+	}
+
+	double get(double c) {
+		return (c * c * c);
+	}
+}

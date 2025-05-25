@@ -1,0 +1,68 @@
+package entity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Customers {
+	private String customerId;
+	private String customerName;
+	private List<Products> products;
+
+	private static int Cid;
+	static {
+		Cid = 200;
+	}
+
+	public Customers() {
+
+	}
+
+	public Customers(String customerName, int quantity) {
+		this.customerId = "c" + ++Cid;
+		this.customerName = customerName;
+		this.products = new ArrayList<Products>();
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public List<Products> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Products> products) {
+		this.products = products;
+	}
+
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public static int getCid() {
+		return Cid;
+	}
+	
+	public void addProducts(Products p) {
+		products.add(p);
+	}
+	
+	// remove products
+		public void removeProducts(Products p) {
+			products.remove(p);
+		}
+
+
+	@Override
+	public String toString() {
+		return "Customers [customerId=" + customerId + ", customerName=" + customerName + ", products=" + products
+				+ "]";
+	}
+
+	
+
+}

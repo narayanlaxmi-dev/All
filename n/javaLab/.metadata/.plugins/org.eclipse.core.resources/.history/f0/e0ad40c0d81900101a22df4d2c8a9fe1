@@ -1,0 +1,29 @@
+package entity;
+
+import java.time.LocalDate;
+
+public class TransactionRecord {
+	private String Id;
+	private String customerId;
+	private String productId;
+	private String Type;
+	private LocalDate date;
+	private static int TId;
+
+	static {
+		TId = 500;
+	}
+
+	public TransactionRecord() {
+
+	}
+
+	public TransactionRecord(String customerId, String productId, String type, LocalDate date) {
+		this.Id = "t" + ++TId;
+		this.customerId = customerId;
+		this.productId = productId;
+		Type = type;
+		this.date = date;
+	}
+
+}

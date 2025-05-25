@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>REAL DOM Render</title>
+  </head>
+  <body>
+    <div id="root">
+      <script>
+        setInterval(() => {
+          var record = new Date();
+          document.getElementById("root").innerHTML = `
+          <div>
+          <div>
+            <h1>Time : <span> ${record.toLocaleString()}</span></h1>
+          </div>
+          </div>
+          `;
+        }, 1000);
+      </script>
+    </div>
+  </body>
+</html>

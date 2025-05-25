@@ -1,0 +1,6 @@
+hello,
+this as File reader or File input Stream
+my name is pg dac 
+movies
+harry porter
+twilight saga 

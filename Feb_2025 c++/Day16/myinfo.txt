@@ -1,0 +1,7 @@
+name neyan
+name female
+name neyan@gmail
+
+name : narayan
+gender m 
+emailid : narayanlaxmipatil@gmail.com

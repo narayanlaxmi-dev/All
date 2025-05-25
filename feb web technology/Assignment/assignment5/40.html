@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <input type="text" id="txt" placeholder="Enter something" />
+    <button onclick="checkEmpty()">Check</button>
+    <script>
+      function checkEmpty() {
+        var txt = document.getElementById("txt");
+        if (txt.value.trim() === "") {
+          txt.style.border = "2px solid red";
+        } else {
+          txt.style.border = ""; // reset border if not empty
+        }
+      }
+    </script>
+  </body>
+</html>

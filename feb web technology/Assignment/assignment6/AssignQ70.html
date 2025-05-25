@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="txt" />
+<button onclick="checkType()">Check</button>
+
+<script>
+function checkType() {
+  let val = document.getElementById("txt").value;
+  if (isNaN(val)) {
+    console.log("It is a string");
+  } else {
+    console.log("It is a number");
+  }
+}
+
+</script>
+
+</body>
+</html>

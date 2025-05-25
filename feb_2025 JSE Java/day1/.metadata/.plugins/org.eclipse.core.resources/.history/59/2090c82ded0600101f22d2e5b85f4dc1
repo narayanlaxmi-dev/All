@@ -1,0 +1,29 @@
+package day3_1practice;
+
+import oops1.Students;
+
+public class demoMain {
+
+	public static void main(String[] args) {
+		int i;
+		float total =0, percentage;
+		Student st1[] = new Student[5];
+		System.out.println("Enter Students information");
+		 for (i = 0; i < 2; i++) {  
+	            st1[i] = new Student();  
+	            total = total + st1[i].compare();
+	            
+	        }
+		 
+		 percentage = total / (2);  
+	     System.out.println("Total Marks " + total);
+	     System.out.println("Percentage " + percentage  );
+		 System.out.println("print Employee information");
+			for (i = 0; i < st1.length; i++) {
+				st1[i].get_data();
+
+			}
+
+	}
+
+}

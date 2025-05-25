@@ -1,0 +1,25 @@
+<script>
+  var obj = new Promise((resolve, reject) => {
+    // console.log(obj); // Logs: Promise { <pending> } //promise is created default pending
+    setTimeout(() => {
+      // Simulate API call
+      resolve({ data: [], status: true });
+      //   reject({ data: [], status: true });
+    }, 3000);
+  });
+
+  obj
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => {
+      console.log("Task/Promise Complete ");
+    });
+  //   obj.then((result) => {
+  //     console.log("Resolved:", result); // After 3s: Resolved: { data: [], status: true }
+  //   });
+  console.log(obj);
+</script>

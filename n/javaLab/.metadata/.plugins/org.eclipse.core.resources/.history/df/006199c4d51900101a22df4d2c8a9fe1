@@ -1,0 +1,10 @@
+package entity;
+
+public class Products {
+	private String productId;
+	private String productName;
+	private double price ;
+	
+	
+	
+}

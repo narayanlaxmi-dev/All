@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Resume Builder</title>
+  </head>
+  <body>
+    <h1>Resume Builder</h1>
+
+    <form>
+      <h2>Personal Information</h2>
+      <label
+        >Full Name:
+        <input type="text" name="fullname" />
+      </label>
+
+      <label
+        >Email:
+        <input type="email" name="email" />
+      </label>
+
+      <label
+        >Phone:
+        <input type="tel" name="phone" />
+      </label>
+
+      <label
+        >Date of Birth:
+        <input type="date" name="dob" />
+      </label>
+
+      <h2>Education</h2>
+      <label
+        >Degree:
+        <input type="text" name="degree" />
+      </label>
+
+      <label
+        >School/University:
+        <input type="text" name="university" />
+      </label>
+
+      <label
+        >Marks (in Percentage):
+        <input type="text" name="marks" />
+      </label>
+
+      <h2>Project</h2>
+      <label
+        >Title:
+        <input type="text" name="project_title" />
+      </label>
+
+      <label
+        >Summary:
+        <textarea name="project_summary"></textarea>
+      </label>
+
+      <label
+        >Technology:
+        <input type="text" name="project_tech" />
+      </label>
+
+      <h2>Skills</h2>
+      <label
+        >List of Skills (comma-separated):
+        <textarea name="skills"></textarea>
+      </label>
+
+      <button type="submit" class="submit-btn">Submit Resume</button>
+    </form>
+  </body>
+</html>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 30px;
+    max-width: 600px;
+    margin: auto;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 18px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-top: 30px;
+  }
+
+  label {
+    display: block;
+    margin-top: 15px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+  }
+
+  textarea {
+    resize: vertical;
+    height: 80px;
+  }
+
+  .submit-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 25px;
+    background-color: #e065ff;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .submit-btn:hover {
+    background-color: #a020f0;
+  }
+</style>

@@ -1,0 +1,22 @@
+.photo-box {
+  width: 120px;
+  height: 120px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  line-height: 120px;
+  text-align: center;
+  font-weight: bold;
+  margin: auto;
+}
+
+.skill-circle {
+  width: 100px;
+  height: 100px;
+  border: 2px solid black;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  background-color: #f8f9fa;
+}

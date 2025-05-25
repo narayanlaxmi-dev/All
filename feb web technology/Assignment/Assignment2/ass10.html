@@ -1,0 +1,31 @@
+<!--  show any image on browser with dimension 200X200 . apply border radius with 10px. on mouse over show image in circle format (i.e 50% border radius) -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image</title>
+  </head>
+  <body>
+    <figure class="image">
+      <img
+        alt="https://cdn.pixabay.com/photo/2024/07/30/22/13/ai-generated-8933233_640.png"
+        src="https://cdn.pixabay.com/photo/2024/07/01/19/14/ai-generated-8865944_640.jpg"
+      />
+    </figure>
+  </body>
+</html>
+
+<style>
+  .image {
+    width: 200px;
+    height: 200px;
+  }
+  .image img {
+    width: 200px;
+    height: 200px;
+  }
+  .image img:hover {
+    border-radius: 50%;
+  }
+</style>

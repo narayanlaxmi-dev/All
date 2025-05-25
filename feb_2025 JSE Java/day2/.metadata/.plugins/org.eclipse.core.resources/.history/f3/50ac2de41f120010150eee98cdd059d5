@@ -1,0 +1,16 @@
+package assignment8;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
+public class DateAPI {
+
+	public static void main(String[] args) {
+		LocalDate today = LocalDate.now();
+		LocalTime now = LocalTime.now();
+		LocalDateTime tdayAndNow = LocalDateTime.now();
+
+	}
+
+}

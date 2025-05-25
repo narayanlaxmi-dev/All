@@ -1,0 +1,40 @@
+package com.dsa.mam;
+
+import java.util.Scanner;
+
+class searchSelection {
+	void binarySearch(int arr[], int size) {
+		int i, j, temp;
+		for (i = size - 1; i > 0; i--) {
+			for (j = 0; j < i; j++) {
+
+				if (arr[j] > arr[j + 1]) {
+					temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
+
+			}
+		}
+	}
+
+	void print(int arr[]) {
+		System.out.print("Sorted Array: ");
+		for (int i = 0; i < arr.length; i++)
+			System.out.print(arr[i] + " | ");
+	}
+
+}
+
+public class Sort2SelectionSort {
+public static void main(String[] args) {
+	Scanner sc = new Scanner(System.in);
+	System.out.println("---Array Selection sort Program---\n Enter number for array size: "); /
+	int size = sc.nextInt();
+	int arr[] = new int[size];
+
+	System.out.println("Enter elements for size: " + size);
+	for (int i = 0; i < size; i++)
+		arr[i] = sc.nextInt();
+}
+}

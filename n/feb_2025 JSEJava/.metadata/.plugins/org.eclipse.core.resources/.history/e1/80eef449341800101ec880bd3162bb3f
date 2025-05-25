@@ -1,0 +1,43 @@
+package dao;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+
+import entity.User;
+import exception.ResourceNotFoundException;
+
+public class UserDao implements AppRepository<User> {
+	private Map<String, User> users;
+
+	public UserDao() {
+		users = new HashMap<String, User>();// storing into hash map
+	}
+
+	@Override
+	public void save(User user) {
+		users.put(user.getId(), user);
+		System.out.println(user.getName() + " user Registered Successfully !");
+	}
+
+	@Override
+	public List<User> findAll() {
+
+		// this return collection convert into list
+		return users.values().stream().collect(Collectors.toList());
+	}
+
+	@Override
+	public User findById(User id) {
+		if(users.containsKey(id)) {
+			throw new ResourceNotFoundException(" User not found of id: "+ id);
+		}
+		User foundUser = users.get(id);
+		
+		
+		return foundUser;
+	}
+
+}

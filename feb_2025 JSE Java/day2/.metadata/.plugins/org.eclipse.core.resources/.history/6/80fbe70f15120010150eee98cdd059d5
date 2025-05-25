@@ -1,0 +1,20 @@
+package assignment8.medicalStore;
+
+public class Patient {
+	private String patientName;
+	private int patientid;
+	private double patientBillAmount;
+	private boolean isPaid;
+
+	public Patient(String patientName, int patientid, double patientBillAmount, boolean isPaid) {
+		super();
+		this.patientName = patientName;
+		this.patientid = patientid;
+		this.patientBillAmount = patientBillAmount;
+		this.isPaid = isPaid;
+	}
+
+	public void payBill() {
+
+	}
+}

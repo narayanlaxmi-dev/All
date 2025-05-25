@@ -1,0 +1,20 @@
+package AllPair;
+
+import java.lang.reflect.Array;
+import java.util.Scanner;
+
+public class findAllPairs {
+
+	public static void main(String[] args) {
+		int n;
+		System.out.println("enter array size");
+		Scanner sc = new Scanner(System.in);
+		n = sc.nextInt();
+		Array arr[] = new Array[n];
+
+		// find all pairs element array those sum is equal
+		for (int i = 0; i < arr.length; i++) {
+
+		}
+	}
+}

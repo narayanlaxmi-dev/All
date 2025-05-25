@@ -1,0 +1,39 @@
+package controller;
+
+import java.util.Arrays;
+import java.util.List;
+
+import entity.FoodItem;
+import services.RestaurentServices;
+import services.UserServices;
+
+public class OwnZomatoMain {
+	public static void main(String[] args) {
+
+		UserServices userservices = new UserServices();
+		userservices.reggisteredUser("narayan", "8956234178", "1231");
+		userservices.reggisteredUser("nevdu", "8956234179", "1233");
+		userservices.reggisteredUser("neyan", "8956234181", "1232");
+
+		System.out.println("\nAll user");
+		userservices.getAllUser().stream().forEach(u -> System.out.println(u));
+
+		System.out.println("\nGet user by id: u102");
+		System.out.println(userservices.getuserByID("u102"));
+
+		userservices.getAllUser().forEach(System.out::println);
+
+		System.out.println("_______________________________________");
+		List<FoodItem> items = Arrays.asList(new FoodItem("puranpodi", 500));
+		Arrays.asList(new FoodItem("pizza", 100), new FoodItem("maggie", 70), new FoodItem("Coffee", 50));
+
+		List<String> pincodes = Arrays.asList("1231", "1233", "1234;");
+
+		RestaurentServices restservices = new RestaurentServices();
+		restservices.createdRestaurent("Zomatobhai", items, pincodes);
+		System.out.println("\n\nnew Restaurent");
+		restservices.createdRestaurent("FriendsCafe", Arrays.asList(new FoodItem("frenchffries", 100),
+				new FoodItem("Brownie", 500), new FoodItem("Comboo", 150)), pincodes);
+
+	}
+}

@@ -1,0 +1,12 @@
+package day1;
+
+public class PersonMain {
+
+	public static void main(String[] args) {
+		System.out.println("Person");
+		Person t1 = new Teacher();
+		t1.toString();
+		
+	}
+
+}

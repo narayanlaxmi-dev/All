@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      p.rotate {
+        width: 100px;
+        height: 100px;
+        background: lightblue;
+        text-align: center;
+        line-height: 100px;
+        transition: transform 0.5s ease;
+        margin-bottom: 10px;
+        display: inline-block;
+      }
+      p.rotate:nth-child(1):hover {
+        transform: rotate(100deg);
+      }
+      p.rotate:nth-child(2):hover {
+        transform: rotate(-50deg);
+      }
+    </style>
+    <p class="rotate">Rotate 100deg</p>
+    <p class="rotate">Rotate -50deg</p>
+  </body>
+</html>

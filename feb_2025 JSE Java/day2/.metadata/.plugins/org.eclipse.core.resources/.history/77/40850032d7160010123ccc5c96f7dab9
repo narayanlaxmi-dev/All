@@ -1,0 +1,11 @@
+package day1;
+
+public class PersonMain {
+
+	public static void main(String[] args) {
+		Teacher t1 = new Teacher();
+		t1.toString()
+		;
+	}
+
+}

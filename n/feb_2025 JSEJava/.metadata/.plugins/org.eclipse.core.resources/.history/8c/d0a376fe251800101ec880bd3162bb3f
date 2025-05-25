@@ -1,0 +1,126 @@
+package entity;
+
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.Scanner;
+
+public class LibraryMain {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		boolean exit = true;
+		Library lib = new Library();
+
+		while (exit) {
+
+			System.out.println("+++++++++++++ Menu +++++++++++++\n" + "1 add book \n" + "2 add member\n"
+					+ "3 all book\n" + "4 all member\n" + "5 search books\n" + "6 borrow books\n" + "7 return book\n"
+					+ "8 remove book\n" + "9 Transaction \n" + "10 FileStored\n" + "0 exit\n" + "choose\n");
+			int ch = sc.nextInt();
+			switch (ch) {
+			case 0:
+				System.out.println("thankyou to using this system");
+				exit = false;
+				break;
+			case 1:
+				System.out.println("___ Add book ___");
+				try {
+					System.out.println("Enter book title author and Catogery(CPP,BIOLOGY,MYTHOLOGY,PHYSOLOGY)\n");
+					lib.addBook(sc.next(), sc.next(), Category.valueOf(sc.next())); // string to enum convert
+					System.out.println("added succesfully \n\n");
+				} catch (Exception e) {
+					System.err.println(e.getMessage());
+				}
+				break;
+			case 2:
+				System.out.println("___ Add member ___");
+				lib.addMember(sc.next());
+				break;
+			case 3:
+				System.out.println("___ all books ___");
+				try {
+					lib.displayAllBook();
+				} catch (Exception e) {
+					System.err.println(e.getMessage());
+				}
+				break;
+			case 4:
+				System.out.println("___ all members ___");
+				try {
+					lib.displayAllMember();
+				} catch (Exception e) {
+					System.err.println(e.getMessage());
+				}
+				break;
+			case 5:
+				System.out.println("___ search books ___");
+				try {
+					System.out.println("ENTER BOOK TITLE TO SEARCH: ");
+					Book foundBook = lib.searchBookByTitle(sc.next());
+					System.out.println(foundBook);
+				} catch (Exception e) {
+					System.err.println(e.getMessage());
+				}
+				break;
+			case 6:
+				System.out.println("___ borrow books ___");
+				try {
+					System.out.println("Enter your member ID, title: ");
+					lib.borrowbook(sc.next(), sc.next());
+					System.out.println("Book borrowed successfully!\n");
+				} catch (Exception e) {
+					System.err.println(e.getMessage());
+				}
+				break;
+			case 7:
+				System.out.println("___ return book ___");
+				try {
+					System.out.println("Enter you member ID,title:");
+					lib.returnbook(sc.next(), sc.next());
+					System.out.println("Book Returned Successfully!\n");
+				} catch (Exception e) {
+					System.err.println(e.getMessage());
+				}
+				break;
+			case 8:
+				System.out.println("___ remove book ___");
+				try {
+
+					System.out.println("Enter you member ID:");
+					lib.removeBook(sc.next());
+					System.out.println("Book Removed Successfully!\n");
+
+				} catch (Exception e) {
+					System.err.println(e.getMessage());
+				}
+				break;
+			case 9:
+				System.out.println("____ Transaction display ___");
+				Transaction.displayTransaction();
+				break;
+			case 10:
+				try (FileOutputStream fos = new FileOutputStream("./src/log/TransactionRecordFile.txt");
+						ObjectOutputStream out = new ObjectOutputStream(fos)) {
+					for (TransactionRecord rec : Transaction.records) {
+						out.writeObject(rec.toString() + "\n_________________");
+					}
+					System.out.println("Log creater successfully!!!!!");
+				} catch (Exception e) {
+					System.err.println(e.getMessage());
+				}
+			default:
+				System.err.println(" please enter valid Choice Try again");
+			}
+		}
+		sc.close();
+	}
+
+}
+
+/*
+ * hanuman val MYTHOLOGY
+ * 
+ * Computer Amarsir CPP
+ * 
+ * artoflove l BIOLOGY
+ */

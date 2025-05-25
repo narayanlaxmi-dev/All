@@ -1,0 +1,59 @@
+// 1. University Student Database
+use university
+db.students.insertMany([
+  { name: "Alice", age: 20, major: "Computer Science" },
+  { name: "Bob", age: 22, major: "Mathematics" },
+  { name: "Charlie", age: 21, major: "Physics" }
+]);
+db.students.find().pretty();
+db.students.updateOne(
+  { name: "Charlie" },
+  { $set: { major: "Astronomy" } }
+);
+db.students.deleteOne({ name: "Bob" });
+db.students.find().pretty();
+
+// 2. University Course Database
+use university
+db.courses.insertMany([
+  { course_code: "CS101", department: "Computer Science", credits: 3 },
+  { course_code: "MA202", department: "Mathematics", credits: 4 },
+  { course_code: "PH301", department: "Physics", credits: 3 }
+]);
+db.courses.find().pretty();
+db.courses.updateOne(
+  { course_code: "PH301" },
+  { $set: { credits: 4 } }
+);
+db.courses.deleteOne({ course_code: "MA202" });
+db.courses.find().pretty();
+
+// 3. Library Book Database
+use library
+db.books.insertMany([
+  { title: "1984", author: "George Orwell" },
+  { title: "To Kill a Mockingbird", author: "Harper Lee" },
+  { title: "The Great Gatsby", author: "F. Scott Fitzgerald" }
+]);
+db.books.find().pretty();
+db.books.updateOne(
+  { title: "The Great Gatsby" },
+  { $set: { publication_year: 1926 } }
+);
+db.books.deleteOne({ title: "To Kill a Mockingbird" });
+db.books.find().pretty();
+
+// 4. Company Employee Database
+use company
+db.employees.insertMany([
+  { name: "John Doe", age: 30, position: "Software Engineer" },
+  { name: "Jane Smith", age: 28, position: "Marketing Manager" },
+  { name: "Emily Johnson", age: 35, position: "Data Analyst" }
+]);
+db.employees.find().pretty();
+db.employees.updateOne(
+  { name: "Emily Johnson" },
+  { $set: { position: "Senior Data Analyst" } }
+);
+db.employees.deleteOne({ name: "Jane Smith" });
+db.employees.find().pretty();

@@ -1,0 +1,21 @@
+
+package cunsumer;
+
+import java.util.ArrayList;
+import java.util.function.Consumer;
+
+public class ConsumerForeach {
+	public static void main(String[] args) {
+		ArrayList<Integer> num = new ArrayList<Integer>();
+		num.add(2);
+		num.add(267);
+		num.add(3);
+		num.add(4);
+
+		Consumer<Integer> method = (n) -> System.out.println(n);
+		System.out.println(method);
+		for(int i=0; i<5; i++) {
+			System.out.println(method);
+		}
+	}
+}

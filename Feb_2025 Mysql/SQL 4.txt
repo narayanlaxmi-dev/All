@@ -1,0 +1,1332 @@
+----------------------------------------------------------------------------------------------------------
+
+
+----------------------  FK CLAUSE OR RULES ---------------------- 0 TO 12 RULES SO TOTAL 13 
+ON DELETE RESTRICT    :DEFAULT
+YOU CANNNOT DELETE PARENT TABLE RECORD IF RECORD PRESENT IN CHILD
+ASLO I CANT DROP PARENT TABLE
+
+ON DELETE CASCADE
+YOU CANN DELETE PARENT TABLE RECORD, THE RECORD DELETE IN CHILD
+
+ON DELETE SET NULL
+IF YOU DELETE ROW FORM PARENT WILL AUTOMATICALLY SET DEPTNO AS NULL IN CHILD
+
+ON UPDATE CASCADE
+IF YOU UPDATEPARENT WILL AUTOMATICALLY UPDATE VALUE IN CHILD TABLE
+
+I CAN USE BOTH ON DELETE CASCADE ON UPDATE CASCADE
+
+______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+E F CODD RULES  IN RDBMS TOTAL 12 RULES
+EF CODE 12 RULES
+In database theory, EF typically refers to Entity-Relationship (ER) Models or Entity Framework 
+
+FOUNDATION RULE 
+6 POINTS
+
+INFROMATION RULENO POINTER CONCET IS USED
+
+
+GUARANTEED ACCCESS RULE 
+TO ACCESS DATA WE HAVE TO USED TABLE NAME, COLUMNT NAME,PK
+
+SYSTEM TEATMENT OF NULL VAUES
+SUPPORT NULL VAL
+
+DYNAMIC ONLINE CATALOG BASED RELATIONAL MODEL // CATAGLO DATA ABOUT THE DATA ,META  DATA
+EVERY DB HAVE VATALOG FACILITY DESC TABLENAME;
+
+
+COMPREHESIVE DATASUBLANG RULE
+TO ALL PERGFORM DDL DML DQL DTC DCT
+
+VIEW UPDATION RULE VIRTUAL TABLE 
+LOGICAL TABLW TABLE PHYSICAL DATA SOTRED
+
+
+
+
+
+
+
+______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+\
+
+built in function
+string
+numeric
+date
+
+mysql> use cdac;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_cdac  |
++-----------------+
+| cardinfo        |
+| cardtype        |
+| customer        |
+| customer1       |
+| customer2       |
+| customer_master |
+| dept            |
+| dept1           |
+| emp             |
+| emp1            |
+| emp2            |
+| empleave        |
+| locale          |
++-----------------+
+13 rows in set (0.02 sec
+
+mysql> SELECT * FROM EMP1;
++-------+---------+--------+------+--------+----------+
+| EMPNO | ENAME   | CITY   | PAN  | DEPTNO | SAL      |
++-------+---------+--------+------+--------+----------+
+|     1 | NARAYAN | NASHIK | A123 |     10 | 20000.00 |
+|     2 | NEYAN   | NASHIK | B123 |     20 | 20001.00 |
+|     3 | NEVDU   | NASHIK | C123 |     20 | 20001.00 |
+|     4 | LAXMI   | MUMBAI | D123 |     10 | 20001.00 |
+|     9 | NNN     | NASHIK | P900 |   NULL | 30000.00 |
+|    11 | AN      | NASHIK | W200 |   NULL | 40000.00 |
+|    19 | QN      | NASHIK | W900 |   NULL | 30000.00 |
++-------+---------+--------+------+--------+----------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMP1; DELETE FROM DEPT1
++-------+---------+--------+------+--------+----------+
+| EMPNO | ENAME   | CITY   | PAN  | DEPTNO | SAL      |
++-------+---------+--------+------+--------+----------+
+|     1 | NARAYAN | NASHIK | A123 |     10 | 20000.00 |
+|     2 | NEYAN   | NASHIK | B123 |     20 | 20001.00 |
+|     3 | NEVDU   | NASHIK | C123 |     20 | 20001.00 |
+|     4 | LAXMI   | MUMBAI | D123 |     10 | 20001.00 |
+|     9 | NNN     | NASHIK | P900 |   NULL | 30000.00 |
+|    11 | AN      | NASHIK | W200 |   NULL | 40000.00 |
+|    19 | QN      | NASHIK | W900 |   NULL | 30000.00 |
++-------+---------+--------+------+--------+----------+
+7 rows in set (0.00 sec)
+
+    ->  WHERE DEPTNO=10;
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`cdac`.`emp1`, CONSTRAINT `emp1_ibfk_1` FOREIGN KEY (`DEPTNO`) REFERENCES `dept1` (`DEPTNO`))
+
+DROP TABLE DEPT1;
+ERROR 3730 (HY000): Cannot drop table 'dept1' referenced by a foreign key constraint 'emp1_ibfk_1' on table 'emp1'.
+
+
+CREATE TABLE EMP_DELETECASCADE(
+EMPNO NUMERIC(4) PRIMARY KEY,
+ENAME VARCHAR(20) NOT NULL,
+CITY VARCHAR (20) DEFAULT 'NASHIK',
+ CHECK (CITY IN ('NASHIK','PUNE','MUMBAI')),
+PAN CHAR(12) UNIQUE,
+DEPTNO DECIMAL(2,0),
+SAL NUMERIC(10,2) CHECK(SAL BETWEEN 20000 AND 200000),
+FOREIGN KEY(DEPTNO) REFERENCES DEPT1(DEPTNO) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO EMP_DELETECASCADE VALUES(1,'NARAYAN',default,'A123','10',20000);
+INSERT INTO EMP_DELETECASCADE VALUES(2,'NEYAN','NASHIK','B123','20',20001);
+
+
+----------------------------------------------------------------------------------------===============================================================================
+
+CREATE TABLE EMP3(
+EMPNO NUMERIC(4), 
+ENAME VARCHAR(20),
+SAL NUMERIC(10,2)
+);
+
+mysql> SELECT * FROM EMP_DELETECASCADE;
++-------+---------+--------+------+--------+----------+
+| EMPNO | ENAME   | CITY   | PAN  | DEPTNO | SAL      |
++-------+---------+--------+------+--------+----------+
+|     1 | NARAYAN | NASHIK | A123 |     10 | 20000.00 |
+|     2 | NEYAN   | NASHIK | B123 |     20 | 20001.00 |
++-------+---------+--------+------+--------+----------+
+2 rows in set (0.00 sec)
+
+
+
+-------- ADD COLUMN COMMISSION
+
+ALTER TABLE EMP3
+ADD COMM NUMERIC(10,2);
+
+
+mysql> ALTER TABLE EMP3
+    -> ADD COMM NUMERIC(10,2);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> DESC EMP3;
++-------+---------------+------+-----+---------+-------+
+| Field | Type          | Null | Key | Default | Extra |
++-------+---------------+------+-----+---------+-------+
+| EMPNO | decimal(4,0)  | YES  |     | NULL    |       |
+| ENAME | varchar(20)   | YES  |     | NULL    |       |
+| SAL   | decimal(10,2) | YES  |     | NULL    |       |
+| COMM  | decimal(10,2) | YES  |     | NULL    |       |
++-------+---------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+
+
+-------- EMAIL ADD COL IN FIRST
+ALTER TABLE EMP3
+ADD EMPAIL VARCHAR(20) FIRST;
+
+
+mysql> ALTER TABLE EMP3
+    -> ADD EMPAIL VARCHAR(20) FIRST;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC EMP3;
++--------+---------------+------+-----+---------+-------+
+| Field  | Type          | Null | Key | Default | Extra |
++--------+---------------+------+-----+---------+-------+
+| EMPAIL | varchar(20)   | YES  |     | NULL    |       |
+| EMPNO  | decimal(4,0)  | YES  |     | NULL    |       |
+| ENAME  | varchar(20)   | YES  |     | NULL    |       |
+| SAL    | decimal(10,2) | YES  |     | NULL    |       |
+| COMM   | decimal(10,2) | YES  |     | NULL    |       |
++--------+---------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+-------- MJR ADD AFTER ENAME 
+ALTER TABLE EMP3
+ADD MJR NUMERIC(4) AFTER ENAME;
+
+ALTER TABLE EMP3
+DROP COLUMN MJR;
+OR 
+
+ALTER TABLE EMP3
+DROP MJR;
+
+ALTER TABLE EMP3
+ADD MJR VARCHAR(20) AFTER ENAME;
+
+
+mysql> ALTER TABLE EMP3
+    -> ADD MJR NUMERIC(4) AFTER ENAME;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC EMP3;
++--------+---------------+------+-----+---------+-------+
+| Field  | Type          | Null | Key | Default | Extra |
++--------+---------------+------+-----+---------+-------+
+| EMPAIL | varchar(20)   | YES  |     | NULL    |       |
+| EMPNO  | decimal(4,0)  | YES  |     | NULL    |       |
+| ENAME  | varchar(20)   | YES  |     | NULL    |       |
+| MJR    | decimal(4,0)  | YES  |     | NULL    |       |
+| SAL    | decimal(10,2) | YES  |     | NULL    |       |
+| COMM   | decimal(10,2) | YES  |     | NULL    |       |
++--------+---------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+-------- MJR ADD AFTER ENAME 
+ALTER TABLE EMP3
+ADD JOB VARCHAR(10) AFTER ENAME;
+
+
+
+ALTER TABLE EMP3
+DROP EMPAIL;
+
+mysql> ALTER TABLE EMP3
+    -> DROP EMPAIL;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC EMP3;
++-------+---------------+------+-----+---------+-------+
+| Field | Type          | Null | Key | Default | Extra |
++-------+---------------+------+-----+---------+-------+
+| EMPNO | decimal(4,0)  | YES  |     | NULL    |       |
+| ENAME | varchar(20)   | YES  |     | NULL    |       |
+| JOB   | varchar(10)   | YES  |     | NULL    |       |
+| SAL   | decimal(10,2) | YES  |     | NULL    |       |
+| COMM  | decimal(10,2) | YES  |     | NULL    |       |
++-------+---------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+------------------------- RENAME COL AS SAL TO SAL
+ALTER TABLE EMP3
+ CHANGE SAL SALARY NUMERIC(10,4);
+DESC EMP3;
+
+======================== RENAME IN TABLE
+
+ALTER TABLE EMP3
+RENAME TO NEWEMP;
+
+mysql>
+mysql> ALTER TABLE EMP3
+    -> RENAME TO NEWEMP;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> DESC EMP3;
+ERROR 1146 (42S02): Table 'cdac.emp3' doesn't exist
+mysql> DESC NEWEMP;
++--------+---------------+------+-----+---------+-------+
+| Field  | Type          | Null | Key | Default | Extra |
++--------+---------------+------+-----+---------+-------+
+| EMPNO  | decimal(4,0)  | YES  |     | NULL    |       |
+| ENAME  | varchar(20)   | YES  |     | NULL    |       |
+| JOB    | varchar(10)   | YES  |     | NULL    |       |
+| SALARY | decimal(10,4) | YES  |     | NULL    |       |
+| COMM   | decimal(10,2) | YES  |     | NULL    |       |
++--------+---------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+
+------------- ADD PRIMARY KEY
+ALTER TABLE NEWEMP
+ADD PRIMARY KEY(EMPNO);
+
+
+mysql> ALTER TABLE NEWEMP
+    -> ADD PRIMARY KEY(EMPNO);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>
+mysql> DESC NEWEMP;
++--------+---------------+------+-----+---------+-------+
+| Field  | Type          | Null | Key | Default | Extra |
++--------+---------------+------+-----+---------+-------+
+| EMPNO  | decimal(4,0)  | NO   | PRI | NULL    |       |
+| ENAME  | varchar(20)   | YES  |     | NULL    |       |
+| JOB    | varchar(10)   | YES  |     | NULL    |       |
+| SALARY | decimal(10,4) | YES  |     | NULL    |       |
+| COMM   | decimal(10,2) | YES  |     | NULL    |       |
++--------+---------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+ALTER TABLE NEWEMP
+ADD CHECK (SALARY>20000);
+
+mysql> ALTER TABLE NEWEMP
+    -> ADD CHECK (SALARY>20000);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC EMP;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| empno    | decimal(4,0) | NO   |     | NULL    |       |
+| ename    | varchar(10)  | YES  |     | NULL    |       |
+| job      | varchar(9)   | YES  |     | NULL    |       |
+| mgr      | decimal(4,0) | YES  |     | NULL    |       |
+| hiredate | date         | YES  |     | NULL    |       |
+| sal      | decimal(7,2) | YES  |     | NULL    |       |
+| comm     | decimal(7,2) | YES  |     | NULL    |       |
+| deptno   | decimal(2,0) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+
+MIDIFY COLUMN NUMERIC 20 TO 40
+
+ALTER TABLE NEWEMP
+MODIFY ENAME VARCHAR(40);
+
+
+
+mysql> ALTER TABLE NEWEMP
+    -> MODIFY ENAME VARCHAR(40);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+mysql> DESC NEWEMP;
++--------+---------------+------+-----+---------+-------+
+| Field  | Type          | Null | Key | Default | Extra |
++--------+---------------+------+-----+---------+-------+
+| EMPNO  | decimal(4,0)  | NO   | PRI | NULL    |       |
+| ENAME  | varchar(40)   | YES  |     | NULL    |       |
+| JOB    | varchar(10)   | YES  |     | NULL    |       |
+| SALARY | decimal(10,4) | YES  |     | NULL    |       |
+| COMM   | decimal(10,2) | YES  |     | NULL    |       |
++--------+---------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+-================================================================================================================================================================
+
+ THIS LINE IS QUERY TO RUN IN SQL	=--==--=-=-=-==--=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=--==--==-=-=-=-=-=-=--=-==-=-=--==-=--=-=-==-
+_______________________________________________________________________________________________________________________________________________________________________
+
+SELECT LCASE('NARAYANNEYAN');	=--==--=-=-=-==--=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=--==--==-=-=-=-=-=-=--=-==-=-=--==-=--=-=-==-
+
+mysql> SELECT LCASE('NARAYANNEYAN');
++-----------------------+
+| LCASE('NARAYANNEYAN') |
++-----------------------+
+| narayanneyan          |
++-----------------------+
+1 row in set (0.00 sec)
+
+SELECT UCASE('NarayanNEYAN');	=--==--=-=-=-==--=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=--==--==-=-=-=-=-=-=--=-==-=-=--==-=--=-=-==-
+
+mysql> SELECT UCASE('NarayanNEYAN');
++-----------------------+
+| UCASE('NarayanNEYAN') |
++-----------------------+
+| NARAYANNEYAN          |
++-----------------------+
+1 row in set (0.00 sec)
+
+
+SELECT LCASE(UCASE('NArayanNEYan'));	=--==--=-=-=-==--=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=--==--==-=-=-=-=-=-=--=-==-=-=--==-=--=-=-==-
+mysql> SELECT LCASE(UCASE('NArayanNEYan'));
++------------------------------+
+| LCASE(UCASE('NArayanNEYan')) |
++------------------------------+
+| narayanneyan                 |
++------------------------------+
+1 row in set (0.00 sec)
+
+SELECT CONCAT('NARAYAN','NEYAN');	=--==--=-=-=-==--=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=--==--==-=-=-=-=-=-=--=-==-=-=--==-=--=-=-==-
+
+mysql> SELECT CONCAT('NARAYAN','NEYAN');
++---------------------------+
+| CONCAT('NARAYAN','NEYAN') |
++---------------------------+
+| NARAYANNEYAN              |
++---------------------------+
+1 row in set (0.01 sec)
+
+
+SELECT ASCII('NEYAN');	=--==--=-=-=-==--=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=--==--==-=-=-=-=-=-=--=-==-=-=--==-=--=-=-==-
+
+mysql> SELECT ASCII('NEYAN');
++----------------+
+| ASCII('NEYAN') |
++----------------+
+|             78 |
++----------------+
+1 row in set (0.00 sec)
+
+SELECT REPLACE('NARAYAN','A','neyan');	=--==--=-=-=-==--=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=--==--==-=-=-=-=-=-=--=-==-=-=--==-=--=-=-==-
+mysql> SELECT REPLACE('NARAYAN','A','neyan');
++--------------------------------+
+| REPLACE('NARAYAN','A','neyan') |
++--------------------------------+
+| NneyanRneyanYneyanN            |
++--------------------------------+
+1 row in set (0.00 sec)
+
+SELECT '     NAR      ';	=--==--=-=-=-==--=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=--==--==-=-=-=-=-=-=--=-==-=-=--==-=--=-=-==-
+mysql> SELECT '     NAR      ';
++----------------+
+| NAR            |
++----------------+
+|      NAR       |
++----------------+
+1 row in set (0.00 sec)
+
+
+SELECT TRIM('		NARA	');	=--==--=-=-=-==--=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=--==--==-=-=-=-=-=-=--=-==-=-=--==-=--=-=-==-
+mysql> SELECT TRIM('          NAR     ');
++----------------------------+
+| TRIM('          NAR     ') |
++----------------------------+
+| NAR                        |
++----------------------------+
+1 row in set (0.00 sec)
+
+SELECT LTRIM('          NARA           ');	=--==--=-=-=-==--=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=--==--==-=-=-=-=-=-=--=-==-=-=--==-=--=-=-==-
+
+mysql> SELECT LTRIM('          NARA           ');
++------------------------------------+
+| LTRIM('          NARA           ') |
++------------------------------------+
+| NARA                               |
++------------------------------------+
+1 row in set (0.00 sec)
+
+
+
+SELECT RTRIM('         NARA           ');	=--==--=-=-=-==--=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=--==--==-=-=-=-=-=-=--=-==-=-=--==-=--=-=-==-
+mysql> SELECT RTRIM('         NARA           ');
++-----------------------------------+
+| RTRIM('         NARA           ') |
++-----------------------------------+
+|          NARA                     |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+
+
+SELECT SUBSTR('NARAYAN',1,3);	=--==--=-=-=-==--=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=--==--==-=-=-=-=-=-=--=-==-=-=--==-=--=-=-==-
+mysql> SELECT SUBSTR('NARAYAN',1,3);
++-----------------------+
+| SUBSTR('NARAYAN',1,3) |
++-----------------------+
+| NAR                   |
++-----------------------+
+1 row in set (0.00 sec)
+
+
+SELECT INSTR('NARAYAN','Y'); # IF VALIE OS MPT PRESENT IT SHOULD BE 0	==-=-=-=-=-=-=-=-=-=-=-=--==--==-=-=-=-=-=-=--=-==-=-=--==-=--=-=-==-
+mysql> SELECT INSTR('NARAYAN','Y');
++----------------------+
+| INSTR('NARAYAN','Y') |
++----------------------+
+|                    5 |
++----------------------+
+1 row in set (0.01 sec)
+
+SELECT LPAD('NANE',10,"*");	=--==--=-=-=-==--=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=--==--==-=-=-=-=-=-=--=-==-=-=--==-=--=-=-==-
+mysql> SELECT LPAD('NANE',10,"*");
++---------------------+
+| LPAD('NANE',10,"*") |
++---------------------+
+| ******NANE          |
++---------------------+
+1 row in set (0.01 sec)
+
+SELECT RPAD('NANE',10,"*");	=--==--=-=-=-==--=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=--==--==-=-=-=-=-=-=--=-==-=-=--==-=--=-=-==-
+mysql> SELECT RPAD('NANE',10,"*");
++---------------------+
+| RPAD('NANE',10,"*") |
++---------------------+
+| NANE******          |
++---------------------+
+1 row in set (0.00 sec)
+
+
+SELECT RPAD(LPAD('NANE',10,"*"),18,"+");	=--==--=-=-=-==--=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=--==--==-=-=-=-=-=-=--=-==-=-=--==-=--=-=-==-
+mysql> SELECT RPAD(LPAD('NANE',10,"*"),18,"+");
++----------------------------------+
+| RPAD(LPAD('NANE',10,"*"),18,"+") |
++----------------------------------+
+| ******NANE++++++++               |
++----------------------------------+
+1 row in set (0.00 sec)
+
+________________________________________________________ NUMERIC FUNCTION
+SELECT SQRT(144);
+mysql> SELECT SQRT(144);
++-----------+
+| SQRT(144) |
++-----------+
+|        12 |
++-----------+
+1 row in set (0.01 sec)
+
+SELECT RAND();  # 0 TO 1 VALUE
+mysql> SELECT RAND();  # 0 TO 1 VALUE
++--------------------+
+| RAND()             |
++--------------------+
+| 0.8872961838611366 |
++--------------------+
+1 row in set (0.00 sec)
+
+SELECT RAND()*100;  # 0 TO 100 VALUE
+mysql> SELECT RAND()*100;  # 0 TO 100 VALUE
++-------------------+
+| RAND()*100        |
++-------------------+
+| 26.85929380996087 |
++-------------------+
+1 row in set (0.00 sec)
+
+SELECT ABS(-5);# ABSOLUTE VALUE
+mysql> SELECT ABS(-5);
++---------+
+| ABS(-5) |
++---------+
+|       5 |
++---------+
+1 row in set (0.01 sec)
+
+
+SELECT SIGN(90); # O/P 1
+SELECT SIGN(-90); # O/P -1
+SELECT SIGN(0); # O/P 0
+
+mysql> SELECT SIGN(90); # O/P 1
++----------+
+| SIGN(90) |
++----------+
+|        1 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> SELECT SIGN(-90); # O/P -1
++-----------+
+| SIGN(-90) |
++-----------+
+|        -1 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SIGN(0); # O/P 0
++---------+
+| SIGN(0) |
++---------+
+|       0 |
++---------+
+1 row in set (0.00 sec)
+
+SELECT POW(4,3); ======= POWER
+mysql> SELECT POW(4,3);
++----------+
+| POW(4,3) |
++----------+
+|       64 |
++----------+
+1 row in set (0.00 sec)
+
+
+ROUND HAS RULE -==-=--=-=-=-=-=-=-==-=-=--=-__________________________________
+IF 5 OR GRREATER THAN 5 IT INCREMET OR ONTHING HAPPEN
+-1 ROUND  NEAREST 10
+-2 ROUND  NEAREST 100
+-3 ROUND  NEAREST 1000
+
+SELECT ROUND(2121.567,1); # 2121.6 5>6 SO INCREMENT
+SELECT ROUND(2121.567,2); # 2121.57 6>7 SO INCREMENT
+SELECT ROUND(2121.568,2); # 2121.57 6>8 SO INCREMENT
+SELECT ROUND(2121.447,1); # 2121.4  4=4 SO INCREMENT
+SELECT ROUND(2121.447,0); # 2121.4  SAME 2121 INCREMENT
+SELECT ROUND(2121.547,0); # 2121  SAME 2122 INCREMENT
+
+
+SELECT ROUND(2124.547,-1); # 2130  SAME 2120
+SELECT ROUND(2125.547,-1); # 2130  SAME 2130 INCREMENT
+mysql> SELECT ROUND(2121.547,-1);
++--------------------+
+| ROUND(2121.547,-1) |
++--------------------+
+|               2120 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ROUND(2125.547,-1); # 2120  SAME 2122 INCREMENT
++--------------------+
+| ROUND(2125.547,-1) |
++--------------------+
+|               2130 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ROUND(2126.447,-1);
++--------------------+
+| ROUND(2126.447,-1) |
++--------------------+
+|               2130 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ROUND(2123.447,-1);
++--------------------+
+| ROUND(2123.447,-1) |
++--------------------+
+|               2120 |
++--------------------+
+1 row in set (0.00 sec)
+
+
+SELECT ROUND(2124.547,-2); 
+SELECT ROUND(2125.547,-2);
+
+mysql> SELECT ROUND(2124.547,-2);
++--------------------+
+| ROUND(2124.547,-2) |
++--------------------+
+|               2100 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ROUND(2125.547,-2);
++--------------------+
+| ROUND(2125.547,-2) |
++--------------------+
+|               2100 |
++--------------------+
+1 row in set (0.00 sec)
+
+
+SELECT ROUND(2124.547,-3); 
+SELECT ROUND(2125.547,-3);
+
+
+mysql> SELECT ROUND(2124.547,-3);
++--------------------+
+| ROUND(2124.547,-3) |
++--------------------+
+|               2000 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ROUND(2125.547,-3);
++--------------------+
+| ROUND(2125.547,-3) |
++--------------------+
+|               2000 |
++--------------------+
+1 row in set (0.00 sec)
+
+
+
+SELECT ROUND(2126.747,-4);
+SELECT ROUND(21126.747,-4);
+
+mysql> SELECT ROUND(2126.747,-4);
++--------------------+
+| ROUND(2126.747,-4) |
++--------------------+
+|                  0 |
++--------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ROUND(21126.747,-4);
++---------------------+
+| ROUND(21126.747,-4) |
++---------------------+
+|               20000 |
++---------------------+
+1 row in set (0.00 sec)
+
+
+FROMAT ----- , AND  . PROVIDED BOTH
+SELECT FORMAT(123421.214321,2); 
+SELECT FORMAT(123421.514321,2);
+
+mysql> SELECT FORMAT(123421.214321,2);
++-------------------------+
+| FORMAT(123421.214321,2) |
++-------------------------+
+| 123,421.21              |
++-------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT FORMAT(123421.514321,2);
++-------------------------+
+| FORMAT(123421.514321,2) |
++-------------------------+
+| 123,421.51              |
++-------------------------+
+1 row in set (0.00 sec)
+
+SELECT FORMAT(123421.514521,3);
++-------------------------+
+| FORMAT(123421.514521,3) |
++-------------------------+
+| 123,421.515             |
++-------------------------+
+1 row in set (0.00 sec)
+
+SELECT CEILING(123.5); # CEILING INCREMENT
+
+mysql> SELECT CEILING(123.5);
++----------------+
+| CEILING(123.5) |
++----------------+
+|            124 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CEILING(123.0);
++----------------+
+| CEILING(123.0) |
++----------------+
+|            123 |
++----------------+
+1 row in set (0.00 sec)
+
+SELECT FLOOR(123.5); # FLOOR DECREMENT
+mysql> SELECT FLOOR(123.5); # FLOOR DECREMENT
++--------------+
+| FLOOR(123.5) |
++--------------+
+|          123 |
++--------------+
+1 row in set (0.00 sec)
+
+
+SELECT GREATEST(22, 33, 44, 111, 77, 99);
+mysql> SELECT GREATEST(22, 33, 44, 111, 77, 99);
++-----------------------------------+
+| GREATEST(22, 33, 44, 111, 77, 99) |
++-----------------------------------+
+|                               111 |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+SELECT LEAST(22, 33, 44, 111, 77, 99);
+
+mysql> SELECT LEAST(22, 33, 44, 111, 77, 99);
++--------------------------------+
+| LEAST(22, 33, 44, 111, 77, 99) |
++--------------------------------+
+|                             22 |
++--------------------------------+
+1 row in set (0.00 sec)
+
+
+DISPLAY NAME OF EMP IN LOWER CASE 
+SELECT LCASE(ENAME)
+FROM EMP;
+
+PAD $ SYMBOL TO ENAME AND TOTAL LENGTH SHOULD BE 20
+
+SELECT LPAD(ENAME, 20, '$'), LENGTH(EMPNO)
+FROM EMP;
+
+DATE FUNCTION _____________________________________________________________________dATE FUNCITON___________________________________________________________________
+SELECT CURDATE(); # CURENT DATE
+mysql> SELECT CURDATE();
++------------+
+| CURDATE()  |
++------------+
+| 2025-04-10 |
++------------+
+1 row in set (0.01 sec)
+
+SELECT CURTIME();
+mysql>
+mysql> SELECT CURTIME();
++-----------+
+| CURTIME() |
++-----------+
+| 16:11:40  |
++-----------+
+1 row in set (0.00 sec)
+
+SELECT DATE('2025-04-10 10:12:2');
+mysql> SELECT DATE('2025-04-10 10:12:2');
++----------------------------+
+| DATE('2025-04-10 10:12:2') |
++----------------------------+
+| 2025-04-10                 |
++----------------------------+
+1 row in set (0.00 sec)
+
+SELECT ADDDATE('2025-1-1',10);
+mysql> SELECT ADDDATE('2025-1-1',10);
++------------------------+
+| ADDDATE('2025-1-1',10) |
++------------------------+
+| 2025-01-11             |
++------------------------+
+1 row in set (0.00 sec)
+
+SELECT ADDTIME('2025-1-1 2:2:2','10:10:10');
+mysql> SELECT ADDTIME('2025-1-1 2:2:2','10:10:10');
++--------------------------------------+
+| ADDTIME('2025-1-1 2:2:2','10:10:10') |
++--------------------------------------+
+| 2025-01-01 12:12:12                  |
++--------------------------------------+
+1 row in set (0.00 sec)
+
+
+SELECT DATEDIFF('2025-04-19','2025-09-12')AS DATEDIFFERENCE;
+mysql> SELECT DATEDIFF('2025-04-19','2025-09-12')AS DATEDIFFERENCE;
++----------------+
+| DATEDIFFERENCE |
++----------------+
+|           -146 |
++----------------+
+1 row in set (0.00 sec)
+
+EXPERIENCE CALCULATED -__________________________________________-______________________________-______________________________________-______________________________
+SELECT ENAME, ROUND(DATEDIFF(CURDATE(), HIREDATE) / 365, 0) AS EXPERIENCE
+FROM EMP;
+
+
+
+
+mysql> SELECT DATE_FORMAT(CURDATE(),'%D');
++-----------------------------+
+| DATE_FORMAT(CURDATE(),'%D') |
++-----------------------------+
+| 10th                        |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATE_FORMAT(CURDATE(),'%d');
++-----------------------------+
+| DATE_FORMAT(CURDATE(),'%d') |
++-----------------------------+
+| 10                          |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATE_FORMAT(CURDATE(),'%M');
++-----------------------------+
+| DATE_FORMAT(CURDATE(),'%M') |
++-----------------------------+
+| April                       |
++-----------------------------+
+1 row in set (0.01 sec)
+
+mysql> SELECT DATE_FORMAT(CURDATE(),'%m');
++-----------------------------+
+| DATE_FORMAT(CURDATE(),'%m') |
++-----------------------------+
+| 04                          |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATE_FORMAT(CURDATE(),'%Y');
++-----------------------------+
+| DATE_FORMAT(CURDATE(),'%Y') |
++-----------------------------+
+| 2025                        |
++-----------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT DATE_FORMAT(CURDATE(),'%y');
++-----------------------------+
+| DATE_FORMAT(CURDATE(),'%y') |
++-----------------------------+
+| 25                          |
++-----------------------------+
+1 row in set (0.00 sec)
+
+SELECT DATE_FORMAT(CURDATE(),'%d/%m/%y');
+mysql> SELECT DATE_FORMAT(CURDATE(),'%d/%m/%y');
++-----------------------------------+
+| DATE_FORMAT(CURDATE(),'%d/%m/%y') |
++-----------------------------------+
+| 10/04/25                          |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+SELECT DATE_FORMAT(CURDATE(),'%D/%M/%Y');
+mysql> SELECT DATE_FORMAT(CURDATE(),'%D/%M/%Y');
++-----------------------------------+
+| DATE_FORMAT(CURDATE(),'%D/%M/%Y') |
++-----------------------------------+
+| 10th/April/2025                   |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+H 00 23
+h 1 12
+p AM PM
+S SEC
+S SEC
+T TIME
+W WEEKDAY SUNDAY...
+
+
+SELECT LAST_DAY(CURDATE());
+
+mysql> SELECT LAST_DAY(CURDATE());
++---------------------+
+| LAST_DAY(CURDATE()) |
++---------------------+
+| 2025-04-30          |
++---------------------+
+1 row in set (0.00 sec)
+
+SELECT ENAME, LAST_DAY(HIREDATE) AS LASTDATE
+FROM EMP;
+
+SELECT NOW(); # DATE AND TIME CURRENTDATE
+SELECT SYSDATE(); # CURRENTDATE
+
+ MySQL > SELECT NOW(); 
++---------------------+
+| NOW()               |
++---------------------+
+| 2025-04-10 16:41:23 |
++---------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT SYSDATE(); 
++---------------------+
+| SYSDATE()           |
++---------------------+
+| 2025-04-10 16:41:23 |
++---------------------+
+1 row in set (0.00 sec)
+
+
+
+
+SELECT CONCAT(ENAME,'EARNING IS ',SAL)AS EARNING FROM EMP;
+SELECT CONCAT(ENAME,SAL)AS EARNING FROM EMP; # WORNT X BECAUSE IT PROVIDE 2 COMULN 
+SELECT CONCAT(ENAME,' COMMISSION IS ',COMM)AS COMMISSION FROM EMP;
+
+mysql> SELECT CONCAT(ENAME,'EARNING IS ',SAL)AS EARNING FROM EMP;
++--------------------------+
+| EARNING                  |
++--------------------------+
+| SMITHEARNING IS 800.00   |
+| ALLENEARNING IS 1600.00  |
+| WARDEARNING IS 1250.00   |
+| JONESEARNING IS 2975.00  |
+| MARTINEARNING IS 1250.00 |
+| BLAKEEARNING IS 2850.00  |
+| CLARKEARNING IS 2450.00  |
+| SCOTTEARNING IS 3000.00  |
+| KINGEARNING IS 5000.00   |
+| TURNEREARNING IS 1500.00 |
+| ADAMSEARNING IS 1100.00  |
+| JAMESEARNING IS 950.00   |
+| FORDEARNING IS 3000.00   |
+| MILLEREARNING IS 1300.00 |
++--------------------------+
+14 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(ENAME ,' COMMISSION IS ',COMM)AS COMMISSION FROM EMP;
++------------------------------+
+| COMMISSION                   |
++------------------------------+
+| NULL                         |
+| ALLEN COMMISSION IS 300.00   |
+| WARD COMMISSION IS 500.00    |
+| NULL                         |
+| MARTIN COMMISSION IS 1400.00 |
+| NULL                         |
+| NULL                         |
+| NULL                         |
+| NULL                         |
+| TURNER COMMISSION IS 0.00    |
+| NULL                         |
+| NULL                         |
+| NULL                         |
+| NULL                         |
++------------------------------+
+14 rows in set (0.00 sec)
+
+mysql> SELECT CONCAT(ENAME,'SALARY IS ', SAL ,' COMMISSION IS ',COMM)AS COMMISSION FROM EMP;
++-----------------------------------------------+
+| COMMISSION                                    |
++-----------------------------------------------+
+| NULL                                          |
+| ALLENSALARY IS 1600.00 COMMISSION IS 300.00   |
+| WARDSALARY IS 1250.00 COMMISSION IS 500.00    |
+| NULL                                          |
+| MARTINSALARY IS 1250.00 COMMISSION IS 1400.00 |
+| NULL                                          |
+| NULL                                          |
+| NULL                                          |
+| NULL                                          |
+| TURNERSALARY IS 1500.00 COMMISSION IS 0.00    |
+| NULL                                          |
+| NULL                                          |
+| NULL                                          |
+| NULL                                          |
++-----------------------------------------------+
+14 rows in set (0.00 sec)
+
+SELECT CONCAT(ENAME,'SALARY IS ', SAL ,' COMMISSION IS ',COMM)AS COMMISSION FROM EMP WHERE COMM IS NOT NULL;
+mysql> SELECT CONCAT(ENAME,'SALARY IS ', SAL ,' COMMISSION IS ',COMM)AS COMMISSION FROM EMP WHERE COMM IS NOT NULL;
++-----------------------------------------------+
+| COMMISSION                                    |
++-----------------------------------------------+
+| ALLENSALARY IS 1600.00 COMMISSION IS 300.00   |
+| WARDSALARY IS 1250.00 COMMISSION IS 500.00    |
+| MARTINSALARY IS 1250.00 COMMISSION IS 1400.00 |
+| TURNERSALARY IS 1500.00 COMMISSION IS 0.00    |
++-----------------------------------------------+
+4 rows in set (0.00 sec)
+
+OR 
+ SELECT CONCAT(ENAME,'SALARY IS ', SAL ,' COMMISSION IS ',IFNULL(COMM,0))AS COMMISSION FROM EMP;
+mysql>  SELECT CONCAT(ENAME,'SALARY IS ', SAL ,' COMMISSION IS ',IFNULL(COMM,0))AS COMMISSION FROM EMP;
++-----------------------------------------------+
+| COMMISSION                                    |
++-----------------------------------------------+
+| SMITHSALARY IS 800.00 COMMISSION IS 0.00      |
+| ALLENSALARY IS 1600.00 COMMISSION IS 300.00   |
+| WARDSALARY IS 1250.00 COMMISSION IS 500.00    |
+| JONESSALARY IS 2975.00 COMMISSION IS 0.00     |
+| MARTINSALARY IS 1250.00 COMMISSION IS 1400.00 |
+| BLAKESALARY IS 2850.00 COMMISSION IS 0.00     |
+| CLARKSALARY IS 2450.00 COMMISSION IS 0.00     |
+| SCOTTSALARY IS 3000.00 COMMISSION IS 0.00     |
+| KINGSALARY IS 5000.00 COMMISSION IS 0.00      |
+| TURNERSALARY IS 1500.00 COMMISSION IS 0.00    |
+| ADAMSSALARY IS 1100.00 COMMISSION IS 0.00     |
+| JAMESSALARY IS 950.00 COMMISSION IS 0.00      |
+| FORDSALARY IS 3000.00 COMMISSION IS 0.00      |
+| MILLERSALARY IS 1300.00 COMMISSION IS 0.00    |
++-----------------------------------------------+
+14 rows in set (0.00 sec)
+
+
+
+
+
+mysql> SELECT TRUNCATE(321.87865,1);
++-----------------------+
+| TRUNCATE(321.87865,1) |
++-----------------------+
+|                 321.8 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT TRUNCATE(321.87865,3);
++-----------------------+
+| TRUNCATE(321.87865,3) |
++-----------------------+
+|               321.878 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT ROUND(321.87865,3);
++--------------------+
+| ROUND(321.87865,3) |
++--------------------+
+|            321.879 |
++--------------------+
+1 row in set (0.00 sec)
+
+
+DCL DATA CONTROL LANGUAGE   PERMISSION > PRIVILIGES > OPERATIONS
+GRANT  ACCESS PERMISSION
+REVOKE  REMOVE PERMISSION
+SELECT USER();
+
+PERMISSION/PRIVILAGES
+INSERT		CREATE 		DELETE
+DROP		TRUNCATE	UPDATE
+REFERENCE	ALTER
+
+SHOW GRANTS FOR CURRENT_USER;
+GRANT SELECT, INSERT ON EMP TO user1;
+GRANT ALL ON EMP TO user1;
+
+REVOKE SELECT ON EMP FROM user1;
+REVOKE ALL ON EMP FROM user1;
+
+______________________________________________________ SET OPERATION
+UNION 
+UNION ALL
+INTERSECTION
+MINUS 
+
+CREATE TABLE SOLD_CAR(
+MODEL INT,
+COLOR VARCHAR(15));
+
+INSERT INTO SOLD_CAR VALUES(1,'RED');
+INSERT INTO SOLD_CAR VALUES(2,'BLACK');
+
+CREATE TABLE PRESENT_CAR(
+MODEL INT,
+COLOR VARCHAR(15));
+
+INSERT INTO PRESENT_CAR VALUES(1,'RED');
+INSERT INTO PRESENT_CAR VALUES(3,'WHITE');
+
+
+mysql> SELECT * FROM SOLD_CAR
+    -> UNION
+    -> SELECT * FROM PRESENT_CAR;
++-------+-------+
+| MODEL | COLOR |
++-------+-------+
+|     1 | RED   |
+|     2 | BLACK |
+|     3 | WHITE |
++-------+-------+
+3 rows in set (0.00 sec)
+
+SELECT * FROM SOLD_CAR
+   UNION ALL
+   SELECT * FROM PRESENT_CAR;
+mysql> SELECT * FROM SOLD_CAR
+    ->    UNION ALL
+    ->    SELECT * FROM PRESENT_CAR;
++-------+-------+
+| MODEL | COLOR |
++-------+-------+
+|     1 | RED   |
+|     2 | BLACK |
+|     1 | RED   |
+|     3 | WHITE |
++-------+-------+
+4 rows in set (0.00 sec)
+
+
+
+SELECT * FROM SOLD_CAR
+   INTERSECT
+   SELECT * FROM PRESENT_CAR;
+
+mysql> SELECT * FROM SOLD_CAR
+    ->    INTERSECT
+    ->    SELECT * FROM PRESENT_CAR;
++-------+-------+
+| MODEL | COLOR |
++-------+-------+
+|     1 | RED   |
++-------+-------+
+1 row in set (0.00 sec)
+
+
+____________________________________ USED IN ORACALE 
+SELECT * FROM SOLD_CAR
+MINUS
+SELECT * FROM PRESENT_CAR;
+SQLPL
+
+SQL> USE HR
+SP2-0042: unknown command "USE HR" - rest of line ignored.
+SQL> ROOT HR
+SP2-0042: unknown command "ROOT HR" - rest of line ignored.
+SQL>  HR
+SP2-0042: unknown command "HR" - rest of line ignored.
+SQL> connect hr
+Enter password:
+ERROR:
+ORA-28002: the password will expire within 6 days
+
+
+Connected.
+SQL>
+SELECT * FROM SOLD_CAR
+   minus
+   SELECT * FROM PRESENT_CAR;
+
+Connected.
+SQL> SELECT * FROM SOLD_CAR
+  2     minus
+  3     SELECT * FROM PRESENT_CAR;
+
+   MODELNO      PRICE COLOR
+---------- ---------- --------------------
+         3    3000000 white
+
+SQL>
+
+
+------______________________________ ranking function
+row_number()
+rank()
+dense_rank()
+
+select ENAME, SAL,ROW_NUMBER() OVER(ORDER BY SAL DESC ) AS RANKING FROM EMP;
+mysql> select ENAME, SAL,ROW_NUMBER() OVER(ORDER BY SAL DESC ) AS RANKING FROM EMP;
++--------+---------+---------+
+| ENAME  | SAL     | RANKING |
++--------+---------+---------+
+| KING   | 5000.00 |       1 |
+| SCOTT  | 3000.00 |       2 |
+| FORD   | 3000.00 |       3 |
+| JONES  | 2975.00 |       4 |
+| BLAKE  | 2850.00 |       5 |
+| CLARK  | 2450.00 |       6 |
+| ALLEN  | 1600.00 |       7 |
+| TURNER | 1500.00 |       8 |
+| MILLER | 1300.00 |       9 |
+| WARD   | 1250.00 |      10 |
+| MARTIN | 1250.00 |      11 |
+| ADAMS  | 1100.00 |      12 |
+| JAMES  |  950.00 |      13 |
+| SMITH  |  800.00 |      14 |
++--------+---------+---------+
+14 rows in set (0.00 sec)
+
+select ENAME, SAL,RANK() OVER(ORDER BY SAL DESC ) AS RANKING FROM EMP;
+
+mysql> select ENAME, SAL,RANK() OVER(ORDER BY SAL DESC ) AS RANKING FROM EMP;
++--------+---------+---------+
+| ENAME  | SAL     | RANKING |
++--------+---------+---------+
+| KING   | 5000.00 |       1 |
+| SCOTT  | 3000.00 |       2 |
+| FORD   | 3000.00 |       2 |
+| JONES  | 2975.00 |       4 |
+| BLAKE  | 2850.00 |       5 |
+| CLARK  | 2450.00 |       6 |
+| ALLEN  | 1600.00 |       7 |
+| TURNER | 1500.00 |       8 |
+| MILLER | 1300.00 |       9 |
+| WARD   | 1250.00 |      10 |
+| MARTIN | 1250.00 |      10 |
+| ADAMS  | 1100.00 |      12 |
+| JAMES  |  950.00 |      13 |
+| SMITH  |  800.00 |      14 |
++--------+---------+---------+
+14 rows in set (0.00 sec)
+
+
+select ENAME, SAL,DENSE_RANK() OVER(ORDER BY SAL DESC ) AS RANKING FROM EMP;
+mysql>
+mysql> select ENAME, SAL,DENSE_RANK() OVER(ORDER BY SAL DESC ) AS RANKING FROM EMP;
++--------+---------+---------+
+| ENAME  | SAL     | RANKING |
++--------+---------+---------+
+| KING   | 5000.00 |       1 |
+| SCOTT  | 3000.00 |       2 |
+| FORD   | 3000.00 |       2 |
+| JONES  | 2975.00 |       3 |
+| BLAKE  | 2850.00 |       4 |
+| CLARK  | 2450.00 |       5 |
+| ALLEN  | 1600.00 |       6 |
+| TURNER | 1500.00 |       7 |
+| MILLER | 1300.00 |       8 |
+| WARD   | 1250.00 |       9 |
+| MARTIN | 1250.00 |       9 |
+| ADAMS  | 1100.00 |      10 |
+| JAMES  |  950.00 |      11 |
+| SMITH  |  800.00 |      12 |
++--------+---------+---------+
+14 rows in set (0.00 sec)
+
+SELECT ENAME,HIREDATE, DENSE_RANK() OVER(ORDER BY HIREDATE DESC)AS HIREDATERANK FROM EMP;
+mysql> SELECT ENAME,HIREDATE, DENSE_RANK() OVER(ORDER BY HIREDATE DESC)AS HIREDATERANK FROM EMP;
++--------+------------+--------------+
+| ENAME  | HIREDATE   | HIREDATERANK |
++--------+------------+--------------+
+| ADAMS  | 1983-01-12 |            1 |
+| SCOTT  | 1982-12-09 |            2 |
+| MILLER | 1982-01-23 |            3 |
+| JAMES  | 1981-12-03 |            4 |
+| FORD   | 1981-12-03 |            4 |
+| KING   | 1981-11-17 |            5 |
+| MARTIN | 1981-09-28 |            6 |
+| TURNER | 1981-09-08 |            7 |
+| CLARK  | 1981-06-09 |            8 |
+| BLAKE  | 1981-05-01 |            9 |
+| JONES  | 1981-04-02 |           10 |
+| WARD   | 1981-02-22 |           11 |
+| ALLEN  | 1981-02-20 |           12 |
+| SMITH  | 1980-12-17 |           13 |
++--------+------------+--------------+
+14 rows in set (0.00 sec)
+
+
+mysql>
+mysql> select ename,sal,ranking from (select ENAME, SAL, DENSE_RANK() OVER (ORDER BY SAL DESC ) AS ranking FROM EMP) as alisass where ranking <=3;
++-------+---------+---------+
+| ename | sal     | ranking |
++-------+---------+---------+
+| KING  | 5000.00 |       1 |
+| SCOTT | 3000.00 |       2 |
+| FORD  | 3000.00 |       2 |
+| JONES | 2975.00 |       3 |
++-------+---------+---------+
+4 rows in set (0.00 sec)
+
+
+also work in oracale
+i EANT ONLY 3 RANK TOP IS USED IN ORACALE _________________________________________________________________________________
+
+CONNECT HR 
+HR 
+CL SCR
+
+select ename,sal,ranking from (select ENAME, SAL, DENSE_RANK() OVER (ORDER BY SAL DESC ) AS ranking FROM EMP) where ranking <=3;
+
+
+

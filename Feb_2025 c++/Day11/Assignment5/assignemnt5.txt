@@ -1,0 +1,285 @@
+// WRITE C prog count number of words in string 
+#include<iostream>
+#include<string>
+
+using namespace std;
+int main()
+{
+    string line;
+	
+    int count =0, vowels=0;
+    cout<<"Enter line:";
+    getline(cin,line);
+    
+    
+    // for each loop
+    for(char ch :line){
+    	if(ch>='a' && ch<='z'){
+    		
+	    	if (ch== 'a' || ch== 'e' || ch== 'i' || ch== 'o'|| ch== 'u' || ch== 'A' || ch== 'E' || ch== 'I'|| ch== 'O'||  ch== 'U')
+				{
+	            	vowels++;
+				}
+				else
+				count++;
+		}
+	}
+	
+	
+	// normal for loop 
+/*    for(int i=0; line[i]!='\0'; i++)
+        {
+        	if(ch>='a' && ch<='z'){
+	            if (line[i]== 'a' || line[i]== 'e' || line[i]== 'i' || line[i]== 'o'|| line[i]== 'u' || line[i]== 'A' || line[i]== 'E' || line[i]== 'I'|| line[i]== 'O'||  line[i]== 'U')
+				{
+	            	vowels++;
+				}
+				else
+				count++;
+			}
+        }
+*/
+    cout<<"\nTotal vowels present in words are:"<<vowels;
+    cout<<"\nTotal Non-Vowels/Consonant in words are:"<<count;
+    return 0;
+}
+
+Enter line:hello world
+
+Total vowels present in words are:3
+Total Non-Vowels/Consonant in words are:7
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+
+// WRITE C prog non repeation char in  string 
+#include<iostream>
+#include<string>
+
+using namespace std;
+int main()
+{
+    string line;
+	
+    int freq[256] = {0}; // all ASCII value store
+    cout<<"Enter line:";
+    getline(cin,line);
+    
+    	// for loop find occurance
+    for(char ch :line)
+        {
+        	ch; // first char in string
+        	freq[ch]++; // check character askii value count multiple time 	
+        }
+        
+	 for(char ch :line){
+        	if(freq[ch] == 1) //Find non repeating charcter....
+        		{
+        		cout<<ch<<" ";
+				freq[ch]++;
+				break;
+				}	
+        }
+    
+    // check condition repeat once
+/*  for(int i = 0; i < 256; i++)
+    {
+        if(freq[i] == 1) //Find non repeating charcter's.....
+        {
+           cout<<" non occuring number are: "<<char(i)<<"  " ;
+        }
+    }
+*/
+    return 0;
+}
+
+Enter line:my name is narayan
+e
+--------------------------------------------------------------------------------------------------------------------------------
+
+// WRITE C prog char occurance in each character in string 
+#include<iostream>
+#include<string>
+
+using namespace std;
+int main()
+{
+    string line;
+	
+    int freq[256] = {0}; 
+    cout<<"Enter line:";
+    getline(cin,line);
+    
+    	// for loop find occurance
+    for(char ch :line)
+        {
+        	freq[ch]++;
+        }
+        
+	 cout << "Characters that appear more than once: ";
+    for (char ch : line)
+    {
+        if (freq[ch] > 0)
+        {
+            cout << ch<<" :- occur "<<freq[ch]<<": times"<<endl;
+        }
+    }
+
+    return 0;
+}
+
+Enter line:hello world
+Characters that appear more than once: h :- occur 1: times
+e :- occur 1: times
+l :- occur 3: times
+l :- occur 3: times
+o :- occur 2: times
+  :- occur 1: times
+w :- occur 1: times
+o :- occur 2: times
+r :- occur 1: times
+l :- occur 3: times
+d :- occur 1: times
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+// WRITE C prog longest word count in string 
+#include<iostream>
+#include<sstream>
+
+using namespace std;
+int main()
+{
+    string line, longstr,  word;
+	cout<<"Enter line:";
+    getline(cin,line);
+    
+    int len = 0; 
+    cout<<len;
+    stringstream ss(line);
+	
+	
+	while(ss >> word){
+		if(word.length() > len){
+			len = word.length();
+			longstr = word;
+		}
+	}
+	cout<<longstr;
+    return 0;
+}
+
+Enter line:hello world my name is world
+0hello
+--------------------------------------------------------------------------------------------------------------------------------
+
+// WRITE C prog remove duplicate in string 
+#include<iostream>
+#include<string>
+
+using namespace std;
+int main()
+{
+    string line;
+	
+    int freq[256] = {0}; 
+    cout<<"Enter line:";
+    getline(cin,line);
+    
+    	// for loop occurance
+    for(char ch :line)
+        {
+        	freq[ch]++;
+        }
+        
+	cout << "Characters REPEATED remove: ";
+	char array[100];
+	int i=0;
+    for (char ch : line)
+    {
+        if (freq[ch] == 1)
+        {
+            array[i] = ch;
+            cout<<" "<<array[i];
+			i++;
+        }
+        array[i] = '\0'; // garbage termination
+    }
+	
+	
+    return 0;
+}
+
+Enter line:hello world this is pgdac course
+Characters REPEATED remove:  w t p g a u
+--------------------------------------------------------------------------------------------------------------------------------
+
+/* write prog to count numer in word in sentence 
+*/
+#include<iostream>
+#include<sstream>
+
+using namespace std;
+int main()
+{
+    string str, longstr,  word;
+	cout<<"Enter Line :";
+    getline(cin,str);
+    
+    int len = 0, count=0; 
+    cout<<len;
+    stringstream ss(str);
+	
+	
+	while(ss >> word){// single word extract
+		count++;	
+	}
+	cout<<"the string word present is: "<<count;
+    return 0;
+}
+
+
+Enter Line :yoo my name is narayan
+0the string word present is: 5
+--------------------------------------------------------------------------------------------------------------------------------
+
+/* write  prog anagrams 
+str = "silent";
+str1 = "listen";
+compare this two string each word present other string
+*/
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int main()
+{
+	string s1, s2;
+	cout<<"Enter string 1";
+	getline(cin, s1);
+	cout<<"Enter string 2";
+	getline(cin, s2);
+	// shorting function in ascending 
+	sort(s1.begin(),s1.end());
+	sort(s2.begin(),s2.end());
+	
+	// compare both string 
+	// for loop to 1 string compare
+	for(int i=0; i<='\0'; i++ ){
+		// for loop to 2 string compare
+		for(int j=0; j<='\0'; j++){
+			// check equal or not
+			if(s1==s2){
+			cout<<"String are anagram";
+			}		
+			else{
+				cout<<"String are NOT anagram";
+			}
+		}
+	}
+	return 0;
+}
+
+Enter string 1silent
+Enter string 2listen
+String are anagram
+--------------------------------------------------------------------------------------------------------------------------------

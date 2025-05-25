@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loan EMI Calculator</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      li {
+        list-style: none;
+        padding: 10px 0;
+      }
+
+      .highcharts-figure,
+      .highcharts-data-table table {
+        min-width: 320px;
+        max-width: 800px;
+        margin: 1em auto;
+      }
+
+      .highcharts-data-table table {
+        font-family: Verdana, sans-serif;
+        border-collapse: collapse;
+        border: 1px solid #ebebeb;
+        margin: 10px auto;
+        text-align: center;
+        width: 100%;
+        max-width: 500px;
+      }
+
+      .highcharts-data-table caption {
+        padding: 1em 0;
+        font-size: 1.2em;
+        color: #555;
+      }
+
+      .highcharts-data-table th {
+        font-weight: 600;
+        padding: 0.5em;
+      }
+
+      .highcharts-data-table td,
+      .highcharts-data-table th,
+      .highcharts-data-table caption {
+        padding: 0.5em;
+      }
+
+      .highcharts-data-table thead tr,
+      .highcharts-data-table tbody tr:nth-child(even) {
+        background: #f8f8f8;
+      }
+
+      .highcharts-data-table tr:hover {
+        background: #f1f7ff;
+      }
+
+      .highcharts-description {
+        margin: 0.3rem 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="text-center text-uppercase pt-2 pd-2">Home Loan Calculator</h1>
+    <ul>
+      <li>
+        Loan Amount
+        <input
+          type="text"
+          placeholder="Loan Amount"
+          class="form-control"
+          id="amt"
+        />
+      </li>
+      <li>
+        Rate Of Intrest
+        <input
+          type="text"
+          placeholder="Rate Of Intrest"
+          class="form-control"
+          id="roi"
+        />
+      </li>
+      <li>
+        Duration
+        <input type="text" placeholder="Duration" class="form-control" id="y" />
+      </li>
+      <button type="button" class="btn btn-outline-success pt-2 pd-2">
+        Generate
+      </button>
+    </ul>
+
+    <p></p>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <figure class="highcharts-figure">
+      <div id="container"></div>
+      <p class="highcharts-description">
+        Pie charts demo showing how to create a custom entrance animation.
+      </p>
+    </figure>
+    <script src="loan.js"></script>
+  </body>
+</html>

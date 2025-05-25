@@ -1,0 +1,8 @@
+BOF
+hello
+welcome
+neyan
+narayan
+narayana
+nevda
+EOF

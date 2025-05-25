@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+        <listEntry value="/assignments_java/src/assignments_java2/LibraryManagement.java"/>
+    </listAttribute>
+    <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+        <listEntry value="1"/>
+    </listAttribute>
+    <booleanAttribute key="org.eclipse.jdt.launching.ATTR_EXCLUDE_TEST_CODE" value="true"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="assignments_java2.LibraryManagement"/>
+    <stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="assignments_java"/>
+    <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="assignments_java"/>
+</launchConfiguration>

@@ -1,0 +1,27 @@
+<script
+  src="https://unpkg.com/react@18/umd/react.development.js"
+  crossorigin
+></script>
+<script
+  src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+  crossorigin
+></script>
+<!-- // using react separately using below line bable compiter -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<div id="root"></div>
+<script type="text/babel">
+  setInterval(() => {
+    var record = new Date();
+    var ans = (
+      <div>
+        <div>
+          <h1>
+            Time : <span> {record.toLocaleString()}</span>
+          </h1>
+        </div>
+      </div>
+    );
+    ReactDOM.render(ans, document.getElementById('root'));
+  }, 1000);
+</script>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="para"></p>
+<body onmousemove="getCoords(event)">
+<script>
+function getCoords(e) {
+  document.getElementById("para").innerText = `X: ${e.clientX}, Y: ${e.clientY}`;
+}
+</script>
+</body>
+</html>

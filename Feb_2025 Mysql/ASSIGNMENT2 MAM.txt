@@ -1,0 +1,420 @@
+mysql> show tables;
++----------------+
+| Tables_in_cdac |
++----------------+
+| customer       |
+| dept           |
+| emp            |
++----------------+
+3 rows in set (0.01 sec)
+
+mysql> SELECT *
+    -> FROM EMP;
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 |    NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 |    NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 |    NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100.00 |    NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 |    NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+14 rows in set (0.01 sec)
+
+mysql> SELECT *
+    -> FROM EMP
+    -> WHERE DEPTNO IN (20,10);
++-------+--------+-----------+------+------------+---------+------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm | deptno |
++-------+--------+-----------+------+------------+---------+------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 | NULL |     20 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 | NULL |     20 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 | NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 | NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 | NULL |     10 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100.00 | NULL |     20 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 | NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 | NULL |     10 |
++-------+--------+-----------+------+------------+---------+------+--------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM EMP
+    -> WHERE DEPTNO =20 OR DEPTNO =10;
++-------+--------+-----------+------+------------+---------+------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm | deptno |
++-------+--------+-----------+------+------------+---------+------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 | NULL |     20 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 | 2975.00 | NULL |     20 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 | NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 | 3000.00 | NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 | NULL |     10 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100.00 | NULL |     20 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 | 3000.00 | NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 | NULL |     10 |
++-------+--------+-----------+------+------------+---------+------+--------+
+8 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM EMP
+    -> WHERE ENAME IN ('SMITH','ALLEN','JONES');
++-------+-------+----------+------+------------+---------+--------+--------+
+| empno | ename | job      | mgr  | hiredate   | sal     | comm   | deptno |
++-------+-------+----------+------+------------+---------+--------+--------+
+|  7369 | SMITH | CLERK    | 7902 | 1980-12-17 |  800.00 |   NULL |     20 |
+|  7499 | ALLEN | SALESMAN | 7698 | 1981-02-20 | 1600.00 | 300.00 |     30 |
+|  7566 | JONES | MANAGER  | 7839 | 1981-04-02 | 2975.00 |   NULL |     20 |
++-------+-------+----------+------+------------+---------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM EMP
+    -> SELECT *^C
+mysql>
+mysql> SELECT *
+    -> FROM EMP
+    -> WHERE JOB IN ('MANAGER','ANALYST');
++-------+-------+---------+------+------------+---------+------+--------+
+| empno | ename | job     | mgr  | hiredate   | sal     | comm | deptno |
++-------+-------+---------+------+------------+---------+------+--------+
+|  7566 | JONES | MANAGER | 7839 | 1981-04-02 | 2975.00 | NULL |     20 |
+|  7698 | BLAKE | MANAGER | 7839 | 1981-05-01 | 2850.00 | NULL |     30 |
+|  7782 | CLARK | MANAGER | 7839 | 1981-06-09 | 2450.00 | NULL |     10 |
+|  7788 | SCOTT | ANALYST | 7566 | 1982-12-09 | 3000.00 | NULL |     20 |
+|  7902 | FORD  | ANALYST | 7566 | 1981-12-03 | 3000.00 | NULL |     20 |
++-------+-------+---------+------+------------+---------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM EMP
+    -> WHERE DEPTNO NOT IN (10,20);
++-------+--------+----------+------+------------+---------+---------+--------+
+| empno | ename  | job      | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+----------+------+------------+---------+---------+--------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7654 | MARTIN | SALESMAN | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER  | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7900 | JAMES  | CLERK    | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
++-------+--------+----------+------+------------+---------+---------+--------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT *
+    -> FROM EMP
+    -> WHERE JOB NOTIN ('MANAGER','ANALYST');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NOTIN ('MANAGER','ANALYST')' at line 3
+mysql> SELECT *
+    -> FROM EMP
+    -> WHERE JOB NOT IN ('MANAGER','ANALYST');
++-------+--------+-----------+------+------------+---------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+-----------+------+------------+---------+---------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |  800.00 |    NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 |    NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 | 1100.00 |    NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 |    NULL |     10 |
++-------+--------+-----------+------+------------+---------+---------+--------+
+9 rows in set (0.00 sec)
+
++--------+---------+
+| ENAME  | SAL     |
++--------+---------+
+| ALLEN  | 1600.00 |
+| WARD   | 1250.00 |
+| JONES  | 2975.00 |
+| MARTIN | 1250.00 |
+| BLAKE  | 2850.00 |
+| CLARK  | 2450.00 |
+| KING   | 5000.00 |
+| TURNER | 1500.00 |
+| JAMES  |  950.00 |
+| FORD   | 3000.00 |
++--------+---------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT ENAME, SAL
+    -> FROM EMP
+    -> WHERE SAL NOT BETWEEN 1000 AND 2000;
++-------+---------+
+| ENAME | SAL     |
++-------+---------+
+| SMITH |  800.00 |
+| JONES | 2975.00 |
+| BLAKE | 2850.00 |
+| CLARK | 2450.00 |
+| SCOTT | 3000.00 |
+| KING  | 5000.00 |
+| JAMES |  950.00 |
+| FORD  | 3000.00 |
++-------+---------+
+8 rows in set (0.00 sec)
+
+SELECT ENAME, SAL AS SALARY, HIREDATE
+FROM EMP
+WHERE HIREDATE BETWEEN '1981-01-01' AND '1981-12-31';
+
+SELECT ENAME, SAL AS SALARY, HIREDATE
+FROM EMP
+WHERE HIREDATE BETWEEN '1981-01-01' AND '1982-12-31';
+
+
+SELECT ENAME, SAL AS SALARY, HIREDATE
+FROM EMP
+WHERE HIREDATE NOT BETWEEN '1981-01-01' AND '1981-12-31';
+
+ SELECT ENAME
+    FROM EMP
+    WHERE ENAME LIKE 'A%';
+
+ SELECT ENAME
+    FROM EMP
+    WHERE ENAME LIKE 'M%';
+
+ SELECT ENAME
+    FROM EMP
+    WHERE ENAME LIKE 'T%';
+
+ SELECT ENAME
+    FROM EMP
+    WHERE ENAME LIKE '%R';
+
+ SELECT ENAME
+    FROM EMP
+    WHERE ENAME LIKE '%A%';
+
+ SELECT ENAME
+    FROM EMP
+    WHERE ENAME LIKE '_____'; # 5 CHARACTER PRINTED ONLY 
+
+ SELECT ENAME
+    FROM EMP
+    WHERE ENAME LIKE '__R%'; # 3 CHARACTER R 
+
+ SELECT ENAME
+    FROM EMP
+    WHERE ENAME LIKE '__R__R%'; # 3 CHAR IS R AND 6 CHAR IS R
+
+ SELECT ENAME
+    FROM EMP
+    WHERE ENAME LIKE '_L%';
+
+ SELECT ENAME
+    FROM EMP
+    WHERE ENAME NOT LIKE 'a%';
+
+
+ SELECT ENAME
+    FROM EMP
+    WHERE ENAME NOT LIKE 'A%' AND ENAME NOT LIKE '%A';   # NOT SART AND	 END WITH A
+
+
+
+AGGREGRATE FUNCTION
+SUM()
+MIN()
+MAX()
+AVG()
+COUNT()
+
+
+ SELECT  SUM(SAL) AS TOTALSAL
+    FROM EMP;
+
+ SELECT  AVG(SAL) AS AVGSAL
+    FROM EMP;
+
+ SELECT  MIN(SAL) AS MINSAL, MAX(SAL) AS MAXSAL
+    FROM EMP;
+
+ SELECT  COUNT(SAL) AS COUNTSAL
+    FROM EMP;
+
+SELECT  SUM(SAL) AS TOTSAL ,MIN(SAL) AS MINSAL, MAX(SAL) AS MAXSAL, AVG(SAL) AS AVGSAL
+    -> FROM EMP;
+
+SELECT  COUNT(*) AS TOTALCOUNT
+    FROM EMP;
+
+SELECT  COUNT(COMM) AS TOTALCOUNT
+    FROM EMP;
+
+SELECT ENAME,SAL 
+FROM EMP
+ORDER BY ENAME;
+
+SELECT ENAME,SAL 
+FROM EMP
+ORDER BY ENAME DESC;
+
+SELECT ENAME,SAL 
+FROM EMP
+ORDER BY SAL;
+
+SELECT ENAME,SAL 
+FROM EMP
+ORDER BY SAL DESC;
+
+
+SELECT ENAME,SAL, DEPTNO
+     FROM EMP
+     ORDER BY 1 ; # ENAME SORTED
+SELECT ENAME,SAL, DEPTNO
+     FROM EMP
+     ORDER BY 2 ; # SAL SORTED
+
+SELECT ENAME,SAL, DEPTNO
+     FROM EMP
+     ORDER BY 3;
+
+SELECT ENAME,SAL+500, DEPTNO
+    FROM EMP
+    ORDER BY SAL+500;
+
+SELECT ENAME,SAL+500 AS NEWSAL, DEPTNO
+    FROM EMP
+    ORDER BY NEWSAL; # GIVE ALAIAS ALSO NOT CHANGE IN 
+
+SELECT ENAME, HIREDATE, DEPTNO
+FROM EMP
+ORDER BY DEPTNO;
+
+SELECT ENAME, HIREDATE, DEPTNO
+FROM EMP
+ORDER BY HIREDATE;
+
+SELECT ENAME, DEPTNO, SAL
+FROM EMP
+ORDER BY DEPTNO,SAL, ENAME;
+
+-----------------------------1
+SELECT ENAME, DEPTNO, SAL
+FROM EMP
+ORDER BY DEPTNO,SAL;
+
+-----------------------------2
+SELECT ENAME, DEPTNO, SAL
+FROM EMP
+ORDER BY DEPTNO DESC,SAL DESC;
+
+-----------------------------3
+SELECT ENAME, DEPTNO, SAL
+FROM EMP
+ORDER BY DEPTNO DESC,SAL ;
+
+-----------------------------4
+SELECT ENAME, DEPTNO, SAL
+FROM EMP
+ORDER BY DEPTNO ,SAL DESC;
+
+-===========================================================================-
+GROUP BY 
+IT USED GROUPING THE ROWS
+CREATNG GROP SAME PRIORITY
+
+SELECT DEPTNO , SUM(SAL) AS SALARY
+FROM EMP
+GROUP BY DEPTNO;\
+
+
+SELECT DEPTNO, 
+       SUM(SAL) AS SALARY, 
+       MIN(SAL) AS MIN_SALARY, 
+       MAX(SAL) AS MAX_SALARY
+FROM EMP
+GROUP BY DEPTNO
+ORDER BY DEPTNO;
+
+
+SELECT DEPTNO, 
+	SUM(ENAME)
+FROM EMP
+GROUP BY DEPTNO
+ORDER BY DEPTNO;
+
+SELECT JOB, COUNT(EMPNO)
+FROM EMP
+GROUP BY JOB
+ORDER BY 1;
+
+
+SELECT JOB, COUNT(EMPNO)
+FROM EMP
+GROUP BY JOB
+ORDER BY 1;
+
+
+=============================================================================================
+GROUPING ON MULTIPLE COLMUMN
+SELECT DEPTNO,JOB,COUNT(EMPNO)
+FROM EMP
+GROUP BY DEPTNO, JOB
+ORDER BY DEPTNO;
+
+
+
+SELECT DEPTNO,JOB,COUNT(EMPNO)
+FROM EMP
+GROUP BY DEPTNO, JOB
+ORDER BY DEPTNO;
+
+SELECT DEPTNO,JOB,HIREDATE,COUNT(EMPNO)
+FROM EMP
+GROUP BY DEPTNO, JOB,HIREDATE
+ORDER BY DEPTNO;
+
+SELECT DEPTNO,HIREDATE,COUNT(EMPNO)
+FROM EMP
+GROUP BY DEPTNO, HIREDATE
+ORDER BY DEPTNO;
+
+SELECT DEPTNO,ENAME,JOB,HIREDATE,COUNT(EMPNO)
+FROM EMP
+GROUP BY DEPTNO, ENAME,JOB,HIREDATE
+ORDER BY DEPTNO;
+
+
+SELECT DEPTNO,SUM(SAL) AS TOTALSAL
+FROM EMP
+GROUP BY DEPTNO
+HAVING SUM(SAL)>10000;
+
+SELECT DEPTNO,SUM(SAL) AS TOTALSAL
+FROM EMP
+GROUP BY DEPTNO
+HAVING SUM(SAL)>1000 OR MIN(SAL)>10000 OR MAX(SAL)>10000;
+
+
+SELECT DEPTNO,SUM(SAL) AS TOTALSAL
+FROM EMP
+WHERE DEPTNO =10
+GROUP BY DEPTNO
+HAVING SUM(SAL)>1000
+ORDER BY 1;
+
+
+SELECT DEPTNO,SUM(SAL) AS TOTALSAL
+FROM EMP
+WHERE SAL>1000 AND DEPTNO IN(10,20)
+GROUP BY DEPTNO
+HAVING SUM(SAL)>10000
+ORDER BY DEPTNO;
+
+
+
+
+

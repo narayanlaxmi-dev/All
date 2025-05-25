@@ -1,0 +1,550 @@
+Normalization
+it is a database design technique
+it is used to avoid the repeatation of the data or redundancy of the data
+the data will be normal or correct or consistent using Normalization
+
+who does Normalization?
+it is followed by the database designer or database architecture
+
+it is followed before creating the table
+
+there are 3 normal forms:
+1NF	 	: 1st normal form
+A relation is said to be in “first normal form” (1NF) if and only if all its attributes assume only atomic values. 
+
+2NF		: 2nd normal form
+		: remove the functional dependency
+A relation is said to be in 2NF if and only if it is in 1NF and every non-key attribute is fully functionally dependent on the primary key.
+
+
+3NF		: 3rd normal form
+remove Transitive dependency. 
+Transitive dependency.
+if values of c2 cols are depends upon c1 col , and 
+if values of c3 cols are depends upon c2 col then 
+if values of c3 cols are depends upon c1 col
+---------------------------> 
+------------>  ----------->
+c1		c2		c3
+10		x		aa		
+20		y		bb
+30		z		cc
+10		x		aa	
+20		y		bb
+
+
+--what we do in Normalization?
+1 we decide the table names
+2 col names, data types of cols, pk
+3  fk, uk
+4 avoid the repeatation of the cols
+
+Order_details
+Order 	item 		qty		price		cust		name 		address		city
+no		no						code
+				y		y		n		n			n			n
+
+pk : orderno+ itemno
+245 + i768
+
+=======================
+BCNF (Boyce Codd Normal Form)
+
+--rules
+1 there should be multiple candidate keys
+	c1 + c2  
+	c2 + c3
+2  candidate keys should be composite
+3  it should be overlapping
+		c2 col is common
+sol : we divide 1 table into 2 or more tables 
+
+=========================
+DBMS 
+database management system
+eg
+clipper
+foxbase
+FoxPro
+
+functions of DBMS 
+1 adding the data is fast
+2 updating the data is fast
+3 deleting the data is fast
+4 retrieval of the data is fast
+
+--adv DBMS 
+1 pk , uk is present 
+2 DBA role is present
+
+
+-- DBA(database administrator)
+functions DBA
+1 Create new users
+2 drop user 
+3 change the password of users
+4 memory management 
+
+--dis adv DBMS
+1 there is no FK 
+2 there is lot of repeatation of the data
+3 memory requirement is  high
+4 speed : slow 
+
+======================
+
+RDBMS
+relational database management system 
+
+--adv RDBMS
+1 there is  pk, uk , FK 
+2 there is no  repeatation of the data
+3 memory requirement is  low
+4 speed : high 
+
+--eg
+MySQL ...
+oracle  ..
+ms sql server ....
+ms access
+Sybase
+ingres
+infomix
+PostgreSQL ..
+..
+...
+
+=============
+SQL : 
+structured  query lang
+
+==============================
+--Data Models
+what is model ?
+it is a pictorial representation  of database 
+100 tables 
+
+--types
+1 hierarchical  Model
+2 network  Model
+3 relational  Model
+
+-- hierarchical  Model
+tree structure
+parent node / ancestor node / root note
+intermediate node---> middle 
+text node --> last --> has the data 
+
+--adv
+it is very easy to understand
+one to one  and one to many relationships can be possible
+
+--dis adv
+many to many relationship is not possible
+
+======================
+network  Model
+we have the pointers / links
+
+--adv
+one to one  and one to many and many to many relationships can be possible
+
+--dis adv
+if the number of records are more, the structure becomes complex
+
+===========
+--relational model
+we have tables and rows and cols
+
+--adv
+it is easy to understand
+one to one  and one to many and many to many relationships can be possible
+==================
+drop database cdac;
+create database cdac;
+use cdac;
+emp-->14 dept--> 4
+
+---predicates
+1 in		: exact match
+2 like      : searching for pattern
+3 between  : range
+
+--in eg
+--display name of emp from deptno 10 or 20
+select ename , deptno from emp
+where deptno = 10 or deptno =20;
+or
+select ename , deptno from emp
+where deptno in (10, 20);
+
+--display  all the details for smith , allen , jones
+select * from emp
+where ename in ('smith' , 'allen' ,'jones');
+
+--display  all the details for manager, analyst 
+select * from emp
+where job in ('manager', 'analyst');
+
+--display name of emp who are  not from deptno 10 or 20
+select ename , deptno from emp
+where deptno not in (10, 20);
+
+--display  all the details who are not manager, analyst 
+select * from emp
+where job not in ('manager', 'analyst');
+
+--between : range
+--eg display name of emp whose sal is between 1000 and 2000
+select ename , sal 
+from emp
+where sal >=1000 and sal <= 2000;
+or
+select ename , sal 
+from emp
+where sal between 1000 and 2000
+		1300    1500
+ ----------|----|--------|-----|----------------
+	   1000                 2000
+
+--eg display name of emp whose sal is  <1000 and  sal >2000
+select ename , sal 
+from emp
+where sal not between 1000 and 2000
+
+--display the name of emp who have joined in 1981
+select ename , hiredate
+from emp
+where hiredate between '1981-1-1' and '1981-12-31';
+
+--display the name of emp who have joined in 1981, 1982
+select ename , hiredate
+from emp
+where hiredate between '1981-1-1' and '1982-12-31';
+
+--display the name of emp who have not joined in 1981
+select ename , hiredate
+from emp
+where hiredate not between '1981-1-1' and '1981-12-31';
+
+--diff between and in
+between : range
+in  : exact match
+===============================
+--like predicate
+used to search for the pattern
+
+--wild charcaters
+%	: replacement of 0 or more characters
+_	: replacement of  1 ch
+
+--eg display name of emp which starts with A ch
+select ename from emp
+where ename like 'A%';
+
+--eg display name of emp which starts with T ch
+select ename from emp
+where ename like 'T%';
+
+--eg end with R
+select ename from emp
+where ename like '%R';
+
+--anywhere A ch should be present
+select ename from emp
+where ename like '%A%';
+
+--ename with 5 characters
+select ename from emp
+where ename like '_____'
+
+--3 ch R , followed by any ch
+select ename from emp
+where ename like '__R%';
+
+--2nd ch L
+select ename from emp
+where ename like '_L%';
+
+--3 ch R , and 6th ch R followed by any ch
+select ename from emp
+where ename like '__R__R%'
+
+--not starting with A ch
+select ename from emp
+where ename not like 'A%';
+
+===================
+--aggregate  functions / MRF (multiple row functions)
+1 sum()
+2 min()
+3 max()
+4 avg()
+5 count()		: count the total number of records
+
+=====
+clauses:
+1 from 		: table name   	..
+2 where		: condition	..
+3 group by	: grouping
+4 having		: condition
+5 order by	: sorting
+=====================================
+--order by  
+    sorting the rows
+
+-types
+1 ascending   --> default   --a-z
+2 descending   --> z-a
+
+select ename , sal from emp
+order by ename ;
+
+select ename , sal from emp
+order by ename desc;
+
+--sort on salary
+--1 name of col
+select ename , sal from emp
+order by sal desc;
+
+--2 column number
+select ename , sal, deptno from emp
+order by 1 desc;
+
+--3 expression
+select ename , sal+ 500, deptno from emp
+order by sal + 500;
+
+--4 alias
+select ename , sal+ 500 as newsal, deptno from emp
+order by newsal;			|
+					   alias 
+--display the ename, hiredate and deptno
+sort on hiredate
+select ename, hiredate , deptno
+from emp
+order by hiredate;
+
+--display the ename, hiredate and deptno
+sort on deptno
+select ename, hiredate , deptno
+from emp
+order by deptno;
+
+--sorting on  multiple cols
+select ename , deptno , sal from emp
+order by deptno , sal , ename ;
+		1         2       3
+1 --> primary sorting
+2 --> 2ndary  sorting
+3--> ternary  sorting
+
+--note
+the sequence of the column is important
+
+--1
+select ename , deptno , sal from emp
+order by deptno , sal ;
+
+--2
+select ename , deptno , sal from emp
+order by  deptno desc, sal desc;
+
+--3
+select ename , deptno , sal from emp
+order by  deptno , sal desc;
+
+--4
+select ename , deptno , sal from emp
+order by  deptno desc, sal ;
+
+--group by
+   it is  used for grouping the rows
+   used to create a summary report 
+
+--eg display the department wise total salary 
+select deptno, sum(sal), min(sal), max(sal)
+from emp
+group by deptno
+order by deptno;
+
+--eg display the department wise total employees
+select deptno , count(empno)
+from emp
+group by deptno;
+
+--eg display the job wise total employees
+select job , count(empno)
+from emp
+group by job
+order by 1;
+========================================
+--grouping on multiple columns
+--eg display the department wise and job wise total employees
+select deptno, job , count(empno)
+from emp
+group by deptno, job
+order by deptno;
+
+
+-- err
+select deptno, job , hiredate, count(empno)
+from emp
+group by deptno, job
+order by deptno;
+
+--sol
+1 select deptno, job ,hiredate count(empno)
+2 from emp
+3 group by deptno, job,hiredate
+4 order by deptno;
+
+--rule
+the columns other than the aggregate function  column, should be present in 
+group by clause
+
+=================
+having clause
+   it is used to give the condition using aggregate functions
+
+--display the department wise total salary , for those departments where the total salary 
+is greater than 10000
+select  deptno, sum(sal)
+from emp
+group by deptno
+having sum(sal) > 10000;
+
+--diff  where and having
+having :    it is used to give the condition using aggregate functions
+where  : used for normal condition : = > < >= <=, != and or not, like in between
+
+--err
+select  deptno, sum(sal)
+from emp
+having sum(sal) > 10000;
+
+--rule
+if you are using having, we should be using group by clause
+
+--eg using all the clause 
+select  deptno, sum(sal)
+from emp
+where sal > 1000 and deptno in (10, 20)
+group by deptno
+having sum(sal) > 10000
+order by deptno;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+clauses
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

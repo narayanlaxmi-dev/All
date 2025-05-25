@@ -1,0 +1,186 @@
+. Display all the employees whose department names end with 's'
+
+mysql> select * from dept where dname like '%s';
+mysql> select * from emp where deptno in(select deptno from dept where dname like '%s');
++-------+--------+----------+------+------------+---------+---------+--------+
+| empno | ename  | job      | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+----------+------+------------+---------+---------+--------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7654 | MARTIN | SALESMAN | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER  | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7900 | JAMES  | CLERK    | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
++-------+--------+----------+------+------------+---------+---------+--------+
+6 rows in set (0.00 sec)
+
+Display the employee names who have the maximum salary in the department 'Accounting'.
+select * from emp where deptno in(select deptno from dept where dname ='accounting');
+select * from emp where deptno in(select deptno from dept where dname in('accounting'));
++-------+--------+-----------+------+------------+---------+------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm | deptno |
++-------+--------+-----------+------+------------+---------+------+--------+
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 | NULL |     10 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 | NULL |     10 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 | NULL |     10 |
++-------+--------+-----------+------+------------+---------+------+--------+
+3 rows in set (0.01 sec)
+
+Display the department name with the highest commission.
+select  dname from dept
+join emp on dept.deptno = emp.deptno 
+group by dname
+order by sum(comm) desc
+limit 1;
+
+mysql> select  dname from dept
+    -> join emp on dept.deptno = emp.deptno
+    -> group by dname
+    -> order by sum(comm) desc
+    -> limit 1;
++-------+
+| dname |
++-------+
+| SALES |
++-------+
+1 row in set (0.00 sec)
+
+
+ Display the employee names whose department name has the second character as 'a'.
+select * from emp where deptno in(select deptno from dept where dname like '_a%');
+mysql>  select * from emp where deptno in(select deptno from dept where dname like '_a%');
++-------+--------+----------+------+------------+---------+---------+--------+
+| empno | ename  | job      | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+----------+------+------------+---------+---------+--------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7654 | MARTIN | SALESMAN | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER  | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7900 | JAMES  | CLERK    | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
++-------+--------+----------+------+------------+---------+---------+--------+
+6 rows in set (0.00 sec)
+
+ Display all employees whose department number is the same as Scott's.
+select * from emp where deptno in(select deptno from dept where deptno = 30);
+mysql> select * from emp where deptno in(select deptno from dept where deptno = 30);
++-------+--------+----------+------+------------+---------+---------+--------+
+| empno | ename  | job      | mgr  | hiredate   | sal     | comm    | deptno |
++-------+--------+----------+------+------------+---------+---------+--------+
+|  7499 | ALLEN  | SALESMAN | 7698 | 1981-02-20 | 1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN | 7698 | 1981-02-22 | 1250.00 |  500.00 |     30 |
+|  7654 | MARTIN | SALESMAN | 7698 | 1981-09-28 | 1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER  | 7839 | 1981-05-01 | 2850.00 |    NULL |     30 |
+|  7844 | TURNER | SALESMAN | 7698 | 1981-09-08 | 1500.00 |    0.00 |     30 |
+|  7900 | JAMES  | CLERK    | 7698 | 1981-12-03 |  950.00 |    NULL |     30 |
++-------+--------+----------+------+------------+---------+---------+--------+
+6 rows in set (0.00 sec)
+
+6. Display all employees in the 'Operation' and 'Accounting' departments.
+select * from emp where deptno in(select deptno from dept where dname in ("Operation","Accounting"));
+
+mysql> select * from emp where deptno in(select deptno from dept where dname in ("Operation","Accounting"));
++-------+--------+-----------+------+------------+---------+------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal     | comm | deptno |
++-------+--------+-----------+------+------------+---------+------+--------+
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 | 2450.00 | NULL |     10 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 | 5000.00 | NULL |     10 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 | 1300.00 | NULL |     10 |
++-------+--------+-----------+------+------------+---------+------+--------+
+3 rows in set (0.00 sec)
+
+7. Display the employees who have a salary greater than Miller.
+select * from emp 
+where sal>1300;
+or 
+select * from emp where sal > (select sal from emp where ename='miller');
+mysql> select * from emp where sal > (select sal from emp where ename='miller');
++-------+--------+-----------+------+------------+----------+--------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal      | comm   | deptno |
++-------+--------+-----------+------+------------+----------+--------+--------+
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 |  1600.00 | 300.00 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 |  2975.00 |   NULL |     20 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 |  2850.00 |   NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 |  2450.00 |   NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 |  3000.00 |   NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 |  5000.00 |   NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 |  1500.00 |   0.00 |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 |  3000.00 |   NULL |     20 |
+|  2222 | nita   | manager   | NULL | 2024-10-03 | 61000.00 |   NULL |   NULL |
++-------+--------+-----------+------+------------+----------+--------+--------+
+9 rows in set (0.00 sec)
+
+8. Display employees whose job is not the same as Allen's and whose salary is greater than Martin's.
+select * from emp where job NOT IN (
+    select job from emp where ename IN ('ALLEN', 'MARTIN'));
+mysql> select * from emp where job NOT IN (
+    ->     select job from emp where ename IN ('ALLEN', 'MARTIN'));
++-------+--------+-----------+------+------------+----------+------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal      | comm | deptno |
++-------+--------+-----------+------+------------+----------+------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |   800.00 | NULL |     20 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 |  2975.00 | NULL |     20 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 |  2850.00 | NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 |  2450.00 | NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 |  3000.00 | NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 |  5000.00 | NULL |     10 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 |  1100.00 | NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |   950.00 | NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 |  3000.00 | NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 |  1300.00 | NULL |     10 |
+|  2222 | nita   | manager   | NULL | 2024-10-03 | 61000.00 | NULL |   NULL |
++-------+--------+-----------+------+------------+----------+------+--------+
+11 rows in set (0.00 sec)
+
+9. Display all employees who are in the same location as Adam's manager.
+SELECT * FROM emp WHERE deptno IN (
+    SELECT deptno FROM dept WHERE loc = (
+        SELECT d.loc FROM emp e
+        JOIN dept d ON e.deptno = d.deptno
+        WHERE e.empno = (
+            SELECT mgr FROM emp WHERE ename = 'ADAM')));
+
+
+SELECT job, mgr, COUNT(*) AS num_employees
+FROM emp
+WHERE mgr = (SELECT empno FROM emp WHERE ename = 'JONES')
+GROUP BY job, mgr;
+
+
+
+SELECT * FROM emp
+WHERE mgr = (SELECT empno FROM emp WHERE ename = 'BLAKE')
+  AND comm IS NOT NULL;
+
+
+SELECT * FROM emp
+WHERE deptno = (SELECT deptno FROM dept WHERE dname = 'SALES')
+  AND comm IS NOT NULL
+  AND hiredate < (SELECT MAX(hiredate) FROM emp);
+
+
+
+SELECT DISTINCT d.dname
+FROM emp e
+JOIN dept d ON e.deptno = d.deptno
+WHERE e.sal > (
+    SELECT AVG(sal) FROM emp WHERE job = 'CLERK'
+);
+
+
+SELECT ename
+FROM emp
+WHERE sal = (
+    SELECT MIN(sal)
+    FROM emp
+    WHERE deptno = (SELECT deptno FROM dept WHERE dname = 'RESEARCH')
+);
+
+
+SELECT e.ename, e.job, d.loc
+FROM emp e
+JOIN dept d ON e.deptno = d.deptno
+WHERE e.job = 'SALESMAN' AND d.loc = 'CHICAGO';
+
+
+

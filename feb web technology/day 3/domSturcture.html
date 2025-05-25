@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1 id="x1">Hello</h1>
+    <p id="x2">
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quia, alias!
+    </p>
+    <button>Submit</button>
+
+    <script>
+      console.log(document);
+      console.log(document.querySelector("button"));
+      document.querySelector("button").onclick = function () {
+        console.log(document.getElementById("x1"));
+        console.log(document.getElementById("x2"));
+        document.getElementById("x1").innerHTML = "<u>Hello World2</u>"; // inner html evaluate html tag
+        document.getElementById("x2").innerText = "<u>Hello World2</u>"; // only txt replace not html
+        document.getElementById("x1").style.background = "red";
+        document.getElementById("x2").style.background = "violet";
+        document.getElementById("x2").style.fontSize = "40px";
+        document.getElementById("x2").remove();
+      };
+    </script>
+  </body>
+</html>

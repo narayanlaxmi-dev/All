@@ -1,0 +1,23 @@
+--alter assignment
+1. in customer table add a column mobile char(10)
+- alter table customer add mobile char(10);
+
+2. change the size of the mobile col as char(12)
+- alter table customer modify mobile char(12);
+
+3. drop a col area_code
+- alter table customer drop area_code;
+
+4. remove the pk of the table
+- alter table customer drop primary key;
+ 
+5. add a primary key for custid
+- alter table customer add primary key(custid);
+
+6. email_address column should have ".com" , at the end of email_address, add a constraint for the same.
+- alter table customer
+ add constraint email
+ check (email LIKE '%.com');
+
+7. rename the table as cust_table 
+- alter table customer rename cust_table;

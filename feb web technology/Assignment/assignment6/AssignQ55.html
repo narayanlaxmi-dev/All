@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="txt" />
+<p id="msg"></p>
+<script>
+document.getElementById("txt").onblur = function () {
+  let val = this.value;
+  let para = document.getElementById("msg");
+  para.innerText = /^[0-9]{10}$/.test(val) ? "Valid" : "Invalid";
+};
+</script>
+
+</body>
+</html>

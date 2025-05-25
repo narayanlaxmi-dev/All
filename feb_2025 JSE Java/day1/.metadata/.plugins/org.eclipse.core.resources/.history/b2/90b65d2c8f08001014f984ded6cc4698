@@ -1,0 +1,37 @@
+package day3_1practice;
+
+import java.util.Scanner;
+
+public class ElectricityBill {
+
+	public static void main(String[] args) {
+		int unit=0, ch;
+	Scanner sc = new Scanner(System.in);
+	
+	System.out.println("Enter choice :");
+	ch = sc.nextInt();
+		switch (ch) {
+	case 1:
+
+		
+	case 2:
+
+		
+		break;
+	case 3:
+
+		
+		break;
+	case 4:
+
+		
+		break;
+	case 5:
+		
+		break;
+	default:
+		System.out.println("INVALID PARAMETER!!!");
+	
+	}
+
+}

@@ -1,0 +1,28 @@
+package assignment8;
+
+import java.util.Scanner;
+
+// enum declare both inside class or outside class
+public class EnumdaysWeekMain {
+	enum WEEK {
+		MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY;
+
+		// to return + nextday return
+		public WEEK getDay() {
+			int index = this.ordinal() + 1;
+			return WEEK.values()[index];
+
+		}
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter days: ");
+		String day = sc.next();
+		day.toUpperCase();
+		WEEK currDay = WEEK.valueOf(day);
+		WEEK nextDay = currDay.getDay();
+
+	}
+
+}

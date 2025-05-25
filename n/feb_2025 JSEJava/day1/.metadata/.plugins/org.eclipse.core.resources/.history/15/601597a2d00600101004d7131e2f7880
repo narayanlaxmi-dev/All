@@ -1,0 +1,10 @@
+package oops1;
+
+public class Test {
+	
+	private // only one line is private int a not 7,8,9 lines
+	int a; // 0
+	float b; // 0.0
+	String s; // null
+	boolean ans;// false
+}

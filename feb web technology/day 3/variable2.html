@@ -1,0 +1,12 @@
+<script>
+  var a = 10;
+  let b = 20;
+  {
+    // var access in block scope  global var
+    console.log(a, b); // parent to child data goes on
+    var a1=100;
+    let b1=200;
+  }
+  console.log(a1);
+  console.log(b1);
+</script>

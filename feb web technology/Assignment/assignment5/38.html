@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <input type="text" id="txt1" placeholder="Enter number 1" />
+    <input type="text" id="txt2" placeholder="Enter number 2" />
+    <button onclick="sumValues()">Sum</button>
+    <p id="para"></p>
+    <script>
+      function sumValues() {
+        var data1 = document.getElementById("txt1").value;
+        var data2 = document.getElementById("txt2").value;
+        var sum = Number(data1) + Number(data2);
+        document.getElementById("para").innerHTML = "Sum is: " + sum;
+      }
+    </script>
+  </body>
+</html>

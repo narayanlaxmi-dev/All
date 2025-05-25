@@ -1,0 +1,44 @@
+package entity;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Shop {
+
+	private List<Products> products = new ArrayList<>();
+	pprivate List<Customers> customers = new ArrayList<>();
+	
+	// add product
+	public void addProducts(Products p) {
+		products.add(p);
+	}
+
+	// remove products
+	public void removeProducts(Products p) {
+		products.remove(p);
+	}
+
+	// display all products
+	public void displayAllProducts() {
+		for (Products p : products) {
+			System.out.println(p);
+		}
+	}
+
+
+	public void saveInventoryToFile(String filename) {
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename, true))) {
+			writer.write("----- Shop Snapshot -----\n");
+			for (Products p : products) {
+				writer.write(p.toString() + "\n");
+			}
+			writer.write("------------------------------\n\n");
+			System.out.println("Shop saved to " + filename);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

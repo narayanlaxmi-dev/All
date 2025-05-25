@@ -1,0 +1,44 @@
+package day1;
+
+public class Teacher extends Person {
+	private String collage;
+	private String qualification;
+
+	public Teacher() {
+		collage = "unknown";
+		qualification = "unknown";
+	}
+
+	public Teacher(String collage, String qualification) {
+		this.collage = collage;
+		this.qualification = qualification;
+	}
+
+	public String getCollage() {
+		return collage;
+	}
+
+	public void setCollage(String collage) {
+		this.collage = collage;
+	}
+
+	public String getQualification() {
+		return qualification;
+	}
+
+	public void setQualification(String qualification) {
+		this.qualification = qualification;
+	}
+	
+	public static int toTeach() {
+		return 0;
+		
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Teacher [collage=" + collage + ", qualification=" + qualification + "]";
+	}
+
+}

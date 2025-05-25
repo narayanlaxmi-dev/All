@@ -1,0 +1,20 @@
+package day1;
+
+import java.util.Scanner;
+
+public class PersonMain {
+
+	public static void main(String[] args) {
+		// 1 container person store both child class array person store both class data
+		// generalization common of super class and sub class (up casting)
+		// thanks to inheritance we sotre object of sub class in super class
+		System.out.println("Person");
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter number of participents: ");
+		int n = sc.nextInt();
+		Person[] persons = new Person[n];
+
+	}
+
+}

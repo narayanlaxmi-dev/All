@@ -1,0 +1,103 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using YourNamespace.Entities.Exceptions;
+
+namespace YourNamespace.Entities
+{
+    public class Library
+    {
+        private Dictionary<string, Book> bookMap;
+        private Dictionary<string, Member> memberMap;
+
+        public Library()
+        {
+            bookMap = new Dictionary<string, Book>();
+            memberMap = new Dictionary<string, Member>();
+        }
+
+        public void AddBook(string title, string author, Category category)
+        {
+            if (bookMap.Values.Any(book => book.Title.Equals(title, StringComparison.OrdinalIgnoreCase)))
+            {
+                throw new Exception($"{title} is already in the library.");
+            }
+
+            var newBook = new Book(title, author, category, true);
+            bookMap[newBook.Id] = newBook;
+            Console.WriteLine($"{newBook.Title} Added successfully !!! ");
+        }
+
+        public void RemoveBook(string id)
+        {
+            if (!bookMap.Remove(id, out var removedBook))
+            {
+                throw new ResourceNotFoundException($"Book is not available bhai !!!! {id}");
+            }
+
+            Console.WriteLine($"{removedBook.Title} Removed successfully !!! ");
+        }
+
+        public Book SearchBookByTitle(string title)
+        {
+            var foundBook = bookMap.Values
+                .FirstOrDefault(book => book.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+
+            return foundBook ?? throw new ResourceNotFoundException($"Book not found for title: {title}");
+        }
+
+        public void AddMember(string name)
+        {
+            var member = new Member(name);
+            memberMap[member.Id] = member;
+            Console.WriteLine($"{member.Id} Added successfully !!! ");
+        }
+
+        public void BorrowBook(string memberId, string title)
+        {
+            if (!memberMap.TryGetValue(memberId, out var member))
+                throw new ResourceNotFoundException($"Not available for id: {memberId}");
+
+            var book = SearchBookByTitle(title);
+            if (book.IsAvailable)
+            {
+                member.BorrowBook(book);
+                book.IsAvailable = false;
+
+                Transaction.RecordBorrowTransaction(member.Id, book.Id);
+            }
+            else
+            {
+                throw new BorrowBookException($"{book.Title} is not available to borrow");
+            }
+        }
+
+        public void ReturnBook(string memberId, string title)
+        {
+            if (!memberMap.TryGetValue(memberId, out var member))
+                throw new BorrowBookException($"{title} is not available to return");
+
+            var book = SearchBookByTitle(title);
+            book.IsAvailable = true;
+            member.ReturnBook(book);
+
+            Transaction.RecordReturnTransaction(member.Id, book.Id);
+        }
+
+        public void DisplayAllBooks()
+        {
+            foreach (var book in bookMap.Values)
+            {
+                Console.WriteLine(book);
+            }
+        }
+
+        public void DisplayAllMembers()
+        {
+            foreach (var member in memberMap.Values)
+            {
+                Console.WriteLine(member);
+            }
+        }
+    }
+}

@@ -1,0 +1,49 @@
+package entity;
+
+public class Customers {
+	private String customerId;
+	private String customerName;
+	private int quantity;
+
+	private static int Cid;
+	static {
+		Cid = 200;
+	}
+
+	public Customers() {
+
+	}
+
+	public Customers(String customerName, int quantity) {
+		this.customerId = "c" + ++Cid;
+		this.customerName = customerName;
+		this.quantity = quantity;
+	}
+
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	@Override
+	public String toString() {
+		return "Customers [customerId=" + customerId + ",\t customerName=" + customerName + ",\t quantity=" + quantity
+				+ "]";
+	}
+	
+}

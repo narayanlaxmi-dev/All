@@ -1,0 +1,95 @@
+package entity;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.util.Scanner;
+
+public class ShopMain {
+
+	public static void main(String[] args) {
+
+		System.out.println("Welcome in Shop");
+		Scanner sc = new Scanner(System.in);
+		Shop s = new Shop();
+		Customers cust = new Customers();
+		Products prod = new Products();
+		boolean exit = true;
+
+		while (exit) {
+			System.out
+					.println("+++++ Menu +++++" + "\n1 : add Product" + "\n2 : remove product" + "\n3 : display product"
+							+ "\n4 : add customer" + "\n5 : remove customer" + "\n6 : display customer"
+							+ "\n7 : record sales" + "\n8 : recordReturn" + "\n9 : File record" + "\n0. Exit.");
+			int ch = sc.nextInt();
+			switch (ch) {
+			case 0:
+				System.out.println("thanks to using me");
+				exit = false;
+				break;
+
+			case 1:
+				System.out.println("--- Add Product --- ");
+				System.out.println("price, quantity");
+				s.addProduct(new Products("narayan", sc.nextDouble(), sc.nextInt()));
+
+				break;
+
+			case 2:
+				System.out.println("--- remove Product --- ");
+
+				s.removeProduct(prod);
+				break;
+
+			case 3:
+				System.out.println("--- display all Product --- ");
+				s.displayAllproduct();
+				break;
+
+			case 4:
+				System.out.println("--- Add customer --- ");
+				System.out.println("Enter number ");
+				s.addCustomer(new Customers(sc.next(), sc.next()));
+				break;
+
+			case 5:
+				System.out.println("--- remove customer --- ");
+				s.removeCustomer(cust);
+				break;
+
+			case 6:
+				System.out.println("--- display all customer --- ");
+				s.displayAllCustomer();
+				break;
+
+			case 7:
+				System.out.println("--- RecordSales --- ");
+				break;
+
+			case 8:
+				System.out.println("--- removesales --- ");
+				break;
+
+			case 9:
+				System.out.println("--- file stored --- \n");
+				try (BufferedWriter writer = new BufferedWriter(new FileWriter("./src/files/log.txt", true))) {
+					writer.write("----- Shop Snapshot -----\n");
+					writer.write(prod.getProductId() + "\t" + cust.getCustomerId());
+					writer.write(prod.getProductName() + "\t" + cust.getCustomerName());
+					writer.write(prod.getQuantityAvailable() + "\t" + cust.getCustomerContactno());
+					writer.write(prod.toString() + "\n");
+					writer.write(cust.toString() + "\n");
+					writer.write("------------------------------\n\n");
+					System.out.println("Shop saved");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+
+				break;
+			default:
+				System.out.println("invalid. Try again");
+			}
+			sc.close();
+		}
+
+	}
+}

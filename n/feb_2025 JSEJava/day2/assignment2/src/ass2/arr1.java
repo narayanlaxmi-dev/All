@@ -1,0 +1,30 @@
+package ass2;
+
+import java.util.Scanner;
+
+public class arr1 {
+
+	public static void main(String[] args) {
+		// write a prog test array contain specific value return
+		// the index of an array element
+
+		int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 99 };
+		int ch, i, flag = 0;
+		try (Scanner sc = new Scanner(System.in)) {
+			System.out.println("Enter element to find an array :");
+			ch = sc.nextInt();
+			for (i = 0; i < arr.length; i++) {
+				if (arr[i] == ch) {
+					flag = 1;
+					break;
+				}
+			}
+			sc.close();
+		}
+		if (flag == 1)
+			System.out.println("The index find at --->" + i + "\nvalue is --->" + arr[i]);
+		else
+			System.out.println("not found...");
+	}
+
+}

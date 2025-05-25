@@ -1,0 +1,113 @@
+<form action="#" method="POST" enctype="multipart/form-data">
+  <fieldset>
+    <legend>Registration Form</legend>
+
+    <!-- Name -->
+    <label for="name">Name:</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      placeholder="Enter your name"
+      required
+    />
+    <br />
+
+    <!-- Email -->
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      placeholder="Enter your email"
+      required
+    />
+    <br />
+
+    <!-- Mobile Number -->
+    <label for="mobile">Mobile Number:</label>
+    <input
+      type="tel"
+      id="mobile"
+      name="mobile"
+      placeholder="Enter your mobile number"
+      required
+    />
+    <br />
+
+    <!-- Password -->
+    <label for="password">Create New Password:</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="Create a password"
+      required
+    />
+    <br />
+
+    <!-- Gender -->
+    <fieldset>
+      <legend>Gender:</legend>
+      <label for="male">
+        <input type="radio" id="male" name="gender" value="M" /> Male
+      </label>
+      <label for="female">
+        <input type="radio" id="female" name="gender" value="F" /> Female
+      </label>
+    </fieldset>
+    <br />
+
+    <!-- Education -->
+    <fieldset>
+      <legend>Education:</legend>
+      <label for="ssc">
+        <input type="checkbox" id="ssc" name="education" value="SSC" /> SSC
+      </label>
+      <label for="hsc">
+        <input type="checkbox" id="hsc" name="education" value="HSC" /> HSC
+      </label>
+      <label for="diploma">
+        <input type="checkbox" id="diploma" name="education" value="Diploma" />
+        Diploma
+      </label>
+      <label for="be">
+        <input type="checkbox" id="be" name="education" value="BE" /> BE
+      </label>
+    </fieldset>
+    <br />
+
+    <!-- Upload Photo -->
+    <label for="photo">Upload Photo:</label>
+    <input type="file" id="photo" name="photo" accept="image/*" />
+    <br />
+
+    <!-- Date -->
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" />
+    <br />
+
+    <!-- Country -->
+    <label for="country">Country:</label>
+    <select id="country" name="country">
+      <option value="india">India</option>
+      <option value="japan">Japan</option>
+      <option value="usa">USA</option>
+      <option value="germany">Germany</option>
+      <option value="dubai">Dubai</option>
+    </select>
+    <br />
+
+    <!-- Message -->
+    <label for="message">Message:</label>
+    <textarea
+      id="message"
+      name="message"
+      placeholder="Write your message here"
+    ></textarea>
+    <br />
+
+    <!-- Submit Button -->
+    <button type="submit">Register</button>
+  </fieldset>
+</form>

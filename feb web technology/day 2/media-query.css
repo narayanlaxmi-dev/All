@@ -1,0 +1,24 @@
+.container {
+  margin: auto;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media only screen and (min-width:1200px) {
+  .container {
+    width: 1170px;
+  }
+  .col-xl-3 {
+    width: 25%;
+  }
+}
+@media only screen and (max-width:600px) {
+  .container {
+    width: 98%;
+  }
+  .col-6 {
+    width: 50%;
+  }
+}

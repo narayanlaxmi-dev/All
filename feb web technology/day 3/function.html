@@ -1,0 +1,19 @@
+<!-- https://www.hdfc.com/home-loan-emi-calculator -->
+<script>
+  // fun declare argument/para
+  function emi(p, roi, n = 20) {
+    console.log("function", p, roi, n);
+  }
+
+  function emi(p, roi, n = 20) {
+    console.log("function call1", p, roi, n);
+    roi = roi / 12 / 100; // monthly intrest
+    n = n * 12; // yearly intrest
+    // P x r (1+r)^n / [(1+r)^n-1]
+    var emi = (p * roi * (1 + roi) ** n) / ((1 + roi) ** n - 1);
+    emi = Math.round(emi);
+    console.log("emi", emi);
+  }
+  emi(2500000, 8.45, 30); //fnction call
+  emi(2500000, 8.45);
+</script>

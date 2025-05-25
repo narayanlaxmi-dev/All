@@ -1,0 +1,443 @@
+1.Modify the Value of an Integer Using Call by Reference
+
+
+#include<iostream>
+using namespace std;
+void change_val(int &n)
+{
+	n=n*n;
+}
+
+
+
+int main()
+{
+int num;
+cout<<"Enter Number ";
+cin>>num;
+change_val(num);
+
+cout<<"Updated value is : "<<num;
+
+}
+
+/*
+Output:
+Enter Number 5
+Updated value is : 25
+
+*/
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+2.Create deposite() & withdraw() function using Call by Reference to modify balance
+
+#include<iostream>
+using namespace std;
+void deposite(int &bal,int amt)
+{
+	bal+=amt;
+	cout<<"\nRemaining Amount is : "<<bal;
+	cout<<"\n\n";
+}
+
+void withdraw(int &bal,int amt)
+{
+	bal-=amt;
+	cout<<"\nRemaining Amount is : "<<bal;
+	cout<<"\n\n";
+}
+
+
+int main()
+{
+int bal = 10000;
+int choice,amt;
+
+while(true)
+{
+	cout<<"\nEnter choices";
+	cout<<"\nPress 1 for deposite\nPress 2 for withdraw\nPress 3 to get outside \n";
+	cin>>choice;
+	if(choice == 3)
+	{
+		cout<<"\nRemaining Amount is : "<<bal;
+		cout<<"\n\n";
+		break;
+	}else
+	if(choice == 1)
+	{
+		cout<<"\nEnter Amount to deposite : ";
+		cin>>amt;
+		deposite(bal,amt);
+	}else
+	if(choice == 2)
+	{
+		cout<<"\nEnter Amount to withdraw : ";
+		cin>>amt;
+		withdraw(bal,amt);
+	}
+}
+
+}
+
+
+/*
+Output
+
+
+Enter choices
+Press 1 for deposite
+Press 2 for withdraw
+Press 3 to get outside
+1
+
+Enter Amount to deposite : 500000
+
+Remaining Amount is : 510000
+
+
+Enter choices
+Press 1 for deposite
+Press 2 for withdraw
+Press 3 to get outside
+2
+
+Enter Amount to withdraw : 5000
+
+Remaining Amount is : 505000
+
+
+Enter choices
+Press 1 for deposite
+Press 2 for withdraw
+Press 3 to getside
+
+
+*/
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+3.a program to Access and Modify Array Element Using Return by Reference function.
+
+#include<iostream>
+using namespace std;
+int& getIndex(int arr[],int index)
+{
+return arr[index];
+}
+
+
+int main()
+{
+int arr[] ={1,2,3,4,5};
+int index;
+cout<<"Enter the index which you want to change ";
+cin>>index;
+getIndex(arr,index)=100;
+
+for(int i=0; i<5; i++)
+{
+	cout<<arr[i]<<" ";
+}
+
+}
+
+/*
+Output:
+Enter the index which you want to change 3
+1 2 3 100 5
+
+*/----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+4.Write a C++ program to demonstrate the concept of Return by Reference. In a banking
+application, the program should allow direct access and modification of an account’s
+balance using a reference returned by a function.
+
+#include<iostream>
+using namespace std;
+
+int& ref(int &bal)
+{
+return bal;
+}
+
+int main()
+{
+int bal = 10000,amt;
+cout<<"\nEnter Amount to update : ";
+		cin>>amt;
+		ref(bal)=amt;
+			cout<<"\nRemaining Amount is : "<<bal;
+		cout<<"\n\n";
+}
+
+/*
+
+Output:
+Enter Amount to update : 50005
+
+Remaining Amount is : 50005
+*/
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+5.Write a C++ program to calculate the simple interest on a given amount deposited in a
+bank. The interest rate should be passed as a parameter, but if the user does not specify a
+rate, the system should use a default interest rate of 3.5%.
+
+#include<iostream>
+using namespace std;
+
+float si(int p,int t,float r=3.5)
+{
+return p*r*t/100;
+}
+
+int main()
+{
+int p,t;
+float r;
+
+cout<<"Enter Priciple ";
+cin>>p;
+
+cout<<"Enter Year ";
+cin>>t;
+
+cout<<"\nSimple Interest is : "<<si(p,t);
+
+cout<<"\n\n\n";
+
+cout<<"Enter Priciple ";
+cin>>p;
+
+
+
+cout<<"Enter rate ";
+cin>>r;
+
+cout<<"Enter Year ";
+cin>>t;
+
+cout<<"\nSimple Interest is : "<<si(p,t,r);
+
+return 0;
+}
+
+/*
+Output:
+Enter Priciple 50000
+Enter Year 2
+
+Simple Interest is : 3500
+
+
+Enter Priciple 6000
+Enter rate 2
+Enter Year 3
+
+Simple Interest is : 3600
+*/
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+6.Display Account Information using Function Overloading in two different ways:
+
+Full account information: Display both the Account Holder’s Name and Account Balance.
+
+Only balance information: Display only the Account Balance, in cases where the account holder’s name is not required.
+
+#include<iostream>
+using namespace std;
+
+class Balance{
+	public:
+		void account_info(string name, int bal)
+		{
+			cout<<"\nname is : "<<name<<" bal is : "<<bal;
+		}
+		void account_info(int bal)
+		{
+			cout<<"\nbal is : "<<bal;
+		}
+};
+
+int main()
+{
+int amt;
+string name;
+
+cout<<"Enter Amount ";
+cin>>amt;
+
+cout<<"Enter Name ";
+cin>>name;
+
+Balance b1;
+
+b1.account_info(name,amt);
+cout<<"\n\n";
+b1.account_info(amt);
+return 0;
+}
+/*
+Output:
+
+Enter Amount 5000
+Enter Name pcdac
+
+name is : pcdac is : 5000
+
+
+bal is : 5000
+*/
+---------------------------------------------------------------------------------------------------------------------------------------------------
+#include<iostream>
+using namespace std;
+
+void Display(string s, int bal) {
+    cout << "\nAccount Holder Name: " << s;
+    cout << "\nAccount Balance: " << bal;
+}
+
+void deposit(int &balance, int amt) {
+    balance += amt;
+    cout << "\nBalance updated successfully. Current balance: " << balance;
+}
+
+void withdraw(int &balance, int amt) {
+    if (amt > balance) {
+        cout << "\nInsufficient balance!";
+    } else {
+        balance -= amt;
+        cout << "\nBalance updated successfully. Current balance: " << balance;
+    }
+}
+
+float Si(int balance, int y, float r = 3) {
+    cout << "\nCalculating Simple Interest at rate: " << r << "%";
+    return (balance * y * r) / 100;
+}
+
+int& Balance_access(int &ba) {
+    return ba;
+}
+
+int main() {
+    int balance, amt, wdarw, value;
+    cout << "--- WELCOME TO BANK SYSTEM ---" << endl;
+    
+    string name;
+    cout << "Enter name: ";
+    cin >> name;
+    
+    cout << "Enter initial balance: ";
+    cin >> balance;
+    
+    int ch;
+    
+    // Main menu loop
+    while (true) {        
+        cout << "\nEnter 1 to WITHDRAW\n"
+             << "Enter 2 to DEPOSIT\n"
+             << "Enter 3 to CHECK BALANCE\n"
+             << "Enter 4 to CALCULATE SIMPLE INTEREST\n"
+             << "Enter 5 to MODIFY BALANCE\n"
+             << "Enter 6 to DISPLAY NAME AND BALANCE\n"
+             << "Enter 0 to EXIT\n";
+        
+        cin >> ch;
+        
+        switch (ch) {
+            case 1: 
+                cout << "Enter amount to withdraw: ";
+                cin >> amt;
+                withdraw(balance, amt);
+                break;
+            case 2: 
+                cout << "Enter amount to deposit: ";
+                cin >> amt;
+                deposit(balance, amt);
+                break;
+            case 3: 
+                cout << "The current balance is: " << balance << endl;
+                break;
+            case 4: 
+                cout << "The Simple Interest for 2 years is: " << Si(balance, 2) << endl;
+                break;
+            case 5: 
+                cout << "\nEnter new balance: ";
+                cin >> value;
+                Balance_access(balance) = value;
+                cout << "After modification, the balance is: " << balance << endl;
+                break;
+            case 6: 
+                Display(name, balance);
+                break;
+            case 0: 
+                cout << "Exiting the system..." << endl;
+                exit(0);  // Proper exit
+            default: 
+                cout << "INVALID ENTRY..." << endl;
+        }
+    }
+
+    return 0;
+}
+
+
+--- WELCOME TO BANK SYSTEM ---
+Enter name: narayan
+Enter initial balance: 50000
+
+Enter 1 to WITHDRAW
+Enter 2 to DEPOSIT
+Enter 3 to CHECK BALANCE
+Enter 4 to CALCULATE SIMPLE INTEREST
+Enter 5 to MODIFY BALANCE
+Enter 6 to DISPLAY NAME AND BALANCE
+Enter 0 to EXIT
+1
+Enter amount to withdraw: 5000
+
+Balance updated successfully. Current balance: 45000
+Enter 1 to WITHDRAW
+Enter 2 to DEPOSIT
+Enter 3 to CHECK BALANCE
+Enter 4 to CALCULATE SIMPLE INTEREST
+Enter 5 to MODIFY BALANCE
+Enter 6 to DISPLAY NAME AND BALANCE
+Enter 0 to EXIT
+2
+Enter amount to deposit: 5000
+
+Balance updated successfully. Current balance: 50000
+Enter 1 to WITHDRAW
+Enter 2 to DEPOSIT
+Enter 3 to CHECK BALANCE
+Enter 4 to CALCULATE SIMPLE INTEREST
+Enter 5 to MODIFY BALANCE
+Enter 6 to DISPLAY NAME AND BALANCE
+Enter 0 to EXIT
+4
+The Simple Interest for 2 years is:
+Calculating Simple Interest at rate: 3%3000
+
+Enter 1 to WITHDRAW
+Enter 2 to DEPOSIT
+Enter 3 to CHECK BALANCE
+Enter 4 to CALCULATE SIMPLE INTEREST
+Enter 5 to MODIFY BALANCE
+Enter 6 to DISPLAY NAME AND BALANCE
+Enter 0 to EXIT
+6
+
+Account Holder Name: narayan
+Account Balance: 50000
+Enter 1 to WITHDRAW
+Enter 2 to DEPOSIT
+Enter 3 to CHECK BALANCE
+Enter 4 to CALCULATE SIMPLE INTEREST
+Enter 5 to MODIFY BALANCE
+Enter 6 to DISPLAY NAME AND BALANCE
+Enter 0 to EXIT
+0
+Exiting the system...
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------

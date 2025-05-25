@@ -1,0 +1,29 @@
+package day3_1practice;
+
+import java.util.Scanner;
+
+public class Student {
+		private int rollno;
+		private String name;
+		private float marks;
+
+		Scanner sc = new Scanner(System.in);
+	
+		public void set_data() {
+
+			System.out.println("Enter rollno, name , marks");
+			rollno = sc.nextInt();
+			name = sc.next();
+			marks = sc.nextFloat();	
+		}
+
+		float compare() {
+			return (marks);
+		}
+
+		void get_data() {
+			System.out.println("The std name is :" + name);
+			System.out.println("The std ID is :" + rollno);
+			System.out.println("The std marks is :" + marks);
+		}
+}

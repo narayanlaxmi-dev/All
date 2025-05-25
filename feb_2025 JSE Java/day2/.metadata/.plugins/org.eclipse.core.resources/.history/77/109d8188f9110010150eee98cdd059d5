@@ -1,0 +1,37 @@
+package assignment8;
+
+class Person {
+	private String name;
+	private int age;
+
+	public Person() {
+		name = "unKnown";
+		age = 0;
+	}
+
+	public Person(int age) {
+		this.age = age;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "Person ->name=" + name + ", age=" + age + "....";
+	}
+
+	
+}
+
+public class Reflection {
+	public static void main(String[] args) {
+		Class personClass1 = Integer.class;
+		personClass1.getClass().getName();
+	}
+}

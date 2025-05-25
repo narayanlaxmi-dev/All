@@ -1,0 +1,33 @@
+package dao;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import entity.User;
+
+public class UserDao implements AppRepository<User> {
+	private Map<String, User> users;
+
+	public UserDao() {
+		users = new HashMap<String, User>();// storing into hash map
+	}
+
+	@Override
+	public void save(User t) {
+
+	}
+
+	@Override
+	public List<User> findAll() {
+
+		return null;
+	}
+
+	@Override
+	public User findById(User k) {
+
+		return null;
+	}
+
+}

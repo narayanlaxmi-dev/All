@@ -1,0 +1,31 @@
+package entity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Restaurant {
+	private String id;
+	private String name;
+	private List<String> servicablePinCode;
+	private List<FoodItem> items;
+	private Rating rating;
+
+	private static int rId;
+	static {
+		rId = 200;
+	}
+
+	public Restaurant() {
+		items = new ArrayList<FoodItem>();
+		servicablePinCode = new ArrayList<String>();
+	}
+
+	public Restaurant(String name, List<String> servicablePinCode, List<FoodItem> items, Rating rating) {
+		this.id = "r" + ++rId;
+		this.name = name;
+		this.servicablePinCode = servicablePinCode;
+		this.items = items;
+		this.rating = rating;
+	}
+
+}

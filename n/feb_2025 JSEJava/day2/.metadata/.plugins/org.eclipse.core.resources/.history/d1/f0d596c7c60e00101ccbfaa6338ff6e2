@@ -1,0 +1,12 @@
+package Exception;
+
+public class ExceptionHandlingMain {
+
+	public static void main(String[] args) {
+		// A prog to accept 2 number command line arguments and print their addition
+
+	}
+
+}
+
+// java no  10 20 

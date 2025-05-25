@@ -1,0 +1,693 @@
+sub query 
+plsql
+procedures
+functions
+
+select * from emp where deptno=
+(select deptno from dept where dname = 'accounting');
+
+
+
+select * from emp where deptno=
+(select deptno from dept where dname = 'research');
+
+select * from emp where deptno=
+(select deptno from dept where loc = 'new york');
+
+
+select * from emp where deptno=
+(select deptno from dept where loc = 'dallas');
+
+
+PREDICATES 
+>all
+<any
+<all
+>any
+
+	
+display all emp wehose sal > than all emp from deptno 20
+
+inner select * from emp where deptno=20;
+
+select ename,sal from emp where sal>
+all(select sal from emp where deptno=20);
+
+or 
+
+select ename,sal from emp where sal>
+(select max(sal) from emp where deptno=20);
+
+-------------
+select ename,sal from emp where sal>
+ANY(select sal from emp where deptno=20);
+
+select ename,sal from emp where sal>
+(select MIN(sal) from emp where deptno=20);
+
+
+EXISTS
+will check the exist of the row
+
+---display the details form DEPT table where employees are working 
+SELECT *  FROM DEPT D WHERE EXISTS ( 
+SELECT * FROM EMP E WHERE E.DEPTNO = D.DEPTNO);
+OR 
+SELECT *  FROM DEPT WHERE DEPTNO IN( 
+SELECT DEPTNO FROM EMP);
+
+---display the details form DEPT table where employees are NOT working 
+SELECT *  FROM DEPT D WHERE NOT EXISTS ( 
+SELECT * FROM EMP E WHERE E.DEPTNO = D.DEPTNO);
+
+
+SELECT *  FROM DEPT WHERE NOT DEPTNO IN( 
+SELECT DEPTNO FROM EMP);
+
+
+PL/SQL stands for Procedural Language/Structured Query Language. It's a procedural language extension to SQL, specifically designed for Oracle databases. PL/SQL allows developers to combine SQL statements with procedural logic, like loops, conditional statements, and exception handling. This enables more complex database programming tasks than SQL alone
+
+
+anonymous BLOCK
+
+SET @NAME = "NARAYAN";
+SELECT @NAME;
+SET @EMP = "10";
+SET @EMP = "10";
+SELECT @EMP;
+SET @ADDRESS = "NASHIK";
+SELECT @ADDRESS;
+
+ SELECT @NAME,"EMPNO IS",@EMP;
++---------+----------+------------+
+| @NAME   | EMPNO IS | @EMP       |
++---------+----------+------------+
+| NARAYAN | EMPNO IS | NULL       |
++---------+----------+------------+
+1 row in set (0.00 sec)
+OR
+SELECT CONCAT(@NAME," EMPNO IS: " ,@EMP);
+SELECT CONCAT(@NAME," EMPNO IS: " ,@EMP)AS DETAILS;
+mysql> SELECT CONCAT(@NAME," EMPNO IS: " ,@EMP);
++-----------------------------------+
+| CONCAT(@NAME," EMPNO IS: " ,@EMP) |
++-----------------------------------+
+| NARAYAN EMPNO IS: NARAYAN         |
++-----------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CONCAT(@NAME," EMPNO IS: " ,@EMP)AS DETAILS;
++---------------------------+
+| DETAILS                   |
++---------------------------+
+| NARAYAN EMPNO IS: NARAYAN |
++---------------------------+
+1 row in set (0.00 sec)	
+
+
+SET @COLLAGE ="C-CAC MET";
+
+ SELECT CONCAT(@NAME," EMPNO IS: " ,@EMP, " ADDRESS IS: ",@ADDRESS)AS DETAILS;
+
+SELECT CONCAT(@NAME," EMPNO IS: " ,@EMP," THE COLLAGE: ", @COLLAGE," ADDRESS IS: ",@ADDRESS)AS DETAILS;
+
+
+ SELECT CONCAT(@NAME," EMPNO IS: " ,@EMP," THE COLLAGE: ", @COLLAGE," ADDRESS IS: ",@ADDRESS)AS DETAILS;
+
++----------------------------------------------------------------+
+| DETAILS                                                        |
++----------------------------------------------------------------+
+| NARAYAN EMPNO IS: 10 THE COLLAGE: C-CAC MET ADDRESS IS: NASHIK |
++----------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+SELECT CONCAT(ENAME, ' JOB IS ' , JOB,' AND THE EARING IS: ',SAL)FROM EMP;
+SELECT @MAX1:= MAX(SAL) FROM EMP;
+SELECT @MAX1;
+mysql> SELECT @MAX1:= MAX(SAL) FROM EMP;
++------------------+
+| @MAX1:= MAX(SAL) |
++------------------+
+|         61000.00 |
++------------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> SELECT @MAX1;
++----------+
+| @MAX1    |
++----------+
+| 61000.00 |
++----------+
+1 row in set (0.00 sec)
+
+
+
+
+SELECT @MAX1:= MAX(SAL) AS MAXSAL, @MIN1 :=MIN(SAL) AS MINSAL FROM EMP;
+
+
+mysql> SELECT @MAX1:= MAX(SAL) AS MAXSAL, @MIN1 :=MIN(SAL) AS MINSAL FROM EMP;
++----------+--------+
+| MAXSAL   | MINSAL |
++----------+--------+
+| 61000.00 | 800.00 |
++----------+--------+
+1 row in set, 2 warnings (0.00 sec)
+
+
+------------------------
+---STORED PROCEDURE ---
+TO CREATE ------------------------
+
+DELIMITER //
+CREATE PROCEDURE PROCE1()
+BEGIN
+SELECT * FROM EMP;
+SELECT * FROM DEPT;
+SELECT * FROM EMP WHERE DEPTNO=10;
+SELECT * FROM EMP WHERE JOB = 'ANALYST';
+END;
+//
+
+TO EXECUTE ------------------------
+DELIMITER ;
+CALL PROCE1();
+
+DROP PROCEDURE PROCE1;
+
+
+
+DELIMITER **
+CREATE PROCEDURE PRO1()
+BEGIN
+SELECT @MAX1:= MAX(SAL) AS MAXSAL, @MIN1 :=MIN(SAL) AS MINSAL FROM EMP;
+SELECT * FROM EMP WHERE DEPTNO=10;
+SELECT * FROM EMP WHERE JOB = 'ANALYST';
+END;
+**
+
+DELIMITER ;
+CALL PRO1();
+
+mysql> SET AUTOCOMMIT=0;
+Query OK, 0 rows affected (0.01 sec)
+
+
+mysql> DROP PROCEDURE PROCE1;
+Query OK, 0 rows affected (0.01 sec)
+
+CREATE PROCEDURE TO DISPLAY ROWS FOR DEPTNO3- , INCREMENT SAL FROM ALL EMP DEPTNO 10 BY 500
+DELIMITER ++
+CREATE PROCEDURE PRO2()
+BEGIN
+SELECT * FROM EMP WHERE DEPTNO =30;
+UPDATE EMP SET SAL= SAL+500 WHERE DEPTNO = 10;
+SELECT ENAME,SAL, HIREDATE FROM EMP WHERE DEPTNO=10;
+END;
+++
+DELIMITER ;
+
+CALL PRO2();
+
+
+mysql> ROLLBACK;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SELECT * FROM EMP;
++-------+--------+-----------+------+------------+----------+---------+--------+
+| empno | ename  | job       | mgr  | hiredate   | sal      | comm    | deptno |
++-------+--------+-----------+------+------------+----------+---------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980-12-17 |   800.00 |    NULL |     20 |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981-02-20 |  1600.00 |  300.00 |     30 |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981-02-22 |  1250.00 |  500.00 |     30 |
+|  7566 | JONES  | MANAGER   | 7839 | 1981-04-02 |  2975.00 |    NULL |     20 |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981-09-28 |  1250.00 | 1400.00 |     30 |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981-05-01 |  2850.00 |    NULL |     30 |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981-06-09 |  2450.00 |    NULL |     10 |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1982-12-09 |  3000.00 |    NULL |     20 |
+|  7839 | KING   | PRESIDENT | NULL | 1981-11-17 |  5000.00 |    NULL |     10 |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981-09-08 |  1500.00 |    0.00 |     30 |
+|  7876 | ADAMS  | CLERK     | 7788 | 1983-01-12 |  1100.00 |    NULL |     20 |
+|  7900 | JAMES  | CLERK     | 7698 | 1981-12-03 |   950.00 |    NULL |     30 |
+|  7902 | FORD   | ANALYST   | 7566 | 1981-12-03 |  3000.00 |    NULL |     20 |
+|  7934 | MILLER | CLERK     | 7782 | 1982-01-23 |  1300.00 |    NULL |     10 |
+|  2222 | nita   | manager   | NULL | 2024-10-03 | 61000.00 |    NULL |   NULL |
++-------+--------+-----------+------+------------+----------+---------+--------+
+15 rows in set (0.00 sec)
+
+
+DELIMITER @@
+CREATE PROCEDURE PRO3()
+BEGIN 
+    DECLARE RESULT VARCHAR(100);
+    SET @A := 100;
+    SET @B := 200;
+
+    IF (@A > @B) THEN
+        SET RESULT := 'A IS GREATER';
+    ELSEIF (@A < @B) THEN
+        SET RESULT := 'B IS GREATER';
+    ELSE
+        SET RESULT := 'BOTH ARE SAME';
+    END IF;
+
+    SELECT RESULT;
+END
+@@
+DELIMITER ;
+CALL PRO3;
+
+
+--------------------------
+DELIMITER @@
+CREATE PROCEDURE PRO4()
+BEGIN 
+    DECLARE RESULT VARCHAR(100);
+    SET @A := 100;
+    SET @B := 100;
+
+    IF (@A > @B) THEN
+        SET RESULT := 'A IS GREATER';
+    ELSEIF (@A < @B) THEN
+        SET RESULT := 'B IS GREATER';
+    ELSE
+        SET RESULT := 'BOTH ARE SAME';
+    END IF;
+
+    SELECT RESULT;
+END
+@@
+DELIMITER ;
+CALL PRO4;
+-----------------------
+DELIMITER @@
+CREATE PROCEDURE PRO5()
+BEGIN 
+    DECLARE RESULT VARCHAR(100);
+    SET @A := 50;
+    SET @B := 100;
+
+    IF @A > @B THEN
+        SET RESULT := 'A IS GREATER';
+    ELSEIF @A < @B THEN
+        SET RESULT := 'B IS GREATER';
+    ELSE
+        SET RESULT := 'BOTH ARE SAME';
+    END IF;
+
+    SELECT RESULT;
+END
+@@
+DELIMITER ;
+CALL PRO5;
+
+-------------------
+DELIMITER --
+CREATE PROCEDURE PRO6()
+BEGIN 
+	SET @A := 120;
+	SET @B :=  30;
+	
+	IF @A>@B THEN 
+	SELECT "A IS GREATER ";
+	ELSEIF @A<@B THEN 
+	SELECT "B IS GREATER";
+	ELSE 
+	SELECT "BOTH EQUAL";
+	END IF;
+	END
+	--
+	DELIMITER ;
+	CALL PRO6(); 
+
+
+DELIMITER --
+CREATE PROCEDURE PARA_DEMO(IN NUM INT)
+BEGIN 
+	IF NUM > 0 THEN
+	SET @RESULT :="THE NUMBER IS +VE";
+	ELSEIF NUM < 0 THEN 
+	SET @RESULT:= "THE NUMBER IS -VE";
+	ELSE
+	SET @RESULT:= "THE NUMBER IS  ZERO(0)";
+	END IF;
+	SELECT @RESULT;
+	END 
+	--
+	DELIMITER ;
+	CALL PARA_DEMO(12);
+	CALL PARA_DEMO(0);
+	CALL PARA_DEMO(-12);
+
+
+
+
+DELIMITER --
+CREATE PROCEDURE NUMVALID(IN NUM INT)
+BEGIN 
+	IF NUM >= 0 AND NUM < 10 THEN
+	SET @RESULT :="1 DIGIT NUMBER";
+	ELSEIF NUM >=10 AND NUM < 100 THEN 
+	SET @RESULT:= "2 DIGIT NUMBER";
+	ELSEIF NUM >=100 AND NUM < 1000 THEN 
+	SET @RESULT:= "3 DIGIT NUMBER";
+	ELSEIF NUM >=1000 AND NUM < 10000 THEN 
+	SET @RESULT:= "4 DIGIT NUMBER OR MORE";
+	ELSEIF  NUM<0 THEN
+	SET @RESULT:= "THE NUMBER IS NEGATIVE";
+	END IF;
+	SELECT @RESULT;
+END 
+--
+	DELIMITER ;
+	CALL NUMVALID(1);
+	CALL NUMVALID(12);
+	CALL NUMVALID(121);
+
+
+-=-==-=--==--==--==-=--==-=--=-==-=--==--==-
+ACCEPT A EMP NUM FROM USER AND CHECK SAL
+SAL <2000 INCREMENT SAL BY 500;
+* CLAUSE
+
+DELIMITER $$
+CREATE PROCEDURE UPDATE_SAL(IN EMPNO1 INT)
+BEGIN
+   -- DECLARE VSAL DECIMAL(10,2); // WITHOUT DECLARE IT WORK0
+
+    SELECT SAL INTO VSAL FROM EMP WHERE EMPNO = EMPNO1 ;
+
+    IF VSAL < 2000 THEN
+        UPDATE EMP
+        SET SAL = SAL + 500
+        WHERE EMPNO = EMPNO1;
+        SELECT 'Salary updated by 500' AS message;
+    ELSE
+        SELECT 'Salary is 2000 or more. No update.' AS message;
+    END IF;
+END$$
+DELIMITER ;
+-----------------------------
+DELIMITER $$
+CREATE PROCEDURE UPDATE_SAL1(IN ENO INT)
+BEGIN
+     SELECT @SAL:=SAL FROM EMP WHERE EMPNO = ENO ;
+    IF @SAL < 2000 THEN
+        UPDATE EMP SET SAL = SAL + 500 WHERE EMPNO = ENO;
+        SELECT 'Salary updated by 500' AS message;
+    ELSE
+        SELECT 'Salary is 2000 or more. No update.' AS message;
+    END IF;
+END$$
+DELIMITER ;
+CALL UPDATE_SAL1(2222);
+
+
+===============================================
+MULTIPLE INPUT PARAMATERS
+
+
+DELIMITER $$
+CREATE PROCEDURE UPDATE_SAL2(IN ENO INT,PINC INT)
+BEGIN
+     SELECT @SAL:=SAL FROM EMP WHERE EMPNO = ENO ;
+    IF @SAL < 2000 THEN
+        UPDATE EMP SET SAL = SAL + PINC WHERE EMPNO = ENO;
+        SELECT 'Salary updated by 500' AS message;
+    ELSE
+        SELECT 'Salary is 2000 or more. No update.' AS message;
+    END IF;
+END$$
+DELIMITER ;
+
+DELIMITER ;
+CALL UPDATE_SAL2(7369,1000);
+
+----------
+
+mysql> UPDATE EMP SET SAL=1500 WHERE EMPNO=2222;
+
+
+DELIMITER $$
+CREATE PROCEDURE OUT_UPDATE_SAL(IN ENO INT,PINC INT,OUT PNEWSAL INT)
+BEGIN
+     SELECT @SAL:=SAL FROM EMP WHERE EMPNO = ENO ;
+    IF @SAL < 2000 THEN
+        UPDATE EMP SET SAL = SAL + PINC WHERE EMPNO = ENO;
+        SELECT 'Salary updated by 500' AS message;
+    ELSE
+        SELECT 'Salary is 2000 or more. No update.' AS message;
+    END IF;
+	SELECT SAL INTO PNEWSAL FROM EMP WHERE EMPNO = ENO;
+END$$
+DELIMITER ;
+
+CALL OUT_UPDATE_SAL(7499,1000,@PNEWSAL);
+SELECT @PNEWSAL;
+
+=================================
+DELIMITER //
+CREATE PROCEDURE REPEAT_LOOP(IN NUM INT)
+BEGIN 
+    SET @A:=0;
+
+    REPEAT
+        SET @A =@A + 1;
+        SELECT @A;
+    UNTIL @A >= NUM
+    END REPEAT;
+END //
+
+DELIMITER ;
+CALL REPEAT_LOOP(5);
+
+------------------------------------- EVEN NUMBER
+EVEN NUMBER
+DELIMITER //
+CREATE PROCEDURE EVEN_LOOP(IN NUM INT)
+BEGIN 
+    SET @A:=0;
+    REPEAT
+        SET @A =@A + 2;
+        SELECT @A;
+    UNTIL @A >= NUM
+    END REPEAT;
+END //
+
+DELIMITER ;
+CALL EVEN_LOOP(10);
+
+
+-------------------
+DELIMITER //
+CREATE PROCEDURE EVEN_LOOP1(IN NUM INT)
+BEGIN 
+  	 SET @A:=0;
+   	REPEAT
+        SET @A =@A + 1;
+         IF MOD(@A, 2) = 0 THEN
+            SELECT @A;
+         END IF;
+   	UNTIL @A >= NUM
+	END REPEAT;
+END //
+
+DELIMITER ;
+CALL EVEN_LOOP1(10);
+
+
+---------------------===================================== PRINT ALL SCHEMA FOR PROCEDURE
+
+SELECT ROUTINE_NAME FROM INFORMATION_SCHEMA.ROUTINES
+WHERE ROUTINE_TYPE="PROCEDURE"
+AND ROUTINE_SCHEMA='CDAC';
+
+SELECT ROUTINE_NAME FROM INFORMATION_SCHEMA.ROUTINES
+WHERE ROUTINE_TYPE = 'PROCEDURE'
+AND ROUTINE_SCHEMA = DATABASE();
+
+
+SHOW PROCEDURE STATUS WHERE Db = DATABASE();
+
+-=============================================================================================
+
+DELIMITER //
+CREATE FUNCTION CUBEFUN(NUM INT)
+RETURNS INT
+DETERMINISTIC 
+BEGIN
+RETURN NUM * NUM*NUM;
+END;
+//
+DELIMITER ;
+SELECT CUBEFUN(40);
+
+
+
+SELECT ROUTINE_NAME FROM INFORMATION_SCHEMA.ROUTINES
+WHERE ROUTINE_TYPE = 'FUNCTION'
+AND ROUTINE_SCHEMA = DATABASE();
+
+
+--------
+ACCEPT EMPNO FORM USER AND RETURN THE TOTAL SAL OF EMP
+
+DELIMITER //
+CREATE FUNCTION TOTSAL1(PENO INT)
+RETURNS INT
+DETERMINISTIC 
+BEGIN
+DECLARE TOTSAL INT;
+SELECT SAL+IFNULL(COMM,0) INTO TOTSAL FROM EMP WHERE EMPNO = PENO; 
+RETURN TOTSAL;
+END;
+//
+DELIMITER ;
+SELECT TOTSAL1(7654);
+
+
+==================
+DELIMITER //
+CREATE FUNCTION SHOW1()
+RETURNS VARCHAR(255)
+DETERMINISTIC
+BEGIN
+RETURN "NARAYAN";
+END;
+//
+DELIMITER ;
+SELECT SHOW1();
+
+
+
+----------------------- 
+ASSIGNMENT
+DELIMITER $$
+CREATE PROCEDURE ASS1(IN DNO INT)
+BEGIN
+	DECLARE TOTSAL INT;
+	DECLARE AVGSAL DECIMAL(10,2);
+	DECLARE MINSAL DECIMAL(10,2);
+     SELECT MIN(SAL),AVG(SAL),SUM(SAL) INTO MINSAL,AVGSAL,TOTSAL FROM EMP WHERE DEPTNO = DNO ;
+	SELECT TOTSAL TOTAL;
+	SELECT MINSAL ;
+	SELECT AVGSAL ;
+END$$
+DELIMITER ;
+CALL ASS1();
+
+mysql> CALL ASS1(10);
++-------+
+| TOTAL |
++-------+
+|  8750 |
++-------+
+1 row in set (0.00 sec)
+
++---------+
+| MINSAL  |
++---------+
+| 1300.00 |
++---------+
+1 row in set (0.00 sec)
+
++---------+
+| AVGSAL  |
++---------+
+| 2916.67 |
++---------+
+1 row in set (0.00 sec)
+-----------------------------------
+CREATE PROCEDURE FOR PERCENTAGE FORM USER AND RETURN THE GRADE
+PERCENTAGE 
+>=80 DISTINCTION
+<80 >=60 FIRST CLASS
+<60 >=50 SEC
+<50 >=40 PASS
+<40 FAIL
+
+DELIMITER $$
+CREATE PROCEDURE ASS2(IN PERCENTAGE INT)
+BEGIN
+	IF PERCENTAGE > 80 THEN
+	SELECT 'DISTINCTION' AS message;
+	ELSEIF PERCENTAGE < 80 AND PERCENTAGE>=60 THEN
+        SELECT 'FIRST CLASS' AS message;
+	ELSEIF PERCENTAGE < 60 AND PERCENTAGE>=50 THEN
+        SELECT 'SECOND CLASS' AS message;
+	ELSEIF PERCENTAGE < 50 AND PERCENTAGE>=40 THEN
+        SELECT 'PASS' AS message;
+	ELSEIF PERCENTAGE<40 THEN
+        SELECT 'FAIL' AS message;
+	END IF;
+END$$
+DELIMITER ;
+CALL ASS2(78);
+
+-----------------------------
+
+DELIMITER //
+CREATE PROCEDURE TOTSAL_PRO(PENO INT)
+BEGIN
+DECLARE TOTSAL INT;
+SELECT SAL+IFNULL(COMM,0) INTO TOTSAL FROM EMP WHERE EMPNO = PENO; 
+SELECT TOTSAL;
+END;
+//
+DELIMITER ;
+SELECT TOTSAL_PRO(7654);
+
+--------------------
+DELIMITER //
+CREATE FUNCTION TOTSAL_FUN(PENO INT)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+DECLARE TOTSAL INT;
+SELECT 12*SAL+IFNULL(COMM,0) INTO TOTSAL FROM EMP WHERE EMPNO = PENO; 
+RETURN TOTSAL;
+END;
+//
+DELIMITER ;
+SELECT TOTSAL_FUN(7900);
+
+-----------------
+
+
+DELIMITER //
+CREATE PROCEDURE PRO_DELETE(PENO INT)
+BEGIN
+DECLARE DELSAL INT;
+SELECT SAL+IFNULL(COMM,0) INTO DELSAL FROM EMP WHERE EMPNO = PENO; 
+IF DELSAL < 3000 THEN 
+DELETE FROM EMP WHERE EMPNO = PENO;
+ELSE 
+SELECT "NOT AVAILABLE LESS THAN 3000";
+END IF;
+END;
+//
+DELIMITER ;
+CALL PRO_DELETE(7654);
+
+ROLLBACK;
+
+
+
+
+---------------------
+
+DELIMITER //
+CREATE PROCEDURE ODD_LOOP(IN NUM INT)
+BEGIN 
+  	 SET @A:=0;
+   	REPEAT
+        SET @A =@A + 1;
+         IF MOD(@A, 2) = 1 THEN
+            SELECT @A;
+         END IF;
+   	UNTIL @A >= NUM
+	END REPEAT;
+END //
+
+DELIMITER ;
+CALL ODD_LOOP(10);

@@ -1,0 +1,211 @@
+CREATE DB 
+CREATE DATABASE ECOMMERCE;
+
+1
+CREATE TABLE CUSTOMER2(
+CUSTID INT PRIMARY KEY,
+EMAIL_ADDRESS VARCHAR(75),
+FIRST_NAME VARCHAR(50),
+MIDDLE_NAME VARCHAR(50),
+LAST_NAME VARCHAR(50),
+ADDRESS1 VARCHAR(50),
+ADDRESS2 VARCHAR(50),
+CUSTOMER_PINCODE VARCHAR(10),
+AREA_CODE CHAR(3),
+TELEPHONE CHAR(7)
+);
+
+INSERT INTO CUSTOMER2 VALUES(01,'NARAYAN@G.COM','NAR','MAN','PAT','ADD1','ADD2','001','123','890798');
+
+INSERT INTO CUSTOMER2 VALUES(02,'NARAYAN@G.COM','NAR','MAN','PAT','ADD1','ADD2','001','123','890798'),(03,'NARAYAN@G.COM','NAR','MAN','PAT','ADD1','ADD2','001','123','890798');
+
+
+CREATE TABLE cardinfo(
+card_id int PRIMARY KEY,
+ccnum varchar(16),
+ccexp date,
+name_on_card varchar(100),
+email_address varchar(75)
+);
+
+INSERT INTO CARDINFO VALUES(10,'ABC12','2026-12-12','RUPAY','N@GMAIL.COM');
+
+INSERT INTO CARDINFO VALUES(30,'ABC12','2026-12-12','RUPAY','N@GMAIL.COM'),(20,'ABC12','2026-12-12','RUPAY','N@GMAIL.COM');
+;
+
+CREATE TABLE cardtype(
+card_id int  PRIMARY KEY,
+card_type varchar(20)
+);
+
+INSERT INTO CARDTYPE VALUES(10,'RUPAY'),(20,'USA'),(30,'RUPAY');
+
+CREATE TABLE LOCALE(
+zip varchar(10) PRIMARY KEY,
+city varchar(50),
+state char(2)
+);
+INSERT INTO LOCALE VALUES('ABC123','NASHIK','MH'),('ABB122','HYDRABAD','MH'),('ABD124','SHAHADA','MH');
+
+
+
+
+
+
+mysql> CREATE TABLE CUSTOMER2(
+    -> CUSTID INT PRIMARY KEY,
+    -> EMAIL_ADDRESS VARCHAR(75),
+    -> FIRST_NAME VARCHAR(50),
+    -> MIDDLE_NAME VARCHAR(50),
+    -> LAST_NAME VARCHAR(50),
+    -> ADDRESS1 VARCHAR(50),
+    -> ADDRESS2 VARCHAR(50),
+    -> CUSTOMER_PINCODE VARCHAR(10),
+    -> AREA_CODE CHAR(3),
+    -> TELEPHONE CHAR(7)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO CUSTOMER2 VALUES(01,'NARAYAN@G.COM','NAR','MAN','PAT','ADD1','ADD2','001','123','890798');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO CUSTOMER2 VALUES(02,'NARAYAN@G.COM','NAR','MAN','PAT','ADD1','ADD2','001','123','890798'),(03,'NARAYAN@G.COM','NAR','MAN','PAT','ADD1','ADD2','001','123','890798');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM CUSTOMER3;
+ERROR 1146 (42S02): Table 'cdac.customer3' doesn't exist
+mysql> SELECT * FROM CUSTOMER2;
++--------+---------------+------------+-------------+-----------+----------+----------+------------------+-----------+-----------+
+| CUSTID | EMAIL_ADDRESS | FIRST_NAME | MIDDLE_NAME | LAST_NAME | ADDRESS1 | ADDRESS2 | CUSTOMER_PINCODE | AREA_CODE | TELEPHONE |
++--------+---------------+------------+-------------+-----------+----------+----------+------------------+-----------+-----------+
+|      1 | NARAYAN@G.COM | NAR        | MAN         | PAT       | ADD1     | ADD2     | 001              | 123       | 890798    |
+|      2 | NARAYAN@G.COM | NAR        | MAN         | PAT       | ADD1     | ADD2     | 001              | 123       | 890798    |
+|      3 | NARAYAN@G.COM | NAR        | MAN         | PAT       | ADD1     | ADD2     | 001              | 123       | 890798    |
++--------+---------------+------------+-------------+-----------+----------+----------+------------------+-----------+-----------+
+3 rows in set (0.00 sec)
+
+
+mysql>
+mysql> CREATE TABLE cardinfo(
+    -> card_id int PRIMARY KEY,
+    -> ccnum varchar(16),
+    -> ccexp date,
+    -> name_on_card varchar(100),
+    -> email_address varchar(75)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+
+mysql> INSERT INTO CARDINFO VALUES(10,'ABC12','2026-12-12','RUPAY','N@GMAIL.COM');
+Query OK, 1 row affected (0.01 sec)
+
+mysql>
+mysql> INSERT INTO CARDINFO VALUES(30,'ABC12','2026-12-12','RUPAY','N@GMAIL.COM'),(20,'ABC12','2026-12-12','RUPAY','N@GMAIL.COM');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+
+mysql> SELECT * FROM CARDINFO;
++---------+-------+------------+--------------+---------------+
+| card_id | ccnum | ccexp      | name_on_card | email_address |
++---------+-------+------------+--------------+---------------+
+|      10 | ABC12 | 2026-12-12 | RUPAY        | N@GMAIL.COM   |
+|      20 | ABC12 | 2026-12-12 | RUPAY        | N@GMAIL.COM   |
+|      30 | ABC12 | 2026-12-12 | RUPAY        | N@GMAIL.COM   |
++---------+-------+------------+--------------+---------------+
+3 rows in set (0.00 sec)
+
+
+mysql> CREATE TABLE cardtype(
+    -> card_id int  PRIMARY KEY,
+    -> card_type varchar(20)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> INSERT INTO CARDTYPE VALUES(10,'RUPAY'),(20,'USA'),(30,'RUPAY');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM CARDTYPE;
++---------+-----------+
+| card_id | card_type |
++---------+-----------+
+|      10 | RUPAY     |
+|      20 | USA       |
+|      30 | RUPAY     |
++---------+-----------+
+3 rows in set (0.00 sec)
+
+mysql>
+mysql> CREATE TABLE LOCALE(
+    -> zip varchar(10) PRIMARY KEY,
+    -> city varchar(50),
+    -> state char(2)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO LOCALE VALUES('ABC123','NASHIK','MH'),('ABB122','HYDRABAD','MH'),('ABD124','SHAHADA','MH');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM LOCALE;
++--------+----------+-------+
+| zip    | city     | state |
++--------+----------+-------+
+| ABB122 | HYDRABAD | MH    |
+| ABC123 | NASHIK   | MH    |
+| ABD124 | SHAHADA  | MH    |
++--------+----------+-------+
+3 rows in set (0.00 sec)
+
+mysql> DESC LOCALE;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| zip   | varchar(10) | NO   | PRI | NULL    |       |
+| city  | varchar(50) | YES  |     | NULL    |       |
+| state | char(2)     | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> DESC CARDTYPE;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| card_id   | int         | NO   | PRI | NULL    |       |
+| card_type | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> DESC CARDINFO;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| card_id       | int          | NO   | PRI | NULL    |       |
+| ccnum         | varchar(16)  | YES  |     | NULL    |       |
+| ccexp         | date         | YES  |     | NULL    |       |
+| name_on_card  | varchar(100) | YES  |     | NULL    |       |
+| email_address | varchar(75)  | YES  |     | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+mysql> DESC CUSTOMER2;
++------------------+-------------+------+-----+---------+-------+
+| Field            | Type        | Null | Key | Default | Extra |
++------------------+-------------+------+-----+---------+-------+
+| CUSTID           | int         | NO   | PRI | NULL    |       |
+| EMAIL_ADDRESS    | varchar(75) | YES  |     | NULL    |       |
+| FIRST_NAME       | varchar(50) | YES  |     | NULL    |       |
+| MIDDLE_NAME      | varchar(50) | YES  |     | NULL    |       |
+| LAST_NAME        | varchar(50) | YES  |     | NULL    |       |
+| ADDRESS1         | varchar(50) | YES  |     | NULL    |       |
+| ADDRESS2         | varchar(50) | YES  |     | NULL    |       |
+| CUSTOMER_PINCODE | varchar(10) | YES  |     | NULL    |       |
+| AREA_CODE        | char(3)     | YES  |     | NULL    |       |
+| TELEPHONE        | char(7)     | YES  |     | NULL    |       |
++------------------+-------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+

@@ -1,0 +1,57 @@
+package entity;
+
+public class User {
+	private String id;
+	private String name;
+	private String phoneNumber;
+	private String pinCode;
+
+	private static int uId;
+	static {
+		uId = 100;
+	}
+
+	public User() {}
+
+	public User(String name, String phoneNumber, String pinCode) {
+		this.id = "u" + ++uId;
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.pinCode = pinCode;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getPinCode() {
+		return pinCode;
+	}
+
+	public void setPinCode(String pinCode) {
+		this.pinCode = pinCode;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", pinCode=" + pinCode + "]";
+	}
+	
+
+}

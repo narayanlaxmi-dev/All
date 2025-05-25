@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=
+    , initial-scale=1.0"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      p.skew {
+        width: 100px;
+        height: 100px;
+        background: lightcoral;
+        text-align: center;
+        line-height: 100px;
+        transition: transform 0.5s ease;
+        margin-bottom: 10px;
+        display: inline-block;
+      }
+      p.skew:nth-child(1):hover {
+        transform: skew(20deg, 10deg);
+      }
+      p.skew:nth-child(2):hover {
+        transform: skewX(20deg);
+      }
+      p.skew:nth-child(3):hover {
+        transform: skewY(10deg);
+      }
+    </style>
+    <p class="skew">Skew(20deg,10deg)</p>
+    <p class="skew">SkewX(20deg)</p>
+    <p class="skew">SkewY(10deg)</p>
+  </body>
+</html>

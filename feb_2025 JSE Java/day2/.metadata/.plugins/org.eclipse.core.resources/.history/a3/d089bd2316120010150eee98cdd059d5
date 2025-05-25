@@ -1,0 +1,17 @@
+package assignment8.medicalStore;
+
+public class GovtHospital extends  Hospital implements MedicalServices{
+
+	@Override
+	public void Treatment() {
+		
+		
+	}
+
+	@Override
+	public void showHospitalPolicy() {
+		
+		
+	}
+
+}

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    img {
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      transition: border-radius 0.3s ease;
+    }
+    img:hover {
+      border-radius: 50%;
+    }
+  </style>
+  <body>
+    <img src="https://via.placeholder.com/200" alt="Sample Image" />
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+  <style>
+    p {
+      line-height: 2;
+      word-spacing: 20px;
+      letter-spacing: 5px;
+    }
+  </style>
+  <body>
+    <p>
+      This is a dummy paragraph to demonstrate line height, word spacing, and
+      letter spacing.
+    </p>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+    p {
+      font-family: "Roboto", sans-serif;
+    }
+  </style>
+  <body>
+    <p>This paragraph uses the Google Font "Roboto" applied through CSS.</p>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+  <style>
+    p,
+    div {
+      border: 1px solid black;
+      margin: 10px;
+      padding: 10px;
+    }
+  </style>
+  <body>
+    <p>
+      This is a paragraph (p). It is a block-level element used for text
+      content.
+    </p>
+
+    <div>
+      This is a div. It is a block-level container used for grouping other
+      elements or content.
+    </div>
+
+    <p>
+      <strong>Difference:</strong><br />
+      &bull; &lt;p&gt; is specifically for paragraphs of text.<br />
+      &bull; &lt;div&gt; is a generic container used for layout and grouping.<br />
+      &bull; Use &lt;p&gt; for textual content, &lt;div&gt; for structural
+      layout.
+    </p>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <ul>
+      <li>New York</li>
+      <li>London</li>
+      <li>Tokyo</li>
+      <li>Paris</li>
+    </ul>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+  <body>
+    <ol>
+      <li>New York</li>
+      <li>London</li>
+      <li>Tokyo</li>
+      <li>Paris</li>
+    </ol>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+  <style>
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+    ul li {
+      display: inline-block;
+      margin-right: 20px;
+    }
+  </style>
+  <body>
+    <ul>
+      <li>Home</li>
+      <li>About</li>
+      <li>Services</li>
+      <li>Contact</li>
+    </ul>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+  <style>
+    .rgb {
+      background-color: rgb(100, 150, 200);
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .hex6 {
+      background-color: #3498db;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    .hex3 {
+      background-color: #3bd;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+  <body>
+    <p class="rgb">This paragraph has an RGB background color.</p>
+    <p class="hex6">This paragraph has a 6-digit hex background color.</p>
+    <p class="hex3">This paragraph has a 3-digit hex background color.</p>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+  <style>
+    p {
+      background-color: rgba(255, 0, 0, 0.5); /* semi-transparent red */
+      padding: 10px;
+    }
+  </style>
+  <body>
+    <p>
+      This paragraph has a semi-transparent red background using rgba(). The "a"
+      in rgba stands for "alpha" and controls the opacity (0 is fully
+      transparent, 1 is fully opaque).
+    </p>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+  <style>
+    div {
+      width: 100px;
+      height: 100px;
+      background-color: #ccc;
+      position: relative;
+      left: 300px;
+      top: 200px;
+    }
+  </style>
+  <body>
+    <div></div>
+  </body>
+</html>
+
+<!DOCTYPE html>
+<html>
+  <style>
+    body,
+    html {
+      height: 100%;
+      margin: 0;
+    }
+    div {
+      width: 1200px;
+      height: 600px;
+      background-color: #ddd;
+      margin: auto;
+      position: relative;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+  <body>
+    <div></div>
+  </body>
+</html>

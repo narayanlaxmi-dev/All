@@ -1,0 +1,39 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<h1>hello cdac</h1>
+<p>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque animi dolore,
+  dignissimos iste soluta repellendus dolor perferendis, reiciendis omnis ipsa
+  aut in eos recusandae? Temporibus quisquam commodi ex minus beatae.
+</p>
+<h1>welcome to infosis</h1>
+<p>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque animi dolore,
+  dignissimos iste soluta repellendus dolor perferendis, reiciendis omnis ipsa
+  aut in eos recusandae? Temporibus quisquam commodi ex minus beatae.
+</p>
+<h1>hello bhai</h1>
+<p>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque animi dolore,
+  dignissimos iste soluta repellendus dolor perferendis, reiciendis omnis ipsa
+  aut in eos recusandae? Temporibus quisquam commodi ex minus beatae.
+</p>
+
+<script>
+  $(document).ready(function () {
+    $("p").hide();
+    $("p").first().show();
+
+    $("h1").click(function () {
+      $("p").slideUp();
+      $(this).next().slideDown();
+    });
+  });
+</script>
+<style>
+  h1,
+  p {
+    border: solid; /* ← semicolon lagao */
+    margin: 0;
+    padding: 15px;
+  }
+</style>

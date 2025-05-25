@@ -1,0 +1,58 @@
+using System;
+
+namespace YourNamespace.Entities
+{
+    public class Book
+    {
+        private static int bId = 100;
+        private string id;
+        private string title;
+        private string author;
+        private Category category;
+        private bool isAvailable;
+
+        public Book()
+        {
+        }
+
+        public Book(string title, string author, Category category, bool isAvailable)
+        {
+            id = "B" + (++bId);
+            this.title = title;
+            this.author = author;
+            this.category = category;
+            this.isAvailable = isAvailable;
+        }
+
+        public string Id => id;
+
+        public string Title
+        {
+            get => title;
+            set => title = value;
+        }
+
+        public string Author
+        {
+            get => author;
+            set => author = value;
+        }
+
+        public Category Category
+        {
+            get => category;
+            set => category = value;
+        }
+
+        public bool IsAvailable
+        {
+            get => isAvailable;
+            set => isAvailable = value;
+        }
+
+        public override string ToString()
+        {
+            return $"Book [id={id}, title={title}, author={author}, category={category}, isAvailable={isAvailable}]";
+        }
+    }
+}

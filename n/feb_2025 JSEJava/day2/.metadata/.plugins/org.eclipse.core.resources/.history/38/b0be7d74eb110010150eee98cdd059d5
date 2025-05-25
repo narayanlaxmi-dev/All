@@ -1,0 +1,29 @@
+package cunsumer;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class IteratorImpl {
+
+	public static void main(String[] args) {
+		ArrayList<Integer> num = new ArrayList<Integer>();
+		num.add(2);
+		num.add(267);
+		num.add(3);
+		num.add(4);
+		System.out.println(num);
+
+		Iterator<Integer> iterate = num.iterator();
+
+		int numb = iterate.next();
+		System.out.println(numb);
+
+		iterate.remove();
+		System.out.println(numb);
+
+		while (iterate.hasNext())
+			iterate.forEachRemaining((v) -> System.out.println(v));
+
+	}
+
+}

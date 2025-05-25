@@ -1,0 +1,24 @@
+package Exception;
+
+// how to send commangline argument in eclipse 
+public class NoExceptionHandlingMain {
+
+	public static void main(String[] args) {
+		// A prog to accept 2 number command line arguments and print their addition
+
+		try {
+			int number1 = Integer.parseInt(args[0]);
+			int number2 = Integer.parseInt(args[1]);
+			int result = number1 + number2;
+			System.out.println(number1 + " + " + number2 + " = " + result);
+		} catch (ArrayIndexOutOfBoundsException obj) {
+			System.out.println(" error alare bhai" + obj);
+		}
+
+	}
+
+}
+
+// java no ... 10 20 .... 10=arg[0] and so on
+// right click run as run configuration
+//main section argument program argument and enter value apply and run 

@@ -1,0 +1,47 @@
+package oops1;
+
+public class Test {
+
+	/*
+	 * private // only one line is private int a not 7,8,9 lines int a; // 0 float
+	 * b; // 0.0 String s; // null boolean ans;// false
+	 */
+
+	private int a; // 0
+	private float b; // 0.0
+	private String s; // null
+	private boolean ans;// false
+
+	// create method
+	void show() {
+		System.out.println("a = " + a + "\n" + "b = " + b);
+		System.out.println("Str = " + s);
+		System.out.println("ans = " + ans);
+	}
+
+	// default constructor
+	Test() {
+		a = 00;
+		b = 00;
+		s = "un_known";
+		ans = false;
+	}
+
+	Test(int a, float b) {
+		this.a = a;
+		this.b = b;
+	}
+
+	Test(String s, boolean ans) {
+
+		this.s = s;
+		this.ans = ans;
+	}
+
+	Test(int a, float b, String s, boolean ans) {
+		this.a = a;
+		this.b = b;
+		this.s = s;
+		this.ans = ans;
+	}
+}

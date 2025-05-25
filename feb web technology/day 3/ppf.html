@@ -1,0 +1,31 @@
+<script>
+  // 15 year 150000 i paid 1 year after 15 year double ppf
+  var openiningBalance = 0;
+  var amount = 150000;
+  var roi = 7.1 / 100; // 7.1 is percent that why divide
+  var year = 15;
+
+  for (let i = 1; i <= year; i++) {
+    let intrest = (openiningBalance + amount) * roi;
+    intrest = Math.round(intrest);
+
+    // console.log(Math);// display math lib all data
+    let closingbal = openiningBalance + amount + intrest;
+    console.log(
+      i,
+      "openining balance",
+      openiningBalance,
+      "amount=",
+      amount,
+      "intrest=",
+      intrest,
+      "closining balance",
+      closingbal
+    );
+
+    document.write(`
+    <li>${i} amount=${amount},      intrest=${intrest},      closining balance${closingbal}</li>
+    `);
+    openiningBalance = closingbal;
+  }
+</script>

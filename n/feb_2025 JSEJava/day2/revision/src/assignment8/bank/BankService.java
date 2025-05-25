@@ -1,0 +1,7 @@
+package assignment8.bank;
+
+public interface BankService {
+
+	void loanService();
+
+}

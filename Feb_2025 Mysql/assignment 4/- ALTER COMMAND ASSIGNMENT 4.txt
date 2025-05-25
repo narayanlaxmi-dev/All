@@ -1,0 +1,119 @@
+ALTER COMMAND ASSIGNMENT
+
+1. Rename a Table:
+Renames the table emp to employees_new.
+ALTER TABLE emp RENAME TO employees_new;
+
+2.Add a Column:
+Adds a new column named region_id to the dept table.
+ALTER TABLE dept ADD region_id INT;
+
+
+3.Add a Column After Another Column:
+Adds a new column named region_id after the dname column in the dept table.
+ALTER TABLE dept ADD region_id INT AFTER dname;
+
+
+4.Change Data Type of a Column:
+Modifies the data type of the mgr column to INT (integer) in the emp table.
+ALTER TABLE emp MODIFY mgr INT;
+
+5.Drop a Column:
+Drops the loc column from the dept table.
+ALTER TABLE dept DROP COLUMN loc;
+
+6.Change Name of a Column:
+Changes the name of the dname column to dept_name while keeping the data type and size the same in the departments table.
+ALTER TABLE departments CHANGE dname dept_name VARCHAR(255);
+
+7.Add a Primary Key:
+Adds a primary key constraint to the deptno column in the dept table.
+ALTER TABLE dept ADD PRIMARY KEY (deptno);
+
+8.Add a Composite Primary Key:
+Adds a composite primary key constraint to the combination of deptno and dname columns in the dept table.
+ALTER TABLE dept ADD PRIMARY KEY (deptno, dname);
+
+9.Drop a Primary Key:
+Drops the primary key constraint from the dept table.
+ALTER TABLE dept DROP PRIMARY KEY;
+
+
+
+_________________________________________________________________________________________________________________________________________________________________
+
+
+SRC Commands
+
+1.display the name of employee whos name end with 'R'
+ select job, job like '_______' as sevenCharJob from emp;
+
+2.display name of employee whose name  contains A at second place
+select ename, ename like '_A%' as sevenCharJob from emp;
+
+3.display name of employee whose name contains 'I' at second last place
+ select ename, ename like '%T_' as sevenCharJob from emp;
+
+4.Display the name of employee whose name start with 'A';
+select ename, ename like 'A%' as sevenCharJob from emp;
+ 
+
+5.Display name of employee whoose name contains 'A' anywhere in the name
+ select ename  from emp where ename like '%A%';
+
+6.Display the name of employee whose name ends with  IN
+ select * from emp where ename like '%IN';
+
+7.Display the name of employee whose name ends with LEN
+ select * from emp where ename like '%LEN';
+
+8.List the name of employees whose name has 4 characters.
+ select * from emp where ename like '____';
+
+9.List the name of employees whose job has 7 characters
+ select * from emp where ename like '_______';
+
+10.List the employees whose job is having last 3 characters as 'MAN'.
+ select * from emp where ename like '%MAN;
+
+11.List employees whose job is having first 3 characters as 'MAN'.
+   select * from emp where ename like 'MAN%';
+
+12.Display all the names whose name is having exactly one 'L'.
+  select ename
+    from emp
+     where length(ename) - LENGTH(REPLACE(LOWER(ename), 'l', '')) = 1; 
+
+13.Display department names which contain letter 'O' in it.
+   select ename from emp where like '%o%';
+
+14.Display the output as shown below for all records in emp table,
+SELECT LENGTH('HELLLLL') - LENGTH(REPLACE(UPPER('HELLLLL'), 'L', '')) AS count_of_Ls;
+
+15.Calculate number of L's in the string 'HELLLLL'.
+   SELECT *
+FROM emp
+WHERE job LIKE '%MAN%';
+
+16.Display all the employees whose job contains the string 'MAN'.
+ SELECT *
+FROM emp
+WHERE job LIKE 'MAN%';
+
+17.Display all the employees whose job starts with the string 'MAN'.
+   SELECT *
+FROM emp
+WHERE job LIKE '%MAN';
+
+18.Display all the employees whose job ends with the string 'MAN'.
+   SELECT *
+FROM emp
+WHERE job LIKE '%MAN';
+
+19.Display the result from emp table as shown:
+select * from emp;
+
+20.Display the first 3 characters of ename in lowercase and the rest in uppercase.
+SELECT 
+  CONCAT(LOWER(SUBSTRING(ename, 1, 3)), UPPER(SUBSTRING(ename, 4))) AS formatted_name
+FROM emp;

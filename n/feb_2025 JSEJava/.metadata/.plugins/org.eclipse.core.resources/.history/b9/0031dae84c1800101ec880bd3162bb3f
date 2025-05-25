@@ -1,0 +1,12 @@
+package services;
+
+import dao.RestaurentDao;
+
+public class restaurentServices {
+	private RestaurentDao restdaoInstances;
+
+	public restaurentServices() {
+		restdaoInstances = RestaurentDao.getRestaurentDaoInstance();
+	}
+
+}

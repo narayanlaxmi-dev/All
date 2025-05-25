@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="weather-app">
+    <h1>Weather Application</h1>
+
+    <input type="text" id="city" placeholder="Enter city name">
+    <select id="units">
+      <option value="metric">Celsius</option>
+      <option value="imperial">Fahrenheit</option>
+    </select>
+    <button onclick="getWeather()">Get Weather</button>
+
+    <div id="weatherResult"></div>
+    <div id="errorMsg"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

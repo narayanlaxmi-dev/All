@@ -1,0 +1,73 @@
+package entity;
+
+
+import java.util.List;
+
+public class Restaurant {
+	private String id;
+	private String name;
+	private List<String> servicablePinCode;
+	private List<FoodItem> items;
+	private Rating rating;
+
+	private static int rId;
+	static {
+		rId = 200;
+	}
+
+	public Restaurant() {
+
+	}
+
+	// constructor parametarized list FoodIten for user
+	public Restaurant(String name, List<String> servicablePinCode, List<FoodItem> items, Rating rating) {
+		this.id = "r" + ++rId;
+		this.name = name;
+		this.servicablePinCode = servicablePinCode;
+		this.items = items;
+		this.rating = rating;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<String> getServicablePinCode() {
+		return servicablePinCode;
+	}
+
+	public void setServicablePinCode(List<String> servicablePinCode) {
+		this.servicablePinCode = servicablePinCode;
+	}
+
+	public List<FoodItem> getItems() {
+		return items;
+	}
+
+	public void setItems(List<FoodItem> items) {
+		this.items = items;
+	}
+
+	public Rating getRating() {
+		return rating;
+	}
+
+	public void setRating(Rating rating) {
+		this.rating = rating;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "Restaurant [id=" + id + ", name=" + name + ", servicablePinCode=" + servicablePinCode + ", items="
+				+ items + ", rating=" + rating + "]";
+	}
+
+}

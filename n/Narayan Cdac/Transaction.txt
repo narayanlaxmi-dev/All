@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace YourNamespace.Entities
+{
+    public class Transaction
+    {
+        private static List<TransactionRecord> records = new List<TransactionRecord>();
+
+        public static void RecordBorrowTransaction(string memberId, string bookId)
+        {
+            var borrowRecord = new TransactionRecord(memberId, bookId, "Borrowed");
+            records.Add(borrowRecord);
+        }
+
+        public static void RecordReturnTransaction(string memberId, string bookId)
+        {
+            var returnRecord = new TransactionRecord(memberId, bookId, "Return");
+            records.Add(returnRecord);
+        }
+
+        public static void DisplayTransactions()
+        {
+            foreach (var record in records)
+            {
+                Console.WriteLine(record);
+                Console.WriteLine("________________");
+            }
+        }
+    }
+}

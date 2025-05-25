@@ -1,0 +1,7 @@
+package day3_1practice;
+
+public class PascalPattern {
+	public static void main(String[] args) {
+
+	}
+}

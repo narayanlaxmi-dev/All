@@ -1,0 +1,10 @@
+package day1_pakage;
+
+public class example2 {
+
+	public static void main(String[] args) {
+		int a,b,c;
+
+	}
+
+}

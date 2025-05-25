@@ -1,0 +1,73 @@
+package entity;
+
+import java.util.Scanner;
+
+public class ShopMain {
+
+	public static void main(String[] args) {
+
+		System.out.println("Welcome in Shop");
+		Scanner sc = new Scanner(System.in);
+		Shop s = new Shop();
+		Customers cust = new Customers();
+		Products prod = new Products();
+		boolean exit = true;
+
+		while (exit) {
+			System.out
+					.println("+++++ Menu +++++" + "\n1 : add Product" + "\n2 : remove product" + "\n3 : display product"
+							+ "\n4 : add customer" + "\n5 : remove customer" + "\n6 : display customer"
+							+ "\n7 : record sales" + "\n8 : recordReturn" + "\n9 : display record" + "\n0. Exit.");
+			int ch = sc.nextInt();
+			switch (ch) {
+			case 0:
+				System.out.println("thanks to using me");
+				exit = false;
+				break;
+
+			case 1:
+				System.out.println("--- Add Product --- ");
+				s.addProduct(new Products(sc.nextLine(), sc.nextDouble(), sc.nextInt()));
+				break;
+
+			case 2:
+				System.out.println("--- remove Product --- ");
+				s.removeProduct(prod);
+				break;
+
+			case 3:
+				System.out.println("--- display all Product --- ");
+				s.displayAllproduct();
+				break;
+
+			case 4:
+				System.out.println("--- Add customer --- ");
+				break;
+
+			case 5:
+				System.out.println("--- remove customer --- ");
+				break;
+
+			case 6:
+				System.out.println("--- display all customer --- ");
+				break;
+
+			case 7:
+				System.out.println("--- RecordSales --- ");
+				break;
+
+			case 8:
+				System.out.println("--- removesales --- ");
+				break;
+
+			case 9:
+				System.out.println("--- Add customer --- ");
+				break;
+			default:
+				System.out.println("invalid. Try again");
+			}
+
+		}
+
+	}
+}

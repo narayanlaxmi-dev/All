@@ -1,0 +1,82 @@
+package assignment8.medicalStore;
+
+import java.util.Scanner;
+
+public class HospitalManagementSystemMAIN {
+
+    public static void main(String[] args) {
+        Employee e = new Employee("narayan", "DOCTOR");
+        Employee e1 = new Employee("neyan", "PHYSIOTHERAPY");
+        Employee e2 = new Employee("laxmi", "MANAGEMENT");
+
+        Patient p = new Patient("vikas", 01, 100, false);
+        Patient p1 = new Patient("nevduuu", 02, 1000, false);
+
+        // Initialize hospitals
+        Hospital[] hospital = new Hospital[2];
+        hospital[0] = new GovtHospital();
+        hospital[1] = new PrivateHospital();
+
+        Scanner sc = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("-------------------");
+            System.out.println("Menu Option\r\n" + 
+                               "1. View Employee Details\r\n" + 
+                               "2. View Patient Details\r\n" +
+                               "3. Pay Bill\r\n" + 
+                               "4. Show Hospital Details\r\n" + 
+                               "5. Provide Treatment\n" + 
+                               "6. Exit\r\n");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    e.showEmployeeDetails();
+                    e1.showEmployeeDetails();
+                    e2.showEmployeeDetails();
+                    break;
+
+                case 2:
+                    p.showPaitentDetails();
+                    p.checkBillingStatus();
+                    p1.showPaitentDetails();
+                    p1.checkBillingStatus();
+                    break;
+
+                case 3:
+                    p.payBill();
+                    p1.payBill();
+                    break;
+
+                case 4:
+                    // Show guidelines and treatment for each hospital
+                    for (Hospital h : hospital) {
+                        h.showGuidelines();
+                    }
+                    for (Hospital h : hospital) {
+                        h.Treatment(); // Assuming Treatment is defined in Hospital class and its subclasses
+                    }
+                    break;
+
+                case 5:
+                    // Show hospital policy for each hospital
+                    for (Hospital h : hospital) {
+                        h.showHospitalPolicy(); // Assuming showHospitalPolicy is defined in Hospital class
+                    }
+                    break;
+
+                case 6:
+                    System.out.println("Thank you for using the application...");
+                    break;
+
+                default:
+                    System.out.println("Enter a valid choice");
+                    break;
+            }
+        } while (choice != 6);
+
+        sc.close(); // Close the scanner to avoid resource leaks
+    }
+}

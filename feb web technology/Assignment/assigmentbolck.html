@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Structure</title>
+  </head>
+  <body>
+    <div class="container">
+      <header><h1>Met Mashik</h1></header>
+
+      <aside>
+        <h3>hello</h3>
+        <p>Recent Post</p>
+        <ul>
+          <li>link1</li>
+          <li>link2</li>
+          <li>link3</li>
+          <li>link4</li>
+        </ul>
+      </aside>
+
+      <main>
+        <h2>Blogs</h2>
+        <div class="posts">
+          <div class="post">Post 1</div>
+          <div class="post">Post 2</div>
+          <div class="post">Post 3</div>
+          <div class="post">Post 4</div>
+        </div>
+      </main>
+
+      <footer><p>Met Nashik</p></footer>
+    </div>
+  </body>
+</html>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+
+  .container {
+    display: grid;
+    grid-template-areas:
+      "header header"
+      "sidebar main"
+      "footer footer";
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 10px;
+    min-height: 100vh;
+  }
+
+  header {
+    grid-area: header;
+    background: #ff2;
+    padding: 10px;
+    text-align: center;
+  }
+
+  aside {
+    grid-area: sidebar;
+    background: #d54;
+    padding: 10px;
+  }
+
+  main {
+    grid-area: main;
+    background: #4a3;
+    padding: 10px;
+  }
+
+  footer {
+    grid-area: footer;
+    background: #2ff;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .posts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .post {
+    background: white;
+    padding: 10px;
+    border: 1px solid #bbb;
+  }
+</style>

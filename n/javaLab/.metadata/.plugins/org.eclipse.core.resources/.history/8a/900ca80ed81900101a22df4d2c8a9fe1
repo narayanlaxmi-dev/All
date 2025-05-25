@@ -1,0 +1,11 @@
+package entity;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Transaction {
+	
+	private List<Products> products = new ArrayList<>();
+	private List<Customers> customers = new ArrayList<>();
+	
+}

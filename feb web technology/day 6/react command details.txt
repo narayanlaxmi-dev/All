@@ -1,0 +1,11 @@
+cmd to particular location 
+npx create-react-app frontEnd <- folder name 
+y
+npm start 
+ctrl +c 
+npm run build
+
+>npm i b
+ootstrap axios
+
+npm i react-router

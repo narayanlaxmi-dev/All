@@ -1,0 +1,17 @@
+package services;
+
+import dao.UserDao;
+
+public class UserServices {
+
+	private UserDao userdaoInstances;
+
+	public UserServices() {
+		userdaoInstances = new UserDao();
+	}
+
+	public void reggisteredUser(String name, String phoneNumber, String pinCode) {
+		// userservice depent on suerdao to store object
+
+	}
+}

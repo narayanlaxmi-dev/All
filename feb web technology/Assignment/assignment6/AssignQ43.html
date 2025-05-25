@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="txt" type="text">
+<button onclick="square()">Square</button>
+<p id="para"></p>
+<script>
+function square() {
+  let num = Number(document.getElementById("txt").value);
+  if (!isNaN(num)) {
+    document.getElementById("para").innerText = Math.pow(num, 2);
+  } else {
+    document.getElementById("para").innerText = "Enter valid number";
+  }
+}
+</script>
+</body>
+</html>

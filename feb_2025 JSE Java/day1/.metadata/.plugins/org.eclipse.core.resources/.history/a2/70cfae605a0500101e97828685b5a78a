@@ -1,0 +1,21 @@
+package day1_pakage;
+import java.util.Scanner;
+public class ep5oddeven {
+
+	public static void main(String[] args) {
+				Scanner ob = new Scanner(System.in);
+				System.out.println("Enter number to check -ve/+ve :");
+				int a = ob.nextInt();
+
+				ob.close();
+				if (a % 2 == 0)
+					System.out.println("the number is Even :" + a);
+				else
+					System.out.println("the number is Odd :" + a);
+			
+		
+
+
+	}
+
+}

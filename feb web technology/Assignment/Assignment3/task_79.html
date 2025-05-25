@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      p.shift {
+        width: 100px;
+        height: 100px;
+        background: lightgreen;
+        text-align: center;
+        line-height: 100px;
+        transition: transform 0.5s ease;
+        margin-bottom: 10px;
+        display: inline-block;
+      }
+      p.shift:nth-child(1):hover {
+        transform: translate(20px, 10px);
+      }
+      p.shift:nth-child(2):hover {
+        transform: translateX(30px);
+      }
+      p.shift:nth-child(3):hover {
+        transform: translateY(20px);
+      }
+    </style>
+    <p class="shift">Translate(20px,10px)</p>
+    <p class="shift">TranslateX(30px)</p>
+    <p class="shift">TranslateY(20px)</p>
+  </body>
+</html>

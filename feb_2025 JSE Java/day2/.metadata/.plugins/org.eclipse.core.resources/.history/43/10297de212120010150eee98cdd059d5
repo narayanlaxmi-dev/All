@@ -1,0 +1,35 @@
+package assignment8.bank;
+
+public class Account {
+	int accNo;
+	int balance;
+	Customer customer;
+
+	public Account(int accNo, int balance, Customer customer) {
+		super();
+		this.accNo = accNo;
+		this.balance = balance;
+		this.customer = customer;
+	}
+
+	public void deposit(int amt) {
+		balance += amt;
+		System.out.println("Amount deposited successfully: " + balance);
+	}
+
+	public void withdraw(int amt) {
+		try {
+			if (amt > balance)
+				throw new InsufficientFundException("bhai ita balance hi nai he tera: " + balance);
+
+			balance -= amt;
+			System.out.println("Amount Withdraw successfully-> Available is: " + balance);
+		} catch (Exception e) {
+			System.out.println("Error :" + e.getMessage());
+		}
+	}
+
+	public void displayDetails() {
+		System.out.println("Account number:" + accNo + "\tBalance: " + balance);
+	}
+}

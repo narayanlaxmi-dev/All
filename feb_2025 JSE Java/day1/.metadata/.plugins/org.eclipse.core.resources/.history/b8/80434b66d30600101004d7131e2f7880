@@ -1,0 +1,18 @@
+package oops1;
+
+public class Employee {
+	private int salary, e_id;
+	private String name ;
+	
+	public 
+	void set_data(String name, int e_id, int salary) {
+		name = name;
+		e_id = e_id;
+		salary = salary;
+	}
+	void get_data() {
+		System.out.println("The Employee name is :" + name);
+		System.out.println("The Employee ID is :" + e_id);
+		System.out.println("The Employee salary is :" + salary);
+	}
+}

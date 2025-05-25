@@ -1,0 +1,35 @@
+<!-- .container>.col*4 -->
+<div class="container">
+  <div class="col">
+    In HTML, to merge two or more columns into a single cell, you use the
+    colspan attribute within a
+    <td>(table data)</td>
+  </div>
+  <div class="col">
+    (table header) element. This attribute specifies the number of columns a
+    cell should span, effectively merging them horizontally.
+  </div>
+  <div class="col">
+    For more detailed information and examples, you can refer to the following
+    resources:
+  </div>
+  <div class="col">
+    Usage in Headers: The colspan attribute can also be used in
+    <th>elements to create header cells that span multiple columns.</th>
+  </div>
+</div>
+
+<style>
+  .container {
+    border: solid;
+    width: 1200px;
+    margin: auto;
+    display: flex; /* CSS 3 WE USE FLEX*/
+    text-align: center;
+  }
+
+  .col {
+    border: 1px solid;
+    width: 25%; /* 4=COLUMN 100/4 25 PERCENT*/
+  }
+</style>

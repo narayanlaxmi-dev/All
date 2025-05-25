@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+    let arr = [1, 2, 3, 4];
+
+// using for-in
+let result1 = [];
+for (let i in arr) result1.push(arr[i] ** 2);
+console.log("For-in:", result1);
+
+// using forEach
+let result2 = [];
+arr.forEach(val => result2.push(val ** 2));
+console.log("forEach:", result2);
+
+// using map
+let result3 = arr.map(val => val ** 2);
+console.log("map:", result3);
+</script>
+</body>
+</html>

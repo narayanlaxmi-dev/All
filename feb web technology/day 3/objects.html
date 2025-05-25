@@ -1,0 +1,31 @@
+<script>
+  var product = {
+    name: "ONE PEICE",
+    price: 1000,
+    discount: 20,
+    path: "https://cdn.pixabay.com/photo/2024/07/01/19/14/ai-generated-8865944_640.jpg",
+    size: ["s", "m", "l", "xl"],
+  };
+  console.log(product);
+  document.write(`
+  <div>
+    <img src='${product.path}'/>
+    <h2>Price ${product.price}</h2>
+    <p>OnePiece ${product.name}</p>
+    <p>Size ${product.size.join(" | ")}</p>
+    <button>Add To Card</button>
+    </div>
+  `);
+
+  document.write(JSON.stringify(product));
+</script>
+<style>
+  div {
+    border: solid;
+    width: 300px;
+    text-align: center;
+  }
+  img {
+    width: 100%;
+  }
+</style>
