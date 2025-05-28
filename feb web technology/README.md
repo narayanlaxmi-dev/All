@@ -13,4 +13,7 @@
   github
   aws s3 
 </p>
+<<<<<<< HEAD
+=======
 "# All" 
+>>>>>>> 246ab33 (project 1)

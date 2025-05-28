@@ -1,4 +1,41 @@
 
+<<<<<<< HEAD
+=======
+ git lfs install
+ git lfs track "*.exe"
+ git lfs track "*.pdf"
+ git add .gitattributes
+ git commit -m "Track large files with Git LFS"
+ git add "Feb_2025 c++/Postman-win64-Setup.exe"
+ git add "Feb_2025 c++/VSCodeUserSetup-x64-1.98.0.exe"
+ git add "1 NARAYAN practice/Cracking the Coding Interview.pdf"
+$ git commit -m "Add large files managed by Git LFS"
+
+CDAC@CDACLAB-148 MINGW64 ~/Documents/feb 2025 all (main)
+$ git lfs install
+
+Updated Git hooks.
+Git LFS initialized.
+
+CDAC@CDACLAB-148 MINGW64 ~/Documents/feb 2025 all (main)
+$ git lfs track "*.exe"
+
+"*.exe" already supported
+
+CDAC@CDACLAB-148 MINGW64 ~/Documents/feb 2025 all (main)
+$ git add .gitattributes
+
+CDAC@CDACLAB-148 MINGW64 ~/Documents/feb 2025 all (main)
+$ git commit -m "Track .exe files with LFS"
+
+$ git lfs migrate import --include="*.exe"
+$ git push origin main --force
+
+
+
+
+
+>>>>>>> 246ab33 (project 1)
 C:\Users\CDAC\Documents\feb 2025 all\portfolio\bookStoreApp-master>git remote add origin https://github.com/narayanlaxmi-dev/N-bookStore.git
 error: remote origin already exists.
 
@@ -6,18 +43,34 @@ C:\Users\CDAC\Documents\feb 2025 all\portfolio\bookStoreApp-master>git remote -v
 origin  https://github.com/narayanlaxmi-dev/bookstore.git (fetch)
 origin  https://github.com/narayanlaxmi-dev/bookstore.git (push)
 
+<<<<<<< HEAD
+C:\Users\CDAC\Documents\feb 2025 all\portfolio\bookStoreApp-master>git remote set-url origin https://github.com/narayanlaxmi-dev/N-bookStore.git
+
+C:\Users\CDAC\Documents\feb 2025 all\portfolio\bookStoreApp-master>git remote remove origin
+
+C:\Users\CDAC\Documents\feb 2025 all\portfolio\bookStoreApp-master>git remote add origin https://github.com/narayanlaxmi-dev/N-bookStore.git
+
+C:\Users\CDAC\Documents\feb 2025 all\portfolio\bookStoreApp-master>
+
+=======
 >git remote set-url origin https://github.com/narayanlaxmi-dev/N-bookStore.git
 
 >git remote remove origin
 
 >git remote add origin https://github.com/narayanlaxmi-dev/N-bookStore.git
+>>>>>>> 246ab33 (project 1)
 
 remove Control Panel\User Accounts\Credential Manager GitHub other login use
 cmd open 
 
+<<<<<<< HEAD
+git config user.name narayan
+git config user.email narayanlaxmipatil@gmail.com
+=======
 
 >git config --global user.name "narayanlaxmi-dev"
 >git config --global user.email "lordshiryuga@gmail.com"
+>>>>>>> 246ab33 (project 1)
 
 git init
 
