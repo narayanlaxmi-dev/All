@@ -1,6 +1,9 @@
 
 <<<<<<< HEAD
 =======
+<<<<<<< HEAD
+=======
+>>>>>>> f71f43d (project 1)
  git lfs install
  git lfs track "*.exe"
  git lfs track "*.pdf"
@@ -35,7 +38,10 @@ $ git push origin main --force
 
 
 
+<<<<<<< HEAD
+=======
 >>>>>>> 246ab33 (project 1)
+>>>>>>> f71f43d (project 1)
 C:\Users\CDAC\Documents\feb 2025 all\portfolio\bookStoreApp-master>git remote add origin https://github.com/narayanlaxmi-dev/N-bookStore.git
 error: remote origin already exists.
 
@@ -44,14 +50,17 @@ origin  https://github.com/narayanlaxmi-dev/bookstore.git (fetch)
 origin  https://github.com/narayanlaxmi-dev/bookstore.git (push)
 
 <<<<<<< HEAD
+>git remote set-url origin https://github.com/narayanlaxmi-dev/N-bookStore.git
+=======
+<<<<<<< HEAD
 C:\Users\CDAC\Documents\feb 2025 all\portfolio\bookStoreApp-master>git remote set-url origin https://github.com/narayanlaxmi-dev/N-bookStore.git
+>>>>>>> f71f43d (project 1)
 
-C:\Users\CDAC\Documents\feb 2025 all\portfolio\bookStoreApp-master>git remote remove origin
+>git remote remove origin
 
-C:\Users\CDAC\Documents\feb 2025 all\portfolio\bookStoreApp-master>git remote add origin https://github.com/narayanlaxmi-dev/N-bookStore.git
-
-C:\Users\CDAC\Documents\feb 2025 all\portfolio\bookStoreApp-master>
-
+<<<<<<< HEAD
+>git remote add origin https://github.com/narayanlaxmi-dev/N-bookStore.git
+=======
 =======
 >git remote set-url origin https://github.com/narayanlaxmi-dev/N-bookStore.git
 
@@ -59,10 +68,16 @@ C:\Users\CDAC\Documents\feb 2025 all\portfolio\bookStoreApp-master>
 
 >git remote add origin https://github.com/narayanlaxmi-dev/N-bookStore.git
 >>>>>>> 246ab33 (project 1)
+>>>>>>> f71f43d (project 1)
 
 remove Control Panel\User Accounts\Credential Manager GitHub other login use
 cmd open 
 
+<<<<<<< HEAD
+
+>git config --global user.name "narayanlaxmi-dev"
+>git config --global user.email "lordshiryuga@gmail.com"
+=======
 <<<<<<< HEAD
 git config user.name narayan
 git config user.email narayanlaxmipatil@gmail.com
@@ -71,6 +86,7 @@ git config user.email narayanlaxmipatil@gmail.com
 >git config --global user.name "narayanlaxmi-dev"
 >git config --global user.email "lordshiryuga@gmail.com"
 >>>>>>> 246ab33 (project 1)
+>>>>>>> f71f43d (project 1)
 
 git init
 

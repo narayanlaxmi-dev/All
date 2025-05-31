@@ -8,6 +8,7 @@ import articleModel from "./model/articlemodel.js";
 const app = express(); // to handling http request and response
 app.use(cors());
 app.use(express.json());
+app.use(express.static("uploads"));// to show img in react app
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -64,11 +65,11 @@ app.get("/articles", async (req, res) => {
   }
 });
 
-   //  http://localhost:9696/articles-by-category/6835440afc40816171c4fdf1
-    //http://localhost:9696/articles-by-category/683543ecfc40816171c4fdef
-     http://localhost:9696/articles-by-category/6835440afc40816171c4fdf1
+//  http://localhost:9696/articles-by-category/6835440afc40816171c4fdf1
+//http://localhost:9696/articles-by-category/683543ecfc40816171c4fdef
+//localhost:9696/articles-by-category/6835440afc40816171c4fdf1
 
- app.get("/articles-by-category/:categoryid", async (req, res) => {
+http: app.get("/articles-by-category/:categoryid", async (req, res) => {
   try {
     var catId = req.params.categoryid;
     var articles = await articleModel.find({ categoryid: catId });
